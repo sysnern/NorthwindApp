@@ -1,13 +1,14 @@
 ﻿using NorthwindApp.Core.DTOs;
+using NorthwindApp.Core.Results;
 
 namespace NorthwindApp.Business.Services
 {
     public interface IProductService
     {
-        Task<List<ProductDTO>> GetAllAsync(ProductFilterDto filter);
-        Task<ProductDTO?> GetByIdAsync(int id);
-        Task AddAsync(ProductCreateDto dto);
-        Task UpdateAsync(ProductUpdateDto dto);
-        Task DeleteAsync(int id);
+        Task<ApiResponse<List<ProductDTO>>> GetAllAsync(ProductFilterDto filter);
+        Task<ApiResponse<ProductDTO>> GetByIdAsync(int id);
+        Task<ApiResponse<string>> AddAsync(ProductCreateDto dto);
+        Task<ApiResponse<string>> UpdateAsync(ProductUpdateDto dto);
+        Task<ApiResponse<string>> DeleteAsync(int id);
     }
 }

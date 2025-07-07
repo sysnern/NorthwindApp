@@ -21,7 +21,7 @@ namespace NorthwindApp.API.Controllers
         public async Task<ActionResult<ApiResponse<List<ProductDTO>>>> GetAll([FromQuery] ProductFilterDto filter)
         {
             var result = await _productService.GetAllAsync(filter);
-            return Ok(ApiResponse<List<ProductDTO>>.SuccessResponse(result, "Ürünler başarıyla listelendi."));
+            return Ok(result);
         }
 
         // Tekil ürün getirme
@@ -29,34 +29,31 @@ namespace NorthwindApp.API.Controllers
         public async Task<ActionResult<ApiResponse<ProductDTO>>> GetById(int id)
         {
             var result = await _productService.GetByIdAsync(id);
-            if (result == null)
-                return Ok(ApiResponse<ProductDTO>.Fail("Ürün bulunamadı."));
-
-            return Ok(ApiResponse<ProductDTO>.SuccessResponse(result, "Ürün başarıyla getirildi."));
+            return Ok(result);
         }
 
         // Ürün ekleme
         [HttpPost]
         public async Task<ActionResult<ApiResponse<string>>> Add([FromBody] ProductCreateDto dto)
         {
-            await _productService.AddAsync(dto);
-            return Ok(ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla eklendi."));
+            var result = await _productService.AddAsync(dto);
+            return Ok(result);
         }
 
         // Ürün güncelleme
         [HttpPut]
         public async Task<ActionResult<ApiResponse<string>>> Update([FromBody] ProductUpdateDto dto)
         {
-            await _productService.UpdateAsync(dto);
-            return Ok(ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla güncellendi."));
+            var result = await _productService.UpdateAsync(dto);
+            return Ok(result);
         }
 
         // Ürün silme (soft delete)
         [HttpDelete("{id}")]
         public async Task<ActionResult<ApiResponse<string>>> Delete(int id)
         {
-            await _productService.DeleteAsync(id);
-            return Ok(ApiResponse<string>.SuccessResponse(null, "Ürün pasif hale getirildi (soft delete uygulandı)."));
+            var result = await _productService.DeleteAsync(id);
+            return Ok(result);
         }
     }
 }
