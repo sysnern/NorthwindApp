@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NorthwindApp.Business.Services;
 using NorthwindApp.Core.DTOs;
+using NorthwindApp.Core.Results;
 
 namespace NorthwindApp.API.Controllers
 {
@@ -17,45 +18,45 @@ namespace NorthwindApp.API.Controllers
 
         // Listeleme (parametreli filtreleme)
         [HttpGet("list")]
-        public async Task<IActionResult> GetAll([FromQuery] ProductFilterDto filter)
+        public async Task<ActionResult<ApiResponse<List<ProductDTO>>>> GetAll([FromQuery] ProductFilterDto filter)
         {
             var result = await _productService.GetAllAsync(filter);
-            return Ok(result);
+            return Ok(ApiResponse<List<ProductDTO>>.SuccessResponse(result, "Ürünler başarıyla listelendi."));
         }
 
         // Tekil ürün getirme
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<ApiResponse<ProductDTO>>> GetById(int id)
         {
             var result = await _productService.GetByIdAsync(id);
             if (result == null)
-                return NotFound("Ürün bulunamadı.");
-            return Ok(result);
+                return Ok(ApiResponse<ProductDTO>.Fail("Ürün bulunamadı."));
+
+            return Ok(ApiResponse<ProductDTO>.SuccessResponse(result, "Ürün başarıyla getirildi."));
         }
 
         // Ürün ekleme
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] ProductCreateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Add([FromBody] ProductCreateDto dto)
         {
             await _productService.AddAsync(dto);
-            return Ok("Ürün başarıyla eklendi.");
+            return Ok(ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla eklendi."));
         }
 
         // Ürün güncelleme
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ProductUpdateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Update([FromBody] ProductUpdateDto dto)
         {
             await _productService.UpdateAsync(dto);
-            return Ok("Ürün başarıyla güncellendi.");
+            return Ok(ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla güncellendi."));
         }
 
-        // Ürün silme
+        // Ürün silme (soft delete)
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<ApiResponse<string>>> Delete(int id)
         {
             await _productService.DeleteAsync(id);
-            return Ok("Ürün pasif hale getirildi (soft delete uygulandı).");
-
+            return Ok(ApiResponse<string>.SuccessResponse(null, "Ürün pasif hale getirildi (soft delete uygulandı)."));
         }
     }
 }

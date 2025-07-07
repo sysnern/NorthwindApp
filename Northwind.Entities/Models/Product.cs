@@ -5,7 +5,7 @@
         public int ProductID { get; set; }                      //Primary Key         
         public required string ProductName { get; set; }        //Required field
 
-        public int SupplierID { get; set; }                     //Foreign Key to Supplier
+        public int SupplierId { get; set; }                     //Foreign Key to Supplier
         public int CategoryId { get; set; }                     //Foreign Key to Category
 
         public string? QuantityPerUnit { get; set; }            //Database can be null

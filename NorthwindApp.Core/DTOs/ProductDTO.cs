@@ -11,7 +11,7 @@
     }
     public class ProductCreateDto
     {
-        public required string ProductName { get; set; }//required eklendi
+        public required string ProductName { get; set; }     //required eklendi
         public decimal? UnitPrice { get; set; }
         public int CategoryId { get; set; }
         public int SupplierId { get; set; }
@@ -28,7 +28,7 @@
     public class ProductUpdateDto
     {
         public int ProductId { get; set; }
-        public required string ProductName { get; set; }    // required eklendi
+        public required string ProductName { get; set; }     // required eklendi
         public decimal? UnitPrice { get; set; }
         public int CategoryId { get; set; }
         public int SupplierId { get; set; }
