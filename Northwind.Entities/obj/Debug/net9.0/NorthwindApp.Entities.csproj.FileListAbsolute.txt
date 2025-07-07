@@ -1,0 +1,12 @@
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\bin\Debug\net9.0\NorthwindApp.Entities.deps.json
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\bin\Debug\net9.0\NorthwindApp.Entities.dll
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\bin\Debug\net9.0\NorthwindApp.Entities.pdb
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\NorthwindApp.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\NorthwindApp.Entities.AssemblyInfoInputs.cache
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\NorthwindApp.Entities.AssemblyInfo.cs
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\NorthwindApp.Entities.csproj.CoreCompileInputs.cache
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\NorthwindApp.Entities.sourcelink.json
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\NorthwindApp.Entities.dll
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\refint\NorthwindApp.Entities.dll
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\NorthwindApp.Entities.pdb
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\Northwind.Entities\obj\Debug\net9.0\ref\NorthwindApp.Entities.dll

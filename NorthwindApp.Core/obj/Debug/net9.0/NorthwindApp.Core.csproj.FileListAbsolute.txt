@@ -1,0 +1,12 @@
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\bin\Debug\net9.0\NorthwindApp.Core.deps.json
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\bin\Debug\net9.0\NorthwindApp.Core.dll
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\bin\Debug\net9.0\NorthwindApp.Core.pdb
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\NorthwindApp.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\NorthwindApp.Core.AssemblyInfoInputs.cache
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\NorthwindApp.Core.AssemblyInfo.cs
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\NorthwindApp.Core.csproj.CoreCompileInputs.cache
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\NorthwindApp.Core.sourcelink.json
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\NorthwindApp.Core.dll
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\refint\NorthwindApp.Core.dll
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\NorthwindApp.Core.pdb
+C:\Users\MAREK HAMSIK\source\repos\NorthwindApp\NorthwindApp.Core\obj\Debug\net9.0\ref\NorthwindApp.Core.dll

@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\MAREK HAMSIK\\source\\repos\\NorthwindApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4D344BC2-F97B-4777-BB56-27FFB5B76B26}|NorthwindApp.Core\\NorthwindApp.Core.csproj|c:\\users\\marek hamsik\\source\\repos\\northwindapp\\northwindapp.core\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D344BC2-F97B-4777-BB56-27FFB5B76B26}|NorthwindApp.Core\\NorthwindApp.Core.csproj|solutionrelative:northwindapp.core\\dtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D344BC2-F97B-4777-BB56-27FFB5B76B26}|NorthwindApp.Core\\NorthwindApp.Core.csproj|c:\\users\\marek hamsik\\source\\repos\\northwindapp\\northwindapp.core\\dtos\\productfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D344BC2-F97B-4777-BB56-27FFB5B76B26}|NorthwindApp.Core\\NorthwindApp.Core.csproj|solutionrelative:northwindapp.core\\dtos\\productfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8977BD-ECA2-4C10-9BAC-37433C9E4E4E}|Northwind.Entities\\NorthwindApp.Entities.csproj|c:\\users\\marek hamsik\\source\\repos\\northwindapp\\northwind.entities\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8977BD-ECA2-4C10-9BAC-37433C9E4E4E}|Northwind.Entities\\NorthwindApp.Entities.csproj|solutionrelative:northwind.entities\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductFilterDto.cs",
+              "DocumentMoniker": "C:\\Users\\MAREK HAMSIK\\source\\repos\\NorthwindApp\\NorthwindApp.Core\\DTOs\\ProductFilterDto.cs",
+              "RelativeDocumentMoniker": "NorthwindApp.Core\\DTOs\\ProductFilterDto.cs",
+              "ToolTip": "C:\\Users\\MAREK HAMSIK\\source\\repos\\NorthwindApp\\NorthwindApp.Core\\DTOs\\ProductFilterDto.cs",
+              "RelativeToolTip": "NorthwindApp.Core\\DTOs\\ProductFilterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T13:51:09.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\MAREK HAMSIK\\source\\repos\\NorthwindApp\\Northwind.Entities\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Northwind.Entities\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\MAREK HAMSIK\\source\\repos\\NorthwindApp\\Northwind.Entities\\Models\\Product.cs",
+              "RelativeToolTip": "Northwind.Entities\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T13:50:58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductDTO.cs",
+              "DocumentMoniker": "C:\\Users\\MAREK HAMSIK\\source\\repos\\NorthwindApp\\NorthwindApp.Core\\DTOs\\ProductDTO.cs",
+              "RelativeDocumentMoniker": "NorthwindApp.Core\\DTOs\\ProductDTO.cs",
+              "ToolTip": "C:\\Users\\MAREK HAMSIK\\source\\repos\\NorthwindApp\\NorthwindApp.Core\\DTOs\\ProductDTO.cs*",
+              "RelativeToolTip": "NorthwindApp.Core\\DTOs\\ProductDTO.cs*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwB4AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T13:50:54.079Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
