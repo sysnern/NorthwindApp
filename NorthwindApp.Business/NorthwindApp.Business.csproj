@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mapping\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Northwind.Entities\NorthwindApp.Entities.csproj" />
+    <ProjectReference Include="..\NorthwindApp.Core\NorthwindApp.Core.csproj" />
     <ProjectReference Include="..\NorthwindApp.Data\NorthwindApp.Data.csproj" />
   </ItemGroup>
 

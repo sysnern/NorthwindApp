@@ -6,7 +6,7 @@
         public required string ProductName { get; set; }        //Required field
 
         public int SupplierID { get; set; }                     //Foreign Key to Supplier
-        public int CategoryID { get; set; }                     //Foreign Key to Category
+        public int CategoryId { get; set; }                     //Foreign Key to Category
 
         public string? QuantityPerUnit { get; set; }            //Database can be null
         public decimal UnitPrice { get; set; }         
