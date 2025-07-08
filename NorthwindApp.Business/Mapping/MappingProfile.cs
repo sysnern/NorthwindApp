@@ -12,6 +12,12 @@ namespace NorthwindApp.Business.Mapping
 
             CreateMap<ProductCreateDto, Product>();
             CreateMap<ProductUpdateDto, Product>();
+
+            CreateMap<Category, CategoryDTO>().ReverseMap();
+
+            CreateMap<CategoryCreateDto, Category>();
+            CreateMap<CategoryUpdateDto, Category>().ReverseMap();
+
         }
     }
 }

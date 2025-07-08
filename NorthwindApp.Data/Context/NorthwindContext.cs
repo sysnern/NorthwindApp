@@ -11,5 +11,7 @@ namespace NorthwindApp.Data.Context
         }
 
         public DbSet<Product> Products { get; set; } = default!;    //Database table for Products
+        public DbSet<Category> Categories { get; set; }             //Database table for Categories
+
     }
 }
