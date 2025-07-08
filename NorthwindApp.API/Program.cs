@@ -1,14 +1,16 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using NorthwindApp.API.Middleware;
 using NorthwindApp.Business.Mapping;
 using NorthwindApp.Business.Services;
 using NorthwindApp.Business.Validation;
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Extensions;
 using NorthwindApp.Data.Repositories;
+using NorthwindApp.Core.Results;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,10 +40,29 @@ builder.Services.AddScoped<IProductService, ProductService>();
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
-
 // FluentValidation
-builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationAutoValidation(options =>
+{
+    options.DisableDataAnnotationsValidation = true;
+});
 builder.Services.AddValidatorsFromAssembly(typeof(ProductCreateDtoValidator).Assembly);
+
+// ✨ ModelState Validation -> ApiResponse olarak dönmesi için:
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var errors = context.ModelState
+            .Where(x => x.Value!.Errors.Count > 0)
+            .SelectMany(x => x.Value!.Errors)
+            .Select(x => x.ErrorMessage);
+
+        var message = string.Join(", ", errors);
+        var apiResponse = ApiResponse<string>.Fail(message);
+
+        return new BadRequestObjectResult(apiResponse);
+    };
+});
 
 var app = builder.Build();
 
@@ -53,7 +74,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("AllowAll"); // CORS middleware aktif
+
+// Hata yönetimi için Middleware (Exception yakalama)
+app.UseMiddleware<ValidationExceptionMiddleware>();
+
+app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

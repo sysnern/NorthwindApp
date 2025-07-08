@@ -7,6 +7,14 @@ namespace NorthwindApp.Business.Validation
     {
         public ProductFilterDtoValidator()
         {
+            this.ClassLevelCascadeMode = CascadeMode.Continue;
+
+            RuleFor(p => p.CategoryId)
+                .GreaterThan(0)
+                .When(p => p.CategoryId.HasValue)
+                .WithMessage("Kategori ID 0'dan büyük olmalıdır.");
+
+
             RuleFor(p => p.MinPrice)
                 .GreaterThanOrEqualTo(0)
                 .When(p => p.MinPrice.HasValue)
