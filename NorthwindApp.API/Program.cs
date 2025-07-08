@@ -21,7 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS (Swagger testleri için)
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
@@ -50,7 +50,7 @@ builder.Services.AddFluentValidationAutoValidation(options =>
 });
 builder.Services.AddValidatorsFromAssembly(typeof(ProductCreateDtoValidator).Assembly);
 
-// ✨ ModelState Validation -> ApiResponse olarak dönmesi için:
+
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.InvalidModelStateResponseFactory = context =>
@@ -69,7 +69,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 var app = builder.Build();
 
-// Development ortamı için Swagger aktif et
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -78,7 +78,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Hata yönetimi için Middleware (Exception yakalama)
+
 app.UseMiddleware<ValidationExceptionMiddleware>();
 
 app.UseCors("AllowAll");

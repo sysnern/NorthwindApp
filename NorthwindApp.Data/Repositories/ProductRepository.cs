@@ -14,9 +14,9 @@ namespace NorthwindApp.Data.Repositories
             _context = context;
         }
 
-        public async Task<List<Product>> GetAllAsync(Expression<Func<Product, bool>> filter = null!)
+        public async Task<List<Product>> GetAllAsync(Expression<Func<Product, bool>>? filter = null)
         {
-            return filter is null
+            return filter == null
                 ? await _context.Products.ToListAsync()
                 : await _context.Products.Where(filter).ToListAsync();
         }
@@ -40,7 +40,6 @@ namespace NorthwindApp.Data.Repositories
         {
             _context.Products.Remove(product);
         }
-
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
