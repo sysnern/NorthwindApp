@@ -1,0 +1,14 @@
+﻿using NorthwindApp.Core.DTOs;
+using NorthwindApp.Core.Results;
+
+namespace NorthwindApp.Business.Services
+{
+    public interface ISupplierService
+    {
+        Task<ApiResponse<List<SupplierDTO>>> GetAllAsync();
+        Task<ApiResponse<SupplierDTO>> GetByIdAsync(int id);
+        Task<ApiResponse<string>> AddAsync(SupplierCreateDto dto);
+        Task<ApiResponse<string>> UpdateAsync(SupplierUpdateDto dto);
+        Task<ApiResponse<string>> DeleteAsync(int id);
+    }
+}
