@@ -14,7 +14,7 @@ namespace NorthwindApp.Data.Repositories
             _context = context;
         }
 
-        public async Task<List<Order>> GetAllAsync(Expression<Func<Order, bool>> filter = null!)
+        public async Task<List<Order>> GetAllAsync(Expression<Func<Order, bool>>? filter = null)
         {
             return filter is null
                 ? await _context.Orders.ToListAsync()

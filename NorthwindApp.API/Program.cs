@@ -21,6 +21,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddMemoryCache();
+
 
 builder.Services.AddCors(options =>
 {
@@ -46,6 +48,7 @@ builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 
 
@@ -87,7 +90,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseMiddleware<ValidationExceptionMiddleware>();
 
 app.UseCors("AllowAll");

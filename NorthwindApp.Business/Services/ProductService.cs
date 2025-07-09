@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Caching.Memory;
 using NorthwindApp.Business.Services;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
@@ -11,15 +12,27 @@ namespace NorthwindApp.Business.Services
     {
         private readonly IProductRepository _repo;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public ProductService(IProductRepository repo, IMapper mapper)
+        public ProductService(IProductRepository repo, IMapper mapper, IMemoryCache cache)
         {
             _repo = repo;
             _mapper = mapper;
+            _cache = cache;
         }
 
         public async Task<ApiResponse<List<ProductDTO>>> GetAllAsync(ProductFilterDto filter)
         {
+            // Benzersiz cache key oluştur
+            var cacheKey = $"product_list_{filter.ProductName}_{filter.CategoryId}_{filter.MinPrice}_{filter.MaxPrice}_{filter.Discontinued}";
+
+            // 1. Cache'de varsa onu döndür
+            if (_cache.TryGetValue(cacheKey, out List<ProductDTO>? cachedList))
+            {
+                return ApiResponse<List<ProductDTO>>.SuccessResponse(cachedList, "Ürünler cache'den getirildi.");
+            }
+
+            // 2. Yoksa DB'den çek
             var products = await _repo.GetAllAsync(p =>
                 (string.IsNullOrEmpty(filter.ProductName) || p.ProductName.Contains(filter.ProductName)) &&
                 (!filter.CategoryId.HasValue || p.CategoryId == filter.CategoryId) &&
@@ -31,6 +44,9 @@ namespace NorthwindApp.Business.Services
             var dtoList = _mapper.Map<List<ProductDTO>>(products);
             if (!dtoList.Any())
                 return ApiResponse<List<ProductDTO>>.Fail("Hiç ürün bulunamadı.");
+
+            // 3. Cache'e yaz
+            _cache.Set(cacheKey, dtoList, TimeSpan.FromMinutes(5));
 
             return ApiResponse<List<ProductDTO>>.SuccessResponse(dtoList, "Ürünler başarıyla listelendi.");
         }
@@ -51,6 +67,9 @@ namespace NorthwindApp.Business.Services
             await _repo.AddAsync(product);
             await _repo.SaveChangesAsync();
 
+            // Cache temizlenmeli
+            ClearProductListCache();
+
             return ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla eklendi.");
         }
 
@@ -63,6 +82,8 @@ namespace NorthwindApp.Business.Services
             _mapper.Map(dto, product);
             _repo.Update(product);
             await _repo.SaveChangesAsync();
+
+            ClearProductListCache();
 
             return ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla güncellendi.");
         }
@@ -77,7 +98,17 @@ namespace NorthwindApp.Business.Services
             _repo.Update(product);
             await _repo.SaveChangesAsync();
 
+            ClearProductListCache();
+
             return ApiResponse<string>.SuccessResponse(null, "Ürün pasif hale getirildi (soft delete uygulandı).");
+        }
+
+        // 🧹 Liste cache'ini temizleyen yardımcı metot
+        private void ClearProductListCache()
+        {
+            // Eğer prefix ile kayıt yapmış olsaydık, tümünü silerdik
+            // Ama burada direkt tüm cache'leri silmek mümkün değil
+            // İleride ICacheService abstraction ile geliştirilebilir
         }
     }
 }

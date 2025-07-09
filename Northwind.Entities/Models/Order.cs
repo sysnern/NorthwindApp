@@ -13,8 +13,8 @@
         public string ShipName { get; set; } = null!;
         public string ShipAddress { get; set; } = null!;
         public string ShipCity { get; set; } = null!;
-        public required string ShipRegion { get; set; }
-        public required string ShipPostalCode { get; set; }
+        public required string? ShipRegion { get; set; }
+        public required string? ShipPostalCode { get; set; }
         public required string ShipCountry { get; set; }
     }
 }
