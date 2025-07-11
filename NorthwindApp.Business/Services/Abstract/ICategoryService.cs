@@ -1,7 +1,7 @@
 ﻿using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 
-namespace NorthwindApp.Business.Services
+namespace NorthwindApp.Business.Services.Abstract
 {
     public interface ICategoryService
     {

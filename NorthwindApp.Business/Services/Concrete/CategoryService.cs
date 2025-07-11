@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories;
 using NorthwindApp.Entities.Models;
 
-namespace NorthwindApp.Business.Services
+namespace NorthwindApp.Business.Services.Concrete
 {
     public class CategoryService : ICategoryService
     {

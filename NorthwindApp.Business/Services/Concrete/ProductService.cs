@@ -1,38 +1,45 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Caching.Memory;
-using NorthwindApp.Business.Services;
+using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories;
 using NorthwindApp.Entities.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace NorthwindApp.Business.Services
+namespace NorthwindApp.Business.Services.Concrete
 {
     public class ProductService : IProductService
     {
         private readonly IProductRepository _repo;
         private readonly IMapper _mapper;
-        private readonly IMemoryCache _cache;
+        private readonly ICacheService _cacheService;
+        private const string CachePrefix = "product_list_";
 
-        public ProductService(IProductRepository repo, IMapper mapper, IMemoryCache cache)
+        public ProductService(
+            IProductRepository repo,
+            IMapper mapper,
+            ICacheService cacheService)
         {
             _repo = repo;
             _mapper = mapper;
-            _cache = cache;
+            _cacheService = cacheService;
         }
 
         public async Task<ApiResponse<List<ProductDTO>>> GetAllAsync(ProductFilterDto filter)
         {
-            // Benzersiz cache key oluştur
-            var cacheKey = $"product_list_{filter.ProductName}_{filter.CategoryId}_{filter.MinPrice}_{filter.MaxPrice}_{filter.Discontinued}";
+            // Cache key'i filtre parametrelerinden oluştur
+            var cacheKey = CachePrefix +
+                $"{filter.ProductName}_{filter.CategoryId}_{filter.MinPrice}_{filter.MaxPrice}_{filter.Discontinued}";
 
-            // 1. Cache'de varsa onu döndür
-            if (_cache.TryGetValue(cacheKey, out List<ProductDTO>? cachedList))
+            // Cache'de mevcut mu?
+            var cached = _cacheService.Get<List<ProductDTO>>(cacheKey);
+            if (cached != null)
             {
-                return ApiResponse<List<ProductDTO>>.SuccessResponse(cachedList, "Ürünler cache'den getirildi.");
+                return ApiResponse<List<ProductDTO>>.SuccessResponse(cached, "Ürünler cache'den getirildi.");
             }
 
-            // 2. Yoksa DB'den çek
+            // DB'den veriyi çek
             var products = await _repo.GetAllAsync(p =>
                 (string.IsNullOrEmpty(filter.ProductName) || p.ProductName.Contains(filter.ProductName)) &&
                 (!filter.CategoryId.HasValue || p.CategoryId == filter.CategoryId) &&
@@ -42,11 +49,13 @@ namespace NorthwindApp.Business.Services
             );
 
             var dtoList = _mapper.Map<List<ProductDTO>>(products);
-            if (!dtoList.Any())
+            if (dtoList == null || dtoList.Count == 0)
+            {
                 return ApiResponse<List<ProductDTO>>.Fail("Hiç ürün bulunamadı.");
+            }
 
-            // 3. Cache'e yaz
-            _cache.Set(cacheKey, dtoList, TimeSpan.FromMinutes(5));
+            // Cache'e yaz 
+            _cacheService.Set(cacheKey, dtoList);
 
             return ApiResponse<List<ProductDTO>>.SuccessResponse(dtoList, "Ürünler başarıyla listelendi.");
         }
@@ -55,7 +64,9 @@ namespace NorthwindApp.Business.Services
         {
             var product = await _repo.GetByIdAsync(id);
             if (product == null)
+            {
                 return ApiResponse<ProductDTO>.Fail("Ürün bulunamadı.");
+            }
 
             var dto = _mapper.Map<ProductDTO>(product);
             return ApiResponse<ProductDTO>.SuccessResponse(dto, "Ürün başarıyla getirildi.");
@@ -63,52 +74,51 @@ namespace NorthwindApp.Business.Services
 
         public async Task<ApiResponse<string>> AddAsync(ProductCreateDto dto)
         {
-            var product = _mapper.Map<Product>(dto);
-            await _repo.AddAsync(product);
+            var entity = _mapper.Map<Product>(dto);
+            await _repo.AddAsync(entity);
             await _repo.SaveChangesAsync();
 
-            // Cache temizlenmeli
-            ClearProductListCache();
+            // Cache temizle
+            _cacheService.RemoveByPrefix(CachePrefix);
 
             return ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla eklendi.");
         }
 
         public async Task<ApiResponse<string>> UpdateAsync(ProductUpdateDto dto)
         {
-            var product = await _repo.GetByIdAsync(dto.ProductId);
-            if (product == null)
+            var existing = await _repo.GetByIdAsync(dto.ProductId);
+            if (existing == null)
+            {
                 return ApiResponse<string>.Fail("Güncellenecek ürün bulunamadı.");
+            }
 
-            _mapper.Map(dto, product);
-            _repo.Update(product);
+            _mapper.Map(dto, existing);
+            _repo.Update(existing);
             await _repo.SaveChangesAsync();
 
-            ClearProductListCache();
+            // Cache temizle
+            _cacheService.RemoveByPrefix(CachePrefix);
 
             return ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla güncellendi.");
         }
 
         public async Task<ApiResponse<string>> DeleteAsync(int id)
         {
-            var product = await _repo.GetByIdAsync(id);
-            if (product == null)
+            var existing = await _repo.GetByIdAsync(id);
+            if (existing == null)
+            {
                 return ApiResponse<string>.Fail("Silinecek ürün bulunamadı.");
+            }
 
-            product.Discontinued = true; // Soft delete
-            _repo.Update(product);
+            // Soft delete
+            existing.Discontinued = true;
+            _repo.Update(existing);
             await _repo.SaveChangesAsync();
 
-            ClearProductListCache();
+            // Cache temizle
+            _cacheService.RemoveByPrefix(CachePrefix);
 
             return ApiResponse<string>.SuccessResponse(null, "Ürün pasif hale getirildi (soft delete uygulandı).");
-        }
-
-        // 🧹 Liste cache'ini temizleyen yardımcı metot
-        private void ClearProductListCache()
-        {
-            // Eğer prefix ile kayıt yapmış olsaydık, tümünü silerdik
-            // Ama burada direkt tüm cache'leri silmek mümkün değil
-            // İleride ICacheService abstraction ile geliştirilebilir
         }
     }
 }

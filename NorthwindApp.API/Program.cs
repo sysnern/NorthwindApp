@@ -5,12 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NorthwindApp.API.Middleware;
 using NorthwindApp.Business.Mapping;
-using NorthwindApp.Business.Services;
 using NorthwindApp.Business.Validation;
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Extensions;
 using NorthwindApp.Data.Repositories;
 using NorthwindApp.Core.Results;
+using NorthwindApp.Business.Services.Concrete;
+using NorthwindApp.Business.Services.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
 
 
 builder.Services.AddCors(options =>
