@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using Serilog;                                
+using Serilog.Events;
+using Serilog.Formatting.Compact;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +18,17 @@ using NorthwindApp.Business.Services.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Serilog Konfigürasyonu
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)    
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .WriteTo.File(new CompactJsonFormatter(), "Logs/log-.json", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();                            
+
+
 // Controllers
 builder.Services.AddControllers();
 
@@ -22,17 +36,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Memory Cache & ICacheService
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
 
-
+// CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
+    options.AddPolicy("AllowAll", p =>
     {
-        builder.AllowAnyOrigin()
-               .AllowAnyHeader()
-               .AllowAnyMethod();
+        p.AllowAnyOrigin()
+         .AllowAnyHeader()
+         .AllowAnyMethod();
     });
 });
 
@@ -42,17 +57,14 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
-
-
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
@@ -64,26 +76,23 @@ builder.Services.AddFluentValidationAutoValidation(options =>
 });
 builder.Services.AddValidatorsFromAssembly(typeof(ProductCreateDtoValidator).Assembly);
 
-
+// ModelState hatalarını ApiResponse formatında dön
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.InvalidModelStateResponseFactory = context =>
     {
         var errors = context.ModelState
-            .Where(x => x.Value!.Errors.Count > 0)
-            .SelectMany(x => x.Value!.Errors)
+            .Where(x => x.Value.Errors.Count > 0)
+            .SelectMany(x => x.Value.Errors)
             .Select(x => x.ErrorMessage);
-
         var message = string.Join(", ", errors);
-        var apiResponse = ApiResponse<string>.Fail(message);
-
-        return new BadRequestObjectResult(apiResponse);
+        return new BadRequestObjectResult(ApiResponse<string>.Fail(message));
     };
 });
 
 var app = builder.Build();
 
-
+// Development ortamında Swagger’ı aktif et
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -92,6 +101,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Serilog isteği otomatik loglar
+app.UseSerilogRequestLogging();
+
+// Middleware’ler
 app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseMiddleware<ValidationExceptionMiddleware>();
 
