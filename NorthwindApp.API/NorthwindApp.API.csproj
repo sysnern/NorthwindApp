@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Northwind.Entities\NorthwindApp.Entities.csproj" />
     <ProjectReference Include="..\NorthwindApp.Business\NorthwindApp.Business.csproj" />
+    <ProjectReference Include="..\NorthwindApp.Core\NorthwindApp.Core.csproj" />
     <ProjectReference Include="..\NorthwindApp.Data\NorthwindApp.Data.csproj" />
   </ItemGroup>
 

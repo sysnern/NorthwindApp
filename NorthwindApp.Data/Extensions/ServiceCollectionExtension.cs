@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NorthwindApp.Data.Context;
+using NorthwindApp.Data.Repositories;
+
 
 namespace NorthwindApp.Data.Extensions
 {
@@ -10,12 +12,16 @@ namespace NorthwindApp.Data.Extensions
         public static IServiceCollection AddNorthwindData(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<NorthwindContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("NorthwindConnection"));
-            });
+                options.UseSqlServer(configuration.GetConnectionString("NorthwindConnection")));
 
-            // Register your data services here
-            // Example: services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
+            
 
             return services;
         }
