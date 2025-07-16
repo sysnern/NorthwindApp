@@ -16,7 +16,6 @@ namespace NorthwindApp.API.Controllers
             _productService = productService;
         }
 
-        // Listeleme (parametreli filtreleme)
         [HttpGet("list")]
         public async Task<ActionResult<ApiResponse<List<ProductDTO>>>> GetAll([FromQuery] ProductFilterDto filter)
         {
@@ -24,7 +23,6 @@ namespace NorthwindApp.API.Controllers
             return Ok(result);
         }
 
-        // Tekil ürün getirme
         [HttpGet("{id}")]
         public async Task<ActionResult<ApiResponse<ProductDTO>>> GetById(int id)
         {
@@ -32,7 +30,6 @@ namespace NorthwindApp.API.Controllers
             return Ok(result);
         }
 
-        // Ürün ekleme
         [HttpPost]
         public async Task<ActionResult<ApiResponse<string>>> Add([FromBody] ProductCreateDto dto)
         {
@@ -40,7 +37,6 @@ namespace NorthwindApp.API.Controllers
             return Ok(result);
         }
 
-        // Ürün güncelleme
         [HttpPut]
         public async Task<ActionResult<ApiResponse<string>>> Update([FromBody] ProductUpdateDto dto)
         {
@@ -48,7 +44,6 @@ namespace NorthwindApp.API.Controllers
             return Ok(result);
         }
 
-        // Ürün silme (soft delete)
         [HttpDelete("{id}")]
         public async Task<ActionResult<ApiResponse<string>>> Delete(int id)
         {

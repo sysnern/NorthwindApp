@@ -15,7 +15,7 @@ namespace NorthwindApp.API.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("list")]
         public async Task<IActionResult> GetAll()
             => Ok(await _service.GetAllAsync());
 
