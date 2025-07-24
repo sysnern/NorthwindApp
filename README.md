@@ -1,6 +1,6 @@
 # NorthwindApp Web API
 
-> 🚀 A .NET 7 Web API for the classic Northwind sample – with clean architecture, validation, AutoMapper, uniform responses, logging & caching.
+> 🚀 A .NET 9 Web API for the classic Northwind sample – with clean architecture, validation, AutoMapper, uniform responses, logging & caching.
 
 ---
 
@@ -32,7 +32,7 @@ This project implements the backend for NorthwindApp – an example e‑commerce
 
 ## Tech Stack
 
-- **Language & Framework:** .NET 7  
+- **Language & Framework:** .NET 9  
 - **ORM:** Entity Framework Core  
 - **Validation:** FluentValidation  
 - **Mapping:** AutoMapper  
@@ -60,7 +60,7 @@ This project implements the backend for NorthwindApp – an example e‑commerce
 
 ## Prerequisites
 
-- [.NET 7 SDK](https://dotnet.microsoft.com/download)  
+- [.NET 9 SDK](https://dotnet.microsoft.com/download)  
 - [SQL Server 2019+](https://www.microsoft.com/en-us/sql-server)  
 - (Optional) Visual Studio 2022 or VS Code  
 
@@ -86,7 +86,7 @@ dotnet restore
        "DefaultConnection": "Server=.;Database=NorthwindDb;Trusted_Connection=True;"
      }
    }
-
+   ```
 ---
 
 ## Database Migrations
@@ -163,9 +163,18 @@ dotnet test
 ## Contributing
 
 1. Fork the repository  
-2. Create a feature branch (`git checkout -b feature/YourFeature`)  
-3. Commit your changes (`git commit -m "Add your feature description"`)  
-4. Push to your branch (`git push origin feature/YourFeature`)  
+2. Create a feature branch
+   ```bash
+   git checkout -b feature/YourFeature
+   ``` 
+3. Commit your changes
+   ```bash
+   git commit -m "Add your feature description"
+   ```
+4. Push to your branch
+   ```bash
+   git push origin feature/YourFeature
+   ```
 5. Open a Pull Request on GitHub  
 
 ## License
