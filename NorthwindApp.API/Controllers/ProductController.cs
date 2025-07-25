@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace NorthwindApp.API.Controllers
 {
@@ -17,6 +18,7 @@ namespace NorthwindApp.API.Controllers
         }
 
         [HttpGet("list")]
+        [SwaggerOperation(Summary = "List products with optional filters")]
         public async Task<ActionResult<ApiResponse<List<ProductDTO>>>> GetAll([FromQuery] ProductFilterDto filter)
         {
             var result = await _productService.GetAllAsync(filter);
@@ -24,6 +26,7 @@ namespace NorthwindApp.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Get product by id")]
         public async Task<ActionResult<ApiResponse<ProductDTO>>> GetById(int id)
         {
             var result = await _productService.GetByIdAsync(id);
@@ -31,6 +34,7 @@ namespace NorthwindApp.API.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Add a new product")]
         public async Task<ActionResult<ApiResponse<string>>> Add([FromBody] ProductCreateDto dto)
         {
             var result = await _productService.AddAsync(dto);
@@ -38,6 +42,7 @@ namespace NorthwindApp.API.Controllers
         }
 
         [HttpPut]
+        [SwaggerOperation(Summary = "Update an existing product")]
         public async Task<ActionResult<ApiResponse<string>>> Update([FromBody] ProductUpdateDto dto)
         {
             var result = await _productService.UpdateAsync(dto);
@@ -45,6 +50,7 @@ namespace NorthwindApp.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Soft delete a product")]
         public async Task<ActionResult<ApiResponse<string>>> Delete(int id)
         {
             var result = await _productService.DeleteAsync(id);
