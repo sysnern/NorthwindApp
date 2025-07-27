@@ -1,0 +1,23 @@
+[2025-07-25 14:27:44 WRN] No store type was specified for the decimal property 'Freight' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-25 14:27:44 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-25 14:27:45 INF] HTTP GET /api/Product/list responded 200 in 1471.4627 ms
+[2025-07-25 14:27:50 INF] HTTP GET /api/Product/17 responded 200 in 126.3003 ms
+[2025-07-25 14:27:53 INF] HTTP GET /api/Product/list responded 200 in 6.1850 ms
+[2025-07-25 14:27:54 INF] HTTP GET /api/Category/list responded 200 in 72.8287 ms
+[2025-07-25 14:27:54 INF] HTTP GET /api/Customer/list responded 200 in 40.9766 ms
+[2025-07-25 14:27:55 INF] HTTP GET /api/Category/list responded 200 in 1.9387 ms
+[2025-07-25 14:27:55 INF] HTTP GET /api/Supplier/list responded 200 in 36.3795 ms
+[2025-07-25 14:27:56 INF] HTTP GET /api/Employee/list responded 200 in 32.8399 ms
+[2025-07-25 14:27:56 INF] HTTP GET /api/Order/list responded 200 in 53.7254 ms
+[2025-07-25 14:28:02 INF] HTTP GET /api/Order/list responded 200 in 1.7566 ms
+[2025-07-25 14:28:14 INF] HTTP GET /api/Order/list responded 200 in 2.4574 ms
+[2025-07-25 14:28:18 INF] HTTP GET /api/Employee/list responded 200 in 1.0687 ms
+[2025-07-25 14:28:20 INF] HTTP GET /api/Product/list responded 200 in 2.2667 ms
+[2025-07-25 14:28:25 INF] HTTP GET /api/Category/list responded 200 in 2.1567 ms
+[2025-07-25 14:28:39 INF] HTTP GET /api/Category/list responded 200 in 1.0817 ms
+[2025-07-25 14:28:40 INF] HTTP GET /api/Category/list responded 200 in 1.4468 ms
+[2025-07-25 14:28:40 INF] HTTP GET /api/Category/list responded 200 in 1.0769 ms
+[2025-07-25 14:28:41 INF] HTTP GET /api/Category/list responded 200 in 0.6891 ms
+[2025-07-25 14:28:42 INF] HTTP GET /api/Category/list responded 200 in 0.9902 ms
+[2025-07-25 14:28:45 INF] HTTP GET /api/Category/list responded 200 in 1.8082 ms
+[2025-07-25 14:28:48 INF] HTTP GET /api/Product/list responded 200 in 1.2369 ms

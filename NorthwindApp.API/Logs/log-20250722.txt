@@ -1,0 +1,18 @@
+[2025-07-22 09:16:30 WRN] No store type was specified for the decimal property 'Freight' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-22 09:16:30 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-22 09:16:31 INF] HTTP GET /api/Product/list responded 200 in 1338.9624 ms
+[2025-07-22 09:19:35 INF] HTTP GET /api/Product/list responded 200 in 4.1998 ms
+[2025-07-22 09:19:57 INF] HTTP GET /api/Product/list responded 200 in 11.3401 ms
+[2025-07-22 09:20:03 INF] HTTP GET /api/Product/list responded 200 in 1.2971 ms
+[2025-07-22 09:20:07 INF] HTTP GET /api/Product/list responded 200 in 0.8645 ms
+[2025-07-22 09:20:10 INF] HTTP GET /api/Product/list responded 200 in 0.8058 ms
+[2025-07-22 09:20:11 INF] HTTP GET /api/Product/list responded 200 in 1.4705 ms
+[2025-07-22 09:20:11 INF] HTTP GET /api/Product/list responded 200 in 1.2293 ms
+[2025-07-22 09:20:11 INF] HTTP GET /api/Product/list responded 200 in 1.0812 ms
+[2025-07-22 09:20:11 INF] HTTP GET /api/Product/list responded 200 in 1.1813 ms
+[2025-07-22 09:20:12 INF] HTTP GET /api/Product/list responded 200 in 0.8624 ms
+[2025-07-22 09:20:12 INF] HTTP GET /api/Product/list responded 200 in 0.6939 ms
+[2025-07-22 09:20:12 INF] HTTP GET /api/Product/list responded 200 in 0.9481 ms
+[2025-07-22 09:20:49 WRN] No store type was specified for the decimal property 'Freight' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-22 09:20:49 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-22 09:20:49 INF] HTTP GET /api/Product/list responded 200 in 1068.2662 ms
