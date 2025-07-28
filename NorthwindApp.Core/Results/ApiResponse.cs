@@ -6,7 +6,7 @@
         public string Message { get; set; }     // Bilgilendirme mesajı
         public T? Data { get; set; }            // Geri dönen veri
 
-        public int StatusCode { get; set; }     // HTTP durum kodu (opsiyonel)
+        public int StatusCode { get; set; }     // HTTP durum kodu 
 
         public ApiResponse(bool success, string message, T? data = default, int statusCode = 200)
         {

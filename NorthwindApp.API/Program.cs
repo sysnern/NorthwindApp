@@ -1,29 +1,36 @@
-﻿using Serilog;                                
-using Serilog.Events;
-using Serilog.Formatting.Compact;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NorthwindApp.API.Middleware;
 using NorthwindApp.Business.Mapping;
+using NorthwindApp.Business.Services.Abstract;
+using NorthwindApp.Business.Services.Concrete;
 using NorthwindApp.Business.Validation;
+using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Extensions;
 using NorthwindApp.Data.Repositories;
-using NorthwindApp.Core.Results;
-using NorthwindApp.Business.Services.Concrete;
-using NorthwindApp.Business.Services.Abstract;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
+using Serilog.Sinks.Graylog;
+using Serilog.Sinks.Graylog.Core.Transport;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)    
+    .MinimumLevel.Information()
     .Enrich.FromLogContext()
     .WriteTo.Console()
-    .WriteTo.File(new CompactJsonFormatter(), "Logs/log-.json", rollingInterval: RollingInterval.Day)
+    .WriteTo.Graylog(new GraylogSinkOptions
+    {
+        HostnameOrAddress = "localhost",
+        Port = 12201,
+        TransportType = TransportType.Udp
+    })
     .CreateLogger();
 
 builder.Host.UseSerilog();                            

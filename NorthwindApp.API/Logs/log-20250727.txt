@@ -1,0 +1,16 @@
+[2025-07-27 21:07:01 WRN] No store type was specified for the decimal property 'Freight' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-27 21:07:01 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-27 21:07:02 INF] HTTP GET /api/Product/list responded 200 in 1800.3708 ms
+[2025-07-27 21:08:34 INF] HTTP GET /api/Product/list responded 200 in 200.2432 ms
+[2025-07-27 21:08:41 INF] HTTP GET /api/Category/list responded 200 in 73.0223 ms
+[2025-07-27 21:08:44 INF] HTTP GET /api/Customer/list responded 200 in 46.3901 ms
+[2025-07-27 21:08:46 INF] HTTP GET /api/Customer/ANTON responded 200 in 39.0924 ms
+[2025-07-27 21:08:53 INF] HTTP GET /api/Customer/AROUT responded 200 in 16.4762 ms
+[2025-07-27 21:08:57 INF] HTTP GET /api/Supplier/list responded 200 in 31.3536 ms
+[2025-07-27 21:09:37 INF] HTTP GET /api/Employee/list responded 200 in 29.9267 ms
+[2025-07-27 21:09:47 INF] HTTP GET /api/Order/list responded 200 in 52.5832 ms
+[2025-07-27 21:11:12 INF] HTTP PUT /api/Product responded 400 in 33.2580 ms
+[2025-07-27 21:11:31 INF] HTTP PUT /api/Product responded 200 in 101.4436 ms
+[2025-07-27 21:11:54 INF] HTTP GET /api/Customer/list responded 200 in 1.0460 ms
+[2025-07-27 21:12:09 INF] HTTP GET /api/Product/list responded 200 in 6.4994 ms
+[2025-07-27 21:13:38 INF] HTTP GET /api/Supplier/list responded 200 in 1.1647 ms
