@@ -1,0 +1,103 @@
+[2025-07-28 13:47:02 WRN] No store type was specified for the decimal property 'Freight' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-28 13:47:02 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-28 13:47:02 INF] HTTP GET /api/Category/list responded 200 in 1481.6695 ms
+[2025-07-28 13:47:36 INF] HTTP GET /api/Category/5 responded 200 in 207.5444 ms
+[2025-07-28 13:47:43 INF] HTTP GET /api/Category/6 responded 200 in 20.3423 ms
+[2025-07-28 13:50:08 WRN] No store type was specified for the decimal property 'Freight' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-28 13:50:08 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-28 13:50:09 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-07-28 13:50:09 DBG] Created DbCommand for 'ExecuteReader' (6ms).
+[2025-07-28 13:50:09 DBG] Initialized DbCommand for 'ExecuteReader' (18ms).
+[2025-07-28 13:50:09 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:50:09 INF] Executed DbCommand (54ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:50:09 DBG] Closing data reader to 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS'.
+[2025-07-28 13:50:09 DBG] A data reader for 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS' is being disposed after spending 56ms reading results.
+[2025-07-28 13:50:09 INF] HTTP GET /api/Category/6 responded 200 in 1378.9121 ms
+[2025-07-28 13:50:12 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-07-28 13:50:12 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-07-28 13:50:12 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-07-28 13:50:12 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:50:12 INF] Executed DbCommand (13ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:50:12 DBG] Closing data reader to 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS'.
+[2025-07-28 13:50:12 DBG] A data reader for 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS' is being disposed after spending 3ms reading results.
+[2025-07-28 13:50:12 INF] HTTP GET /api/Category/1 responded 200 in 97.6656 ms
+[2025-07-28 13:50:13 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-07-28 13:50:13 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-07-28 13:50:13 DBG] Initialized DbCommand for 'ExecuteReader' (7ms).
+[2025-07-28 13:50:13 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:50:13 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:50:13 DBG] Closing data reader to 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS'.
+[2025-07-28 13:50:13 DBG] A data reader for 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-07-28 13:50:13 INF] HTTP GET /api/Category/1 responded 200 in 39.8850 ms
+[2025-07-28 13:51:24 WRN] No store type was specified for the decimal property 'Freight' on entity type 'Order'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-28 13:51:24 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'Product'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-07-28 13:51:25 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-07-28 13:51:25 DBG] Created DbCommand for 'ExecuteReader' (7ms).
+[2025-07-28 13:51:25 DBG] Initialized DbCommand for 'ExecuteReader' (20ms).
+[2025-07-28 13:51:25 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:51:25 INF] Executed DbCommand (57ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:51:25 DBG] Closing data reader to 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS'.
+[2025-07-28 13:51:25 DBG] A data reader for 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS' is being disposed after spending 49ms reading results.
+[2025-07-28 13:51:25 INF] HTTP GET /api/Category/1 responded 200 in 1354.0414 ms
+[2025-07-28 13:51:28 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-07-28 13:51:28 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-07-28 13:51:28 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-07-28 13:51:28 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:51:28 INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-07-28 13:51:28 DBG] Closing data reader to 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS'.
+[2025-07-28 13:51:28 DBG] A data reader for 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS' is being disposed after spending 3ms reading results.
+[2025-07-28 13:51:28 INF] HTTP GET /api/Category/5 responded 200 in 78.3260 ms
+[2025-07-28 13:51:40 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-07-28 13:51:40 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-07-28 13:51:40 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-07-28 13:51:40 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerID], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+[2025-07-28 13:51:40 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerID], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+[2025-07-28 13:51:40 DBG] Closing data reader to 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS'.
+[2025-07-28 13:51:40 DBG] A data reader for 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS' is being disposed after spending 29ms reading results.
+[2025-07-28 13:51:40 INF] HTTP GET /api/Customer/list responded 200 in 104.1119 ms
+[2025-07-28 13:56:23 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-07-28 13:56:23 DBG] Created DbCommand for 'ExecuteReader' (132ms).
+[2025-07-28 13:56:23 DBG] Initialized DbCommand for 'ExecuteReader' (144ms).
+[2025-07-28 13:56:23 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerID], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+[2025-07-28 13:56:23 INF] Executed DbCommand (57ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerID], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+[2025-07-28 13:56:23 DBG] Closing data reader to 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS'.
+[2025-07-28 13:56:23 DBG] A data reader for 'Northwind' on server 'MAREK-HAMSIK\SQLEXPRESS' is being disposed after spending 75ms reading results.
+[2025-07-28 13:56:23 INF] HTTP GET /api/Customer/list responded 200 in 2153.6785 ms

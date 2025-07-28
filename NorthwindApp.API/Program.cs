@@ -21,10 +21,14 @@ using Serilog.Sinks.Graylog.Core.Transport;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//logging
 Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration!)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", Serilog.Events.LogEventLevel.Debug)
     .MinimumLevel.Information()
     .Enrich.FromLogContext()
-    .WriteTo.Console()
+    .WriteTo.Console(outputTemplate:
+        "[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}")
     .WriteTo.Graylog(new GraylogSinkOptions
     {
         HostnameOrAddress = "localhost",
@@ -35,6 +39,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();                            
 
+//service registrations(DI)
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -76,12 +81,27 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.InvalidModelStateResponseFactory = context =>
     {
+        // ModelState içindeki tüm hata mesajlarını topla:
         var errors = context.ModelState
-            .Where(x => x.Value.Errors.Count > 0)
-            .SelectMany(x => x.Value.Errors)
-            .Select(x => x.ErrorMessage);
-        var message = string.Join(", ", errors);
-        return new BadRequestObjectResult(ApiResponse<string>.Fail(message));
+            .Where(ms => ms.Value.Errors.Count > 0)
+            .SelectMany(ms => ms.Value.Errors)
+            .Select(e => e.ErrorMessage)
+            .ToList();
+
+        // ApiResponse.BadRequest factory’si, hem Success=false, hem StatusCode=400, hem de Error listesi içerir:
+        var apiResponse = ApiResponse<string>.BadRequest(
+            errors,
+            message: "Geçersiz istek. Lütfen gönderdiğiniz verileri kontrol ediniz."
+        );
+
+        // BadRequestObjectResult içinde bu ApiResponse’u dön:
+        var result = new BadRequestObjectResult(apiResponse)
+        {
+            // MVC default 400’ü zaten ayarlar, ancak StatusCode alanını explicit eşitlemek istersen:
+            StatusCode = apiResponse.StatusCode
+        };
+
+        return result;
     };
 });
 

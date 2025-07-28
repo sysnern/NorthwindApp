@@ -25,8 +25,14 @@ public class GlobalExceptionMiddleware
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             context.Response.ContentType = "application/json";
 
-            var response = ApiResponse<string>.Fail("Sunucu hatası oluştu.", 500);
-            var json = JsonSerializer.Serialize(response);
+            // ApiResponse<T>.Error ile hem Success=false, hem doğru StatusCode=500
+            var response = ApiResponse<string>.Error("Sunucu hatası oluştu.");
+
+            var jsonOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+            var json = JsonSerializer.Serialize(response, jsonOptions);
 
             await context.Response.WriteAsync(json);
         }

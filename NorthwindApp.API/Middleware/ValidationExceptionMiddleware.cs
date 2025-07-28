@@ -23,13 +23,25 @@ namespace NorthwindApp.API.Middleware
             }
             catch (ValidationException ex)
             {
+                // 1) HTTP 400 Bad Request
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 context.Response.ContentType = "application/json";
 
-                var message = string.Join(", ", ex.Errors.Select(e => e.ErrorMessage));
-                var response = ApiResponse<string>.Fail(message);
+                // 2) Tüm hata mesajlarını topla
+                var errors = ex.Errors.Select(e => e.ErrorMessage).ToList();
 
-                var json = JsonSerializer.Serialize(response);
+                // 3) ApiResponse.BadRequest ile hem Success=false, hem doğru kod, hem Errors listesi
+                var response = ApiResponse<string>.BadRequest(
+                    errors,
+                    message: "Doğrulama hataları oluştu."
+                );
+
+                // 4) Camel‑case JSON ayarları
+                var jsonOptions = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+                var json = JsonSerializer.Serialize(response, jsonOptions);
 
                 await context.Response.WriteAsync(json);
             }

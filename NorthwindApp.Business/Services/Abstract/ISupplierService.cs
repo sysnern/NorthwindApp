@@ -7,8 +7,8 @@ namespace NorthwindApp.Business.Services.Abstract
     {
         Task<ApiResponse<List<SupplierDTO>>> GetAllAsync();
         Task<ApiResponse<SupplierDTO>> GetByIdAsync(int id);
-        Task<ApiResponse<string>> AddAsync(SupplierCreateDto dto);
-        Task<ApiResponse<string>> UpdateAsync(SupplierUpdateDto dto);
+        Task<ApiResponse<SupplierDTO>> AddAsync(SupplierCreateDto dto);
+        Task<ApiResponse<SupplierDTO>> UpdateAsync(SupplierUpdateDto dto);
         Task<ApiResponse<string>> DeleteAsync(int id);
     }
 }

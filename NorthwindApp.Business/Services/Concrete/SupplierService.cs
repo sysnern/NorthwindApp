@@ -4,6 +4,9 @@ using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories;
 using NorthwindApp.Entities.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NorthwindApp.Business.Services.Concrete
 {
@@ -34,55 +37,64 @@ namespace NorthwindApp.Business.Services.Concrete
             if (cached != null)
             {
                 return ApiResponse<List<SupplierDTO>>
-                    .SuccessResponse(cached, "Tedarikçiler cache'den getirildi.");
+                    .Ok(cached, "Tedarikçiler cache'den getirildi.");
             }
 
             // 3) DB'den çek
             var list = await _repo.GetAllAsync();
             var dtoList = _mapper.Map<List<SupplierDTO>>(list);
 
-            if (dtoList == null || !dtoList.Any())
+            // 4) Sonuç yoksa 404
+            if (!dtoList.Any())
+            {
                 return ApiResponse<List<SupplierDTO>>
-                    .Fail("Hiç tedarikçi bulunamadı.");
+                    .NotFound("Hiç tedarikçi bulunamadı.");
+            }
 
-            // 4) Cache'e yaz
+            // 5) Cache'e yaz
             _cacheService.Set(cacheKey, dtoList);
 
+            // 6) Başarılı listeleme
             return ApiResponse<List<SupplierDTO>>
-                .SuccessResponse(dtoList, "Tedarikçiler başarıyla listelendi.");
+                .Ok(dtoList, "Tedarikçiler başarıyla listelendi.");
         }
 
         public async Task<ApiResponse<SupplierDTO>> GetByIdAsync(int id)
         {
             var supplier = await _repo.GetByIdAsync(id);
             if (supplier == null)
+            {
                 return ApiResponse<SupplierDTO>
-                    .Fail("Tedarikçi bulunamadı.");
+                    .NotFound("Tedarikçi bulunamadı.");
+            }
 
             var dto = _mapper.Map<SupplierDTO>(supplier);
             return ApiResponse<SupplierDTO>
-                .SuccessResponse(dto, "Tedarikçi başarıyla getirildi.");
+                .Ok(dto, "Tedarikçi başarıyla getirildi.");
         }
 
-        public async Task<ApiResponse<string>> AddAsync(SupplierCreateDto dto)
+        public async Task<ApiResponse<SupplierDTO>> AddAsync(SupplierCreateDto dto)
         {
-            var supplier = _mapper.Map<Supplier>(dto);
-            await _repo.AddAsync(supplier);
+            var entity = _mapper.Map<Supplier>(dto);
+            await _repo.AddAsync(entity);
             await _repo.SaveChangesAsync();
 
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Tedarikçi başarıyla eklendi.");
+            var createdDto = _mapper.Map<SupplierDTO>(entity);
+            return ApiResponse<SupplierDTO>
+                .Created(createdDto, "Tedarikçi başarıyla eklendi.");
         }
 
-        public async Task<ApiResponse<string>> UpdateAsync(SupplierUpdateDto dto)
+        public async Task<ApiResponse<SupplierDTO>> UpdateAsync(SupplierUpdateDto dto)
         {
             var supplier = await _repo.GetByIdAsync(dto.SupplierId);
             if (supplier == null)
-                return ApiResponse<string>
-                    .Fail("Güncellenecek tedarikçi bulunamadı.");
+            {
+                return ApiResponse<SupplierDTO>
+                    .NotFound("Güncellenecek tedarikçi bulunamadı.");
+            }
 
             _mapper.Map(dto, supplier);
             _repo.Update(supplier);
@@ -91,16 +103,19 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Tedarikçi başarıyla güncellendi.");
+            var updatedDto = _mapper.Map<SupplierDTO>(supplier);
+            return ApiResponse<SupplierDTO>
+                .Ok(updatedDto, "Tedarikçi başarıyla güncellendi.");
         }
 
         public async Task<ApiResponse<string>> DeleteAsync(int id)
         {
             var supplier = await _repo.GetByIdAsync(id);
             if (supplier == null)
+            {
                 return ApiResponse<string>
-                    .Fail("Silinecek tedarikçi bulunamadı.");
+                    .NotFound("Silinecek tedarikçi bulunamadı.");
+            }
 
             _repo.Delete(supplier);
             await _repo.SaveChangesAsync();
@@ -109,7 +124,7 @@ namespace NorthwindApp.Business.Services.Concrete
             _cacheService.RemoveByPrefix(CachePrefix);
 
             return ApiResponse<string>
-                .SuccessResponse(null, "Tedarikçi başarıyla silindi.");
+                .NoContent("Tedarikçi başarıyla silindi.");
         }
     }
 }

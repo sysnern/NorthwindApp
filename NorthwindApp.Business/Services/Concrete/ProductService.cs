@@ -28,18 +28,18 @@ namespace NorthwindApp.Business.Services.Concrete
 
         public async Task<ApiResponse<List<ProductDTO>>> GetAllAsync(ProductFilterDto filter)
         {
-            // Cache key'i filtre parametrelerinden oluştur
             var cacheKey = CachePrefix +
                 $"{filter.ProductName}_{filter.CategoryId}_{filter.MinPrice}_{filter.MaxPrice}_{filter.Discontinued}";
 
-            // Cache'de mevcut mu?
+            // 1) Cache kontrolü
             var cached = _cacheService.Get<List<ProductDTO>>(cacheKey);
             if (cached != null)
             {
-                return ApiResponse<List<ProductDTO>>.SuccessResponse(cached, "Ürünler cache'den getirildi.");
+                return ApiResponse<List<ProductDTO>>
+                    .Ok(cached, "Ürünler cache'den getirildi.");
             }
 
-            // DB'den veriyi çek
+            // 2) DB'den çek
             var products = await _repo.GetAllAsync(p =>
                 (string.IsNullOrEmpty(filter.ProductName) || p.ProductName.Contains(filter.ProductName)) &&
                 (!filter.CategoryId.HasValue || p.CategoryId == filter.CategoryId) &&
@@ -49,15 +49,20 @@ namespace NorthwindApp.Business.Services.Concrete
             );
 
             var dtoList = _mapper.Map<List<ProductDTO>>(products);
-            if (dtoList == null || dtoList.Count == 0)
+
+            // 3) Herhangi bir sonuç yoksa 404
+            if (dtoList.Count == 0)
             {
-                return ApiResponse<List<ProductDTO>>.Fail("Hiç ürün bulunamadı.");
+                return ApiResponse<List<ProductDTO>>
+                    .NotFound("Hiç ürün bulunamadı.");
             }
 
-            // Cache'e yaz 
+            // 4) Cache'e yaz
             _cacheService.Set(cacheKey, dtoList);
 
-            return ApiResponse<List<ProductDTO>>.SuccessResponse(dtoList, "Ürünler başarıyla listelendi.");
+            // 5) Başarılı listeleme
+            return ApiResponse<List<ProductDTO>>
+                .Ok(dtoList, "Ürünler başarıyla listelendi.");
         }
 
         public async Task<ApiResponse<ProductDTO>> GetByIdAsync(int id)
@@ -65,11 +70,13 @@ namespace NorthwindApp.Business.Services.Concrete
             var product = await _repo.GetByIdAsync(id);
             if (product == null)
             {
-                return ApiResponse<ProductDTO>.Fail("Ürün bulunamadı.");
+                return ApiResponse<ProductDTO>
+                    .NotFound("Ürün bulunamadı.");
             }
 
             var dto = _mapper.Map<ProductDTO>(product);
-            return ApiResponse<ProductDTO>.SuccessResponse(dto, "Ürün başarıyla getirildi.");
+            return ApiResponse<ProductDTO>
+                .Ok(dto, "Ürün başarıyla getirildi.");
         }
 
         public async Task<ApiResponse<string>> AddAsync(ProductCreateDto dto)
@@ -81,7 +88,8 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla eklendi.");
+            return ApiResponse<string>
+                .Created(null, "Ürün başarıyla eklendi.");
         }
 
         public async Task<ApiResponse<string>> UpdateAsync(ProductUpdateDto dto)
@@ -89,7 +97,8 @@ namespace NorthwindApp.Business.Services.Concrete
             var existing = await _repo.GetByIdAsync(dto.ProductId);
             if (existing == null)
             {
-                return ApiResponse<string>.Fail("Güncellenecek ürün bulunamadı.");
+                return ApiResponse<string>
+                    .NotFound("Güncellenecek ürün bulunamadı.");
             }
 
             _mapper.Map(dto, existing);
@@ -99,7 +108,8 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>.SuccessResponse(null, "Ürün başarıyla güncellendi.");
+            return ApiResponse<string>
+                .Ok(null, "Ürün başarıyla güncellendi.");
         }
 
         public async Task<ApiResponse<string>> DeleteAsync(int id)
@@ -107,7 +117,8 @@ namespace NorthwindApp.Business.Services.Concrete
             var existing = await _repo.GetByIdAsync(id);
             if (existing == null)
             {
-                return ApiResponse<string>.Fail("Silinecek ürün bulunamadı.");
+                return ApiResponse<string>
+                    .NotFound("Silinecek ürün bulunamadı.");
             }
 
             // Soft delete
@@ -118,7 +129,8 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>.SuccessResponse(null, "Ürün pasif hale getirildi (soft delete uygulandı).");
+            return ApiResponse<string>
+                .NoContent("Ürün pasif hale getirildi (soft delete).");
         }
     }
 }

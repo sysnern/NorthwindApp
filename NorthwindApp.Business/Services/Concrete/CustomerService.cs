@@ -4,6 +4,9 @@ using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories;
 using NorthwindApp.Entities.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NorthwindApp.Business.Services.Concrete
 {
@@ -29,60 +32,69 @@ namespace NorthwindApp.Business.Services.Concrete
             // 1) Cache key
             var cacheKey = CachePrefix;
 
-            // 2) Cache'de var mı?
+            // 2) Cache kontrolü
             var cached = _cacheService.Get<List<CustomerDTO>>(cacheKey);
             if (cached != null)
             {
                 return ApiResponse<List<CustomerDTO>>
-                    .SuccessResponse(cached, "Müşteriler cache'den getirildi.");
+                    .Ok(cached, "Müşteriler cache'den getirildi.");
             }
 
-            // 3) Yoksa DB'den çek
+            // 3) DB'den çek
             var customers = await _repo.GetAllAsync();
             var dtoList = _mapper.Map<List<CustomerDTO>>(customers);
 
-            if (dtoList == null || !dtoList.Any())
+            // 4) Boş sonuçsa 404
+            if (!dtoList.Any())
+            {
                 return ApiResponse<List<CustomerDTO>>
-                    .Fail("Hiç müşteri bulunamadı.");
+                    .NotFound("Hiç müşteri bulunamadı.");
+            }
 
-            // 4) Cache'e yaz
+            // 5) Cache'e yaz
             _cacheService.Set(cacheKey, dtoList);
 
+            // 6) Başarılı listeleme
             return ApiResponse<List<CustomerDTO>>
-                .SuccessResponse(dtoList, "Müşteriler başarıyla listelendi.");
+                .Ok(dtoList, "Müşteriler başarıyla listelendi.");
         }
 
         public async Task<ApiResponse<CustomerDTO>> GetByIdAsync(string id)
         {
             var customer = await _repo.GetByIdAsync(id);
             if (customer == null)
+            {
                 return ApiResponse<CustomerDTO>
-                    .Fail("Müşteri bulunamadı.");
+                    .NotFound("Müşteri bulunamadı.");
+            }
 
             var dto = _mapper.Map<CustomerDTO>(customer);
             return ApiResponse<CustomerDTO>
-                .SuccessResponse(dto, "Müşteri başarıyla getirildi.");
+                .Ok(dto, "Müşteri başarıyla getirildi.");
         }
 
-        public async Task<ApiResponse<string>> AddAsync(CustomerCreateDto dto)
+        public async Task<ApiResponse<CustomerDTO>> AddAsync(CustomerCreateDto dto)
         {
-            var customer = _mapper.Map<Customer>(dto);
-            await _repo.AddAsync(customer);
+            var entity = _mapper.Map<Customer>(dto);
+            await _repo.AddAsync(entity);
             await _repo.SaveChangesAsync();
 
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Müşteri başarıyla eklendi.");
+            var createdDto = _mapper.Map<CustomerDTO>(entity);
+            return ApiResponse<CustomerDTO>
+                .Created(createdDto, "Müşteri başarıyla eklendi.");
         }
 
-        public async Task<ApiResponse<string>> UpdateAsync(CustomerUpdateDto dto)
+        public async Task<ApiResponse<CustomerDTO>> UpdateAsync(CustomerUpdateDto dto)
         {
             var customer = await _repo.GetByIdAsync(dto.CustomerID);
             if (customer == null)
-                return ApiResponse<string>
-                    .Fail("Güncellenecek müşteri bulunamadı.");
+            {
+                return ApiResponse<CustomerDTO>
+                    .NotFound("Güncellenecek müşteri bulunamadı.");
+            }
 
             _mapper.Map(dto, customer);
             _repo.Update(customer);
@@ -91,16 +103,19 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Müşteri başarıyla güncellendi.");
+            var updatedDto = _mapper.Map<CustomerDTO>(customer);
+            return ApiResponse<CustomerDTO>
+                .Ok(updatedDto, "Müşteri başarıyla güncellendi.");
         }
 
         public async Task<ApiResponse<string>> DeleteAsync(string id)
         {
             var customer = await _repo.GetByIdAsync(id);
             if (customer == null)
+            {
                 return ApiResponse<string>
-                    .Fail("Silinecek müşteri bulunamadı.");
+                    .NotFound("Silinecek müşteri bulunamadı.");
+            }
 
             _repo.Delete(customer);
             await _repo.SaveChangesAsync();
@@ -109,7 +124,7 @@ namespace NorthwindApp.Business.Services.Concrete
             _cacheService.RemoveByPrefix(CachePrefix);
 
             return ApiResponse<string>
-                .SuccessResponse(null, "Müşteri başarıyla silindi.");
+                .NoContent("Müşteri başarıyla silindi.");
         }
     }
 }

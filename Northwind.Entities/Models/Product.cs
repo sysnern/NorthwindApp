@@ -1,4 +1,6 @@
-﻿namespace NorthwindApp.Entities.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace NorthwindApp.Entities.Models
 {
     public class Product
     {
@@ -9,6 +11,8 @@
         public int CategoryId { get; set; }                     //Foreign Key to Category
 
         public string? QuantityPerUnit { get; set; }            //Database can be null
+
+        [Precision(18, 2)] 
         public decimal UnitPrice { get; set; }         
         public short UnitsInStock { get; set; }        
         public short UnitsOnOrder { get; set; }       

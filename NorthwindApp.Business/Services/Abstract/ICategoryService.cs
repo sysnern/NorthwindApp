@@ -7,8 +7,8 @@ namespace NorthwindApp.Business.Services.Abstract
     {
         Task<ApiResponse<List<CategoryDTO>>> GetAllAsync();
         Task<ApiResponse<CategoryDTO>> GetByIdAsync(int id);
-        Task<ApiResponse<string>> AddAsync(CategoryCreateDto dto);
-        Task<ApiResponse<string>> UpdateAsync(CategoryUpdateDto dto);
+        Task<ApiResponse<CategoryDTO>> AddAsync(CategoryCreateDto dto);
+        Task<ApiResponse<CategoryDTO>> UpdateAsync(CategoryUpdateDto dto);
         Task<ApiResponse<string>> DeleteAsync(int id);
     }
 }

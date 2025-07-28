@@ -4,6 +4,9 @@ using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories;
 using NorthwindApp.Entities.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NorthwindApp.Business.Services.Concrete
 {
@@ -29,60 +32,69 @@ namespace NorthwindApp.Business.Services.Concrete
             // 1) Cache key
             var cacheKey = CachePrefix;
 
-            // 2) Cache'de var mı?
+            // 2) Cache kontrolü
             var cached = _cacheService.Get<List<CategoryDTO>>(cacheKey);
             if (cached != null)
             {
                 return ApiResponse<List<CategoryDTO>>
-                    .SuccessResponse(cached, "Kategoriler cache'den getirildi.");
+                    .Ok(cached, "Kategoriler cache'den getirildi.");
             }
 
-            // 3) Yoksa DB'den çek
+            // 3) DB'den çek
             var categories = await _repo.GetAllAsync();
             var dtoList = _mapper.Map<List<CategoryDTO>>(categories);
 
-            if (dtoList == null || !dtoList.Any())
+            // 4) Boş sonuçsa 404
+            if (!dtoList.Any())
+            {
                 return ApiResponse<List<CategoryDTO>>
-                    .Fail("Hiç kategori bulunamadı.");
+                    .NotFound("Hiç kategori bulunamadı.");
+            }
 
-            // 4) Cache'e yaz
+            // 5) Cache'e yaz
             _cacheService.Set(cacheKey, dtoList);
 
+            // 6) Başarılı listeleme
             return ApiResponse<List<CategoryDTO>>
-                .SuccessResponse(dtoList, "Kategoriler başarıyla listelendi.");
+                .Ok(dtoList, "Kategoriler başarıyla listelendi.");
         }
 
         public async Task<ApiResponse<CategoryDTO>> GetByIdAsync(int id)
         {
             var category = await _repo.GetByIdAsync(id);
             if (category == null)
+            {
                 return ApiResponse<CategoryDTO>
-                    .Fail("Kategori bulunamadı.");
+                    .NotFound("Kategori bulunamadı.");
+            }
 
             var dto = _mapper.Map<CategoryDTO>(category);
             return ApiResponse<CategoryDTO>
-                .SuccessResponse(dto, "Kategori başarıyla getirildi.");
+                .Ok(dto, "Kategori başarıyla getirildi.");
         }
 
-        public async Task<ApiResponse<string>> AddAsync(CategoryCreateDto dto)
+        public async Task<ApiResponse<CategoryDTO>> AddAsync(CategoryCreateDto dto)
         {
-            var category = _mapper.Map<Category>(dto);
-            await _repo.AddAsync(category);
+            var entity = _mapper.Map<Category>(dto);
+            await _repo.AddAsync(entity);
             await _repo.SaveChangesAsync();
 
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Kategori başarıyla eklendi.");
+            var createdDto = _mapper.Map<CategoryDTO>(entity);
+            return ApiResponse<CategoryDTO>
+                .Created(createdDto, "Kategori başarıyla eklendi.");
         }
 
-        public async Task<ApiResponse<string>> UpdateAsync(CategoryUpdateDto dto)
+        public async Task<ApiResponse<CategoryDTO>> UpdateAsync(CategoryUpdateDto dto)
         {
             var category = await _repo.GetByIdAsync(dto.CategoryId);
             if (category == null)
-                return ApiResponse<string>
-                    .Fail("Güncellenecek kategori bulunamadı.");
+            {
+                return ApiResponse<CategoryDTO>
+                    .NotFound("Güncellenecek kategori bulunamadı.");
+            }
 
             _mapper.Map(dto, category);
             _repo.Update(category);
@@ -91,16 +103,19 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Kategori başarıyla güncellendi.");
+            var updatedDto = _mapper.Map<CategoryDTO>(category);
+            return ApiResponse<CategoryDTO>
+                .Ok(updatedDto, "Kategori başarıyla güncellendi.");
         }
 
         public async Task<ApiResponse<string>> DeleteAsync(int id)
         {
             var category = await _repo.GetByIdAsync(id);
             if (category == null)
+            {
                 return ApiResponse<string>
-                    .Fail("Silinecek kategori bulunamadı.");
+                    .NotFound("Silinecek kategori bulunamadı.");
+            }
 
             _repo.Delete(category);
             await _repo.SaveChangesAsync();
@@ -109,7 +124,7 @@ namespace NorthwindApp.Business.Services.Concrete
             _cacheService.RemoveByPrefix(CachePrefix);
 
             return ApiResponse<string>
-                .SuccessResponse(null, "Kategori başarıyla silindi.");
+                .NoContent("Kategori başarıyla silindi.");
         }
     }
 }

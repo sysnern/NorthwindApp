@@ -4,6 +4,9 @@ using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories;
 using NorthwindApp.Entities.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NorthwindApp.Business.Services.Concrete
 {
@@ -26,7 +29,7 @@ namespace NorthwindApp.Business.Services.Concrete
 
         public async Task<ApiResponse<List<OrderDTO>>> GetAllAsync()
         {
-            // 1) Oluşturulan key
+            // 1) Cache key
             var cacheKey = CachePrefix;
 
             // 2) Cache kontrolü
@@ -34,37 +37,43 @@ namespace NorthwindApp.Business.Services.Concrete
             if (cached != null)
             {
                 return ApiResponse<List<OrderDTO>>
-                    .SuccessResponse(cached, "Siparişler cache'den getirildi.");
+                    .Ok(cached, "Siparişler cache'den getirildi.");
             }
 
-            // 3) DB’den çek
+            // 3) DB'den çek
             var orders = await _repo.GetAllAsync();
             var dtoList = _mapper.Map<List<OrderDTO>>(orders);
 
-            if (dtoList == null || !dtoList.Any())
+            // 4) Boş sonuçsa 404
+            if (!dtoList.Any())
+            {
                 return ApiResponse<List<OrderDTO>>
-                    .Fail("Hiç sipariş bulunamadı.");
+                    .NotFound("Hiç sipariş bulunamadı.");
+            }
 
-            // 4) Cache’e yaz
+            // 5) Cache'e yaz
             _cacheService.Set(cacheKey, dtoList);
 
+            // 6) Başarılı listeleme
             return ApiResponse<List<OrderDTO>>
-                .SuccessResponse(dtoList, "Siparişler başarıyla listelendi.");
+                .Ok(dtoList, "Siparişler başarıyla listelendi.");
         }
 
         public async Task<ApiResponse<OrderDTO>> GetByIdAsync(int id)
         {
             var order = await _repo.GetByIdAsync(id);
             if (order == null)
+            {
                 return ApiResponse<OrderDTO>
-                    .Fail("Sipariş bulunamadı.");
+                    .NotFound("Sipariş bulunamadı.");
+            }
 
             var dto = _mapper.Map<OrderDTO>(order);
             return ApiResponse<OrderDTO>
-                .SuccessResponse(dto, "Sipariş başarıyla getirildi.");
+                .Ok(dto, "Sipariş başarıyla getirildi.");
         }
 
-        public async Task<ApiResponse<string>> AddAsync(OrderCreateDto dto)
+        public async Task<ApiResponse<OrderDTO>> AddAsync(OrderCreateDto dto)
         {
             var entity = _mapper.Map<Order>(dto);
             await _repo.AddAsync(entity);
@@ -73,16 +82,19 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Sipariş başarıyla eklendi.");
+            var createdDto = _mapper.Map<OrderDTO>(entity);
+            return ApiResponse<OrderDTO>
+                .Created(createdDto, "Sipariş başarıyla eklendi.");
         }
 
-        public async Task<ApiResponse<string>> UpdateAsync(OrderUpdateDto dto)
+        public async Task<ApiResponse<OrderDTO>> UpdateAsync(OrderUpdateDto dto)
         {
             var order = await _repo.GetByIdAsync(dto.OrderID);
             if (order == null)
-                return ApiResponse<string>
-                    .Fail("Güncellenecek sipariş bulunamadı.");
+            {
+                return ApiResponse<OrderDTO>
+                    .NotFound("Güncellenecek sipariş bulunamadı.");
+            }
 
             _mapper.Map(dto, order);
             _repo.Update(order);
@@ -91,16 +103,19 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
-            return ApiResponse<string>
-                .SuccessResponse(null, "Sipariş başarıyla güncellendi.");
+            var updatedDto = _mapper.Map<OrderDTO>(order);
+            return ApiResponse<OrderDTO>
+                .Ok(updatedDto, "Sipariş başarıyla güncellendi.");
         }
 
         public async Task<ApiResponse<string>> DeleteAsync(int id)
         {
             var order = await _repo.GetByIdAsync(id);
             if (order == null)
+            {
                 return ApiResponse<string>
-                    .Fail("Silinecek sipariş bulunamadı.");
+                    .NotFound("Silinecek sipariş bulunamadı.");
+            }
 
             _repo.Delete(order);
             await _repo.SaveChangesAsync();
@@ -108,8 +123,9 @@ namespace NorthwindApp.Business.Services.Concrete
             // Cache temizle
             _cacheService.RemoveByPrefix(CachePrefix);
 
+            // 204 No Content dönerken body istemiyorsanız:
             return ApiResponse<string>
-                .SuccessResponse(null, "Sipariş başarıyla silindi.");
+                .NoContent("Sipariş başarıyla silindi.");
         }
     }
 }
