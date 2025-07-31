@@ -1,8 +1,8 @@
-﻿using NorthwindApp.Entities.Models;
+using NorthwindApp.Entities.Models;
 
 namespace NorthwindApp.Data.Repositories
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryRepository : IGenericRepository<Category, int>
     {
     }
 }

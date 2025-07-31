@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NorthwindApp.Data.Context;
@@ -14,6 +14,10 @@ namespace NorthwindApp.Data.Extensions
             services.AddDbContext<NorthwindContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("NorthwindConnection")));
 
+            // Register generic repository
+            services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+            
+            // Register specific repositories
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();

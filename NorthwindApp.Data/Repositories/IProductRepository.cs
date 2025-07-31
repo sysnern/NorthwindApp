@@ -1,15 +1,8 @@
-﻿using NorthwindApp.Entities.Models;
-using System.Linq.Expressions;
+using NorthwindApp.Entities.Models;
 
 namespace NorthwindApp.Data.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IGenericRepository<Product, int>
     {
-        Task<List<Product>> GetAllAsync(Expression<Func<Product, bool>>? filter = null);
-        Task<Product?> GetByIdAsync(int id);
-        Task AddAsync(Product product);
-        void Update(Product product);
-        void Delete(Product product);
-        Task SaveChangesAsync();
     }
 }
