@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using NorthwindApp.Data.Repositories.Abstract;
 
 namespace NorthwindApp.Data.Repositories
 {
@@ -8,14 +9,9 @@ namespace NorthwindApp.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Entity type</typeparam>
     /// <typeparam name="TKey">Primary key type</typeparam>
-    public interface IGenericRepository<TEntity, TKey> where TEntity : class
+    public interface IGenericRepository<TEntity, TKey> : IRepository<TEntity> where TEntity : class
     {
-        Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null);
         Task<TEntity?> GetByIdAsync(TKey id);
-        Task AddAsync(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
-        Task SaveChangesAsync();
         Task<bool> ExistsAsync(TKey id);
         Task<int> CountAsync(Expression<Func<TEntity, bool>>? filter = null);
     }

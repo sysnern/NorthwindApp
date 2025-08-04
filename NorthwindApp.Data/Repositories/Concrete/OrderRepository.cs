@@ -2,13 +2,26 @@
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
+using NorthwindApp.Data.Repositories;
 
 namespace NorthwindApp.Data.Repositories.Concrete
 {
-    public class OrderRepository : Repository<Order>, IOrderRepository
+    public class OrderRepository : GenericRepository<Order, int>, IOrderRepository
     {
         public OrderRepository(NorthwindContext context) : base(context)
         {
+        }
+
+        public async Task<List<Order>> GetActiveOrdersAsync()
+        {
+            return await _dbSet.Where(o => !o.IsDeleted).ToListAsync();
+        }
+
+        public async Task<Order?> GetOrderWithDetailsAsync(int orderId)
+        {
+            return await _dbSet
+                .Include(o => o.OrderDetails)
+                .FirstOrDefaultAsync(o => o.OrderId == orderId && !o.IsDeleted);
         }
 
         public async Task<List<Order>> GetOrdersByCustomerAsync(string customerId)
@@ -26,20 +39,6 @@ namespace NorthwindApp.Data.Repositories.Concrete
             return await _dbSet
                 .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate && !o.IsDeleted)
                 .ToListAsync();
-        }
-
-        public async Task<Order?> GetOrderWithDetailsAsync(int orderId)
-        {
-            return await _dbSet
-                .Include(o => o.OrderDetails)
-                .Include(o => o.Customer)
-                .Include(o => o.Employee)
-                .FirstOrDefaultAsync(o => o.OrderId == orderId && !o.IsDeleted);
-        }
-
-        public async Task<List<Order>> GetActiveOrdersAsync()
-        {
-            return await _dbSet.Where(o => !o.IsDeleted).ToListAsync();
         }
     }
 }

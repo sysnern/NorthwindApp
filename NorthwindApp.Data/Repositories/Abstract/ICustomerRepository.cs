@@ -1,8 +1,9 @@
 ﻿using NorthwindApp.Entities.Models;
+using NorthwindApp.Data.Repositories;
 
 namespace NorthwindApp.Data.Repositories.Abstract
 {
-    public interface ICustomerRepository : IRepository<Customer>
+    public interface ICustomerRepository : IGenericRepository<Customer, string>
     {
         Task<List<Customer>> GetCustomersByCountryAsync(string country);
         Task<List<Customer>> GetCustomersByCityAsync(string city);

@@ -2,10 +2,11 @@
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
+using NorthwindApp.Data.Repositories;
 
 namespace NorthwindApp.Data.Repositories.Concrete
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class CategoryRepository : GenericRepository<Category, int>, ICategoryRepository
     {
         public CategoryRepository(NorthwindContext context) : base(context)
         {

@@ -39,107 +39,156 @@ namespace NorthwindApp.Business.Services.Concrete
 
         public virtual async Task<ApiResponse<List<TDto>>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null)
         {
-            // Generate cache key based on filter
-            var cacheKey = GenerateCacheKey(filter);
-
-            // Check cache first
-            var cached = _cacheService.Get<List<TDto>>(cacheKey);
-            if (cached != null)
+            try
             {
-                return ApiResponse<List<TDto>>.Ok(cached, $"{_entityName} listesi cache'den getirildi.");
+                // Generate cache key based on filter
+                var cacheKey = GenerateCacheKey(filter);
+
+                // Check cache first
+                var cached = _cacheService.Get<List<TDto>>(cacheKey);
+                if (cached != null)
+                {
+                    return ApiResponse<List<TDto>>.Ok(cached, $"{_entityName} listesi cache'den getirildi.");
+                }
+
+                // Fetch from database
+                var entities = await _repository.GetAllAsync(filter);
+                var dtoList = _mapper.Map<List<TDto>>(entities);
+
+                // Handle empty results
+                if (!dtoList.Any())
+                {
+                    return ApiResponse<List<TDto>>.NotFound($"Hiç {_entityName.ToLower()} bulunamadı.");
+                }
+
+                // Cache the results
+                _cacheService.Set(cacheKey, dtoList, TimeSpan.FromMinutes(5));
+
+                return ApiResponse<List<TDto>>.Ok(dtoList, $"{_entityName} listesi başarıyla getirildi.");
             }
-
-            // Fetch from database
-            var entities = await _repository.GetAllAsync(filter);
-            var dtoList = _mapper.Map<List<TDto>>(entities);
-
-            // Handle empty results
-            if (!dtoList.Any())
+            catch (Exception ex)
             {
-                return ApiResponse<List<TDto>>.NotFound($"Hiç {_entityName.ToLower()} bulunamadı.");
+                return ApiResponse<List<TDto>>.Error($"Veri getirme sırasında hata oluştu: {ex.Message}");
             }
-
-            // Cache the results
-            _cacheService.Set(cacheKey, dtoList, TimeSpan.FromMinutes(5));
-
-            return ApiResponse<List<TDto>>.Ok(dtoList, $"{_entityName} listesi başarıyla getirildi.");
         }
 
         public virtual async Task<ApiResponse<TDto>> GetByIdAsync(TKey id)
         {
-            var entity = await _repository.GetByIdAsync(id);
-            if (entity == null)
+            try
             {
-                return ApiResponse<TDto>.NotFound($"{_entityName} bulunamadı.");
-            }
+                var entity = await _repository.GetByIdAsync(id);
+                if (entity == null)
+                {
+                    return ApiResponse<TDto>.NotFound($"{_entityName} bulunamadı.");
+                }
 
-            var dto = _mapper.Map<TDto>(entity);
-            return ApiResponse<TDto>.Ok(dto, $"{_entityName} başarıyla getirildi.");
+                var dto = _mapper.Map<TDto>(entity);
+                return ApiResponse<TDto>.Ok(dto, $"{_entityName} başarıyla getirildi.");
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<TDto>.Error($"Veri getirme sırasında hata oluştu: {ex.Message}");
+            }
         }
 
         public virtual async Task<ApiResponse<TDto>> AddAsync(TCreateDto dto)
         {
-            var entity = _mapper.Map<TEntity>(dto);
-            await _repository.AddAsync(entity);
-            await _repository.SaveChangesAsync();
+            try
+            {
+                // Validate business rules before adding
+                var validationResult = await ValidateBusinessRulesForCreate(dto);
+                if (!validationResult.IsValid)
+                {
+                    return ApiResponse<TDto>.BadRequest(validationResult.Errors, validationResult.ErrorMessage);
+                }
 
-            // Clear cache
-            InvalidateCache();
+                var entity = _mapper.Map<TEntity>(dto);
+                await _repository.AddAsync(entity);
+                await _repository.SaveChangesAsync();
 
-            var createdDto = _mapper.Map<TDto>(entity);
-            return ApiResponse<TDto>.Created(createdDto, $"{_entityName} başarıyla eklendi.");
+                // Clear cache
+                InvalidateCache();
+
+                var createdDto = _mapper.Map<TDto>(entity);
+                return ApiResponse<TDto>.Created(createdDto, $"{_entityName} başarıyla eklendi.");
+            }
+            catch (Exception ex)
+            {
+                return ApiResponse<TDto>.Error($"Ekleme sırasında hata oluştu: {ex.Message}");
+            }
         }
 
         public virtual async Task<ApiResponse<TDto>> UpdateAsync(TUpdateDto dto)
         {
-            var id = GetIdFromUpdateDto(dto);
-            var entity = await _repository.GetByIdAsync(id);
-            
-            if (entity == null)
+            try
             {
-                return ApiResponse<TDto>.NotFound($"Güncellenecek {_entityName.ToLower()} bulunamadı.");
+                var id = GetIdFromUpdateDto(dto);
+                var entity = await _repository.GetByIdAsync(id);
+                
+                if (entity == null)
+                {
+                    return ApiResponse<TDto>.NotFound($"Güncellenecek {_entityName.ToLower()} bulunamadı.");
+                }
+
+                // Validate business rules before updating
+                var validationResult = await ValidateBusinessRulesForUpdate(dto, entity);
+                if (!validationResult.IsValid)
+                {
+                    return ApiResponse<TDto>.BadRequest(validationResult.Errors, validationResult.ErrorMessage);
+                }
+
+                _mapper.Map(dto, entity);
+                _repository.Update(entity);
+                await _repository.SaveChangesAsync();
+
+                // Clear cache
+                InvalidateCache();
+
+                var updatedDto = _mapper.Map<TDto>(entity);
+                return ApiResponse<TDto>.Ok(updatedDto, $"{_entityName} başarıyla güncellendi.");
             }
-
-            _mapper.Map(dto, entity);
-            _repository.Update(entity);
-            await _repository.SaveChangesAsync();
-
-            // Clear cache
-            InvalidateCache();
-
-            var updatedDto = _mapper.Map<TDto>(entity);
-            return ApiResponse<TDto>.Ok(updatedDto, $"{_entityName} başarıyla güncellendi.");
+            catch (Exception ex)
+            {
+                return ApiResponse<TDto>.Error($"Güncelleme sırasında hata oluştu: {ex.Message}");
+            }
         }
 
         public virtual async Task<ApiResponse<string>> DeleteAsync(TKey id)
         {
-            var entity = await _repository.GetByIdAsync(id);
-            if (entity == null)
+            try
             {
-                return ApiResponse<string>.NotFound($"Silinecek {_entityName.ToLower()} bulunamadı.");
-            }
+                var entity = await _repository.GetByIdAsync(id);
+                if (entity == null)
+                {
+                    return ApiResponse<string>.NotFound($"Silinecek {_entityName.ToLower()} bulunamadı.");
+                }
 
-            // Check if soft delete is supported
-            if (SupportsSoftDelete())
+                // Check if soft delete is supported
+                if (SupportsSoftDelete())
+                {
+                    PerformSoftDelete(entity);
+                    _repository.Update(entity);
+                }
+                else
+                {
+                    _repository.Delete(entity);
+                }
+
+                await _repository.SaveChangesAsync();
+
+                // Clear cache
+                InvalidateCache();
+
+                var message = SupportsSoftDelete() 
+                    ? $"{_entityName} pasif hale getirildi (soft delete)."
+                    : $"{_entityName} başarıyla silindi.";
+
+                return ApiResponse<string>.NoContent(message);
+            }
+            catch (Exception ex)
             {
-                PerformSoftDelete(entity);
-                _repository.Update(entity);
+                return ApiResponse<string>.Error($"Silme sırasında hata oluştu: {ex.Message}");
             }
-            else
-            {
-                _repository.Delete(entity);
-            }
-
-            await _repository.SaveChangesAsync();
-
-            // Clear cache
-            InvalidateCache();
-
-            var message = SupportsSoftDelete() 
-                ? $"{_entityName} pasif hale getirildi (soft delete)."
-                : $"{_entityName} başarıyla silindi.";
-
-            return ApiResponse<string>.NoContent(message);
         }
 
         #region Protected Helper Methods
@@ -166,6 +215,40 @@ namespace NorthwindApp.Business.Services.Concrete
         
         protected virtual void PerformSoftDelete(TEntity entity) { }
 
+        // Business rule validation methods
+        protected virtual async Task<BusinessValidationResult> ValidateBusinessRulesForCreate(TCreateDto dto)
+        {
+            return BusinessValidationResult.Success();
+        }
+
+        protected virtual async Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(TUpdateDto dto, TEntity entity)
+        {
+            return BusinessValidationResult.Success();
+        }
+
         #endregion
+    }
+
+    // Business validation result class
+    public class BusinessValidationResult
+    {
+        public bool IsValid { get; set; }
+        public string[] Errors { get; set; } = Array.Empty<string>();
+        public string ErrorMessage { get; set; } = string.Empty;
+
+        public static BusinessValidationResult Success()
+        {
+            return new BusinessValidationResult { IsValid = true };
+        }
+
+        public static BusinessValidationResult Failure(string errorMessage, params string[] errors)
+        {
+            return new BusinessValidationResult 
+            { 
+                IsValid = false, 
+                ErrorMessage = errorMessage,
+                Errors = errors 
+            };
+        }
     }
 }

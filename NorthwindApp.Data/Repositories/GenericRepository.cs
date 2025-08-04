@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NorthwindApp.Data.Context;
+using NorthwindApp.Data.Repositories.Abstract;
 using System.Linq.Expressions;
 
 namespace NorthwindApp.Data.Repositories
@@ -8,7 +9,7 @@ namespace NorthwindApp.Data.Repositories
     /// Generic repository implementation that provides common data access operations
     /// Eliminates code duplication across repository implementations
     /// </summary>
-    public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey> 
+    public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey>, IRepository<TEntity> 
         where TEntity : class
     {
         protected readonly NorthwindContext _context;
@@ -69,6 +70,32 @@ namespace NorthwindApp.Data.Repositories
                 query = query.Where(filter);
 
             return await query.CountAsync();
+        }
+
+        // IRepository<T> interface methods
+        public async Task<List<TEntity>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
+        public async Task<TEntity?> GetByIdAsync(int id)
+        {
+            // This is a fallback for int-based IDs
+            if (typeof(TKey) == typeof(int))
+            {
+                return await GetByIdAsync((TKey)(object)id);
+            }
+            throw new NotSupportedException($"GetByIdAsync(int) is not supported for {typeof(TKey)} key type");
+        }
+
+        public async Task<TEntity?> GetByIdAsync(string id)
+        {
+            // This is a fallback for string-based IDs
+            if (typeof(TKey) == typeof(string))
+            {
+                return await GetByIdAsync((TKey)(object)id);
+            }
+            throw new NotSupportedException($"GetByIdAsync(string) is not supported for {typeof(TKey)} key type");
         }
     }
 }

@@ -2,10 +2,11 @@
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
+using NorthwindApp.Data.Repositories;
 
 namespace NorthwindApp.Data.Repositories.Concrete
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    public class ProductRepository : GenericRepository<Product, int>, IProductRepository
     {
         public ProductRepository(NorthwindContext context) : base(context)
         {
