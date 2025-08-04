@@ -1,32 +1,24 @@
-﻿using AutoMapper;
+using AutoMapper;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NorthwindApp.Business.Services.Concrete
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService : GenericService<Category, CategoryDTO, CategoryCreateDto, CategoryUpdateDto, int>, ICategoryService
     {
-        private readonly ICategoryRepository _repo;
-        private readonly IMapper _mapper;
-        private readonly ICacheService _cacheService;
-        private const string CachePrefix = "category_list_";
 
         public CategoryService(
-            ICategoryRepository repo,
+            ICategoryRepository categoryRepo,
             IMapper mapper,
             ICacheService cacheService)
+            : base(categoryRepo, mapper, cacheService, "category_list_", "Kategori")
         {
-            _repo = repo;
-            _mapper = mapper;
-            _cacheService = cacheService;
         }
 
+<<<<<<< HEAD
         public async Task<ApiResponse<List<CategoryDTO>>> GetAllAsync(CategoryFilterDto? filter = null)
         {
             // 1) Filter null ise default değerler ata
@@ -159,6 +151,14 @@ namespace NorthwindApp.Business.Services.Concrete
 
             return ApiResponse<string>
                 .NoContent("Kategori başarıyla silindi.");
+=======
+        protected override int GetIdFromUpdateDto(CategoryUpdateDto dto)
+        {
+            return dto.CategoryId;
+>>>>>>> 46be2e785b2a73d21b3c223b730360640f942087
         }
+        
+        // ICategoryService already matches the generic service interface
+        // No additional implementation needed
     }
 }
