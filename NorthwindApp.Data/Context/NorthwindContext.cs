@@ -16,8 +16,15 @@ namespace NorthwindApp.Data.Context
         public DbSet<Supplier> Suppliers { get; set; }              //Database table for Suppliers
         public DbSet<Employee> Employees { get; set; }              //Database table for Employees
         public DbSet<Order> Orders { get; set; }                    //Database table for Orders
+        public DbSet<OrderDetail> OrderDetails { get; set; }        //Database table for OrderDetails
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // OrderDetail için composite primary key tanımla
+            modelBuilder.Entity<OrderDetail>()
+                .HasKey(od => new { od.OrderId, od.ProductId });
 
-
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace NorthwindApp.API.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<ActionResult<ApiResponse<List<ProductDTO>>>> GetAll([FromQuery] ProductFilterDto filter)
+        public async Task<ActionResult<ApiResponse<List<ProductDTO>>>> GetAll([FromQuery] ProductFilterDto? filter = null)
         {
             var result = await _productService.GetAllAsync(filter);
             return Ok(result);

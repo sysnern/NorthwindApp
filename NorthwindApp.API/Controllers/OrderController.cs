@@ -1,53 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
+using NorthwindApp.Core.Results;
 
 namespace NorthwindApp.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class OrderController : ControllerBase
     {
-        private readonly IOrderService _service;
+        private readonly IOrderService _orderService;
 
-        public OrderController(IOrderService service)
+        public OrderController(IOrderService orderService)
         {
-            _service = service;
+            _orderService = orderService;
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<ApiResponse<List<OrderDTO>>>> GetAll([FromQuery] OrderFilterDto? filter = null)
         {
-            var response = await _service.GetAllAsync();
-            return StatusCode(response.StatusCode, response);
+            var result = await _orderService.GetAllAsync(filter);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<ApiResponse<OrderDTO>>> GetById(int id)
         {
-            var response = await _service.GetByIdAsync(id);
-            return StatusCode(response.StatusCode, response);
+            var result = await _orderService.GetByIdAsync(id);
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(OrderCreateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Add([FromBody] OrderCreateDto dto)
         {
-            var response = await _service.AddAsync(dto);
-            return StatusCode(response.StatusCode, response);
+            var result = await _orderService.AddAsync(dto);
+            return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(OrderUpdateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Update([FromBody] OrderUpdateDto dto)
         {
-            var response = await _service.UpdateAsync(dto);
-            return StatusCode(response.StatusCode, response);
+            var result = await _orderService.UpdateAsync(dto);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<ApiResponse<string>>> Delete(int id)
         {
-            var response = await _service.DeleteAsync(id);
-            return StatusCode(response.StatusCode, response);
+            var result = await _orderService.DeleteAsync(id);
+            return Ok(result);
         }
     }
 }

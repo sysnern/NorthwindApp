@@ -5,10 +5,10 @@ namespace NorthwindApp.Business.Services.Abstract
 {
     public interface IOrderService
     {
-        Task<ApiResponse<List<OrderDTO>>> GetAllAsync();
+        Task<ApiResponse<List<OrderDTO>>> GetAllAsync(OrderFilterDto? filter = null);
         Task<ApiResponse<OrderDTO>> GetByIdAsync(int id);
-        Task<ApiResponse<OrderDTO>> AddAsync(OrderCreateDto dto);
-        Task<ApiResponse<OrderDTO>> UpdateAsync(OrderUpdateDto dto);
+        Task<ApiResponse<string>> AddAsync(OrderCreateDto dto);
+        Task<ApiResponse<string>> UpdateAsync(OrderUpdateDto dto);
         Task<ApiResponse<string>> DeleteAsync(int id);
     }
 }

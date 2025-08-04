@@ -4,7 +4,7 @@ namespace NorthwindApp.Entities.Models
 {
     public class Product
     {
-        public int ProductID { get; set; }                      //Primary Key         
+        public int ProductId { get; set; }                      //Primary Key         
         public required string ProductName { get; set; }        //Required field
 
         public int SupplierId { get; set; }                     //Foreign Key to Supplier
@@ -17,6 +17,7 @@ namespace NorthwindApp.Entities.Models
         public short UnitsInStock { get; set; }        
         public short UnitsOnOrder { get; set; }       
         public short ReorderLevel { get; set; }        
-        public bool Discontinued { get; set; }         
+        public bool Discontinued { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

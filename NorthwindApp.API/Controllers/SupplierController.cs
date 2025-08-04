@@ -1,53 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
+using NorthwindApp.Core.Results;
 
 namespace NorthwindApp.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class SupplierController : ControllerBase
     {
-        private readonly ISupplierService _service;
+        private readonly ISupplierService _supplierService;
 
-        public SupplierController(ISupplierService service)
+        public SupplierController(ISupplierService supplierService)
         {
-            _service = service;
+            _supplierService = supplierService;
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<ApiResponse<List<SupplierDTO>>>> GetAll([FromQuery] SupplierFilterDto? filter = null)
         {
-            var response = await _service.GetAllAsync();
-            return StatusCode(response.StatusCode, response);
+            var result = await _supplierService.GetAllAsync(filter);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<ApiResponse<SupplierDTO>>> GetById(int id)
         {
-            var response = await _service.GetByIdAsync(id);
-            return StatusCode(response.StatusCode, response);
+            var result = await _supplierService.GetByIdAsync(id);
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(SupplierCreateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Add([FromBody] SupplierCreateDto dto)
         {
-            var response = await _service.AddAsync(dto);
-            return StatusCode(response.StatusCode, response);
+            var result = await _supplierService.AddAsync(dto);
+            return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(SupplierUpdateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Update([FromBody] SupplierUpdateDto dto)
         {
-            var response = await _service.UpdateAsync(dto);
-            return StatusCode(response.StatusCode, response);
+            var result = await _supplierService.UpdateAsync(dto);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<ApiResponse<string>>> Delete(int id)
         {
-            var response = await _service.DeleteAsync(id);
-            return StatusCode(response.StatusCode, response);
+            var result = await _supplierService.DeleteAsync(id);
+            return Ok(result);
         }
     }
 }

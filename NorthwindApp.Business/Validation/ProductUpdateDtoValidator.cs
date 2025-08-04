@@ -15,8 +15,7 @@ namespace NorthwindApp.Business.Validation
                 .MinimumLength(3).WithMessage("Ürün adı en az 3 karakter olmalı.");
 
             RuleFor(p => p.UnitPrice)
-                .GreaterThanOrEqualTo(0).WithMessage("Birim fiyat 0 veya daha büyük olmalı.")
-                .When(p => p.UnitPrice.HasValue);
+                .GreaterThanOrEqualTo(0).WithMessage("Birim fiyat 0 veya daha büyük olmalı.");
 
             RuleFor(p => p.CategoryId)
                 .GreaterThan(0).WithMessage("Kategori ID sıfırdan büyük olmalı.");

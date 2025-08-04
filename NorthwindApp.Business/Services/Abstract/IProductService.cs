@@ -5,7 +5,7 @@ namespace NorthwindApp.Business.Services.Abstract
 {
     public interface IProductService
     {
-        Task<ApiResponse<List<ProductDTO>>> GetAllAsync(ProductFilterDto filter);
+        Task<ApiResponse<List<ProductDTO>>> GetAllAsync(ProductFilterDto? filter = null);
         Task<ApiResponse<ProductDTO>> GetByIdAsync(int id);
         Task<ApiResponse<string>> AddAsync(ProductCreateDto dto);
         Task<ApiResponse<string>> UpdateAsync(ProductUpdateDto dto);

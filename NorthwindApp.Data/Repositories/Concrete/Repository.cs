@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NorthwindApp.Data.Context;
+using NorthwindApp.Data.Repositories.Abstract;
 using System.Linq.Expressions;
 
-namespace NorthwindApp.Data.Repositories
+namespace NorthwindApp.Data.Repositories.Concrete
 {
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly NorthwindContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public Repository(NorthwindContext context)
         {
@@ -20,7 +21,20 @@ namespace NorthwindApp.Data.Repositories
             return await _dbSet.ToListAsync();
         }
 
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null)
+        {
+            if (filter == null)
+                return await _dbSet.ToListAsync();
+            
+            return await _dbSet.Where(filter).ToListAsync();
+        }
+
         public async Task<T?> GetByIdAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        public async Task<T?> GetByIdAsync(string id)
         {
             return await _dbSet.FindAsync(id);
         }

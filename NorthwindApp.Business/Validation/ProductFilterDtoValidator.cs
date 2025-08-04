@@ -14,6 +14,10 @@ namespace NorthwindApp.Business.Validation
                 .When(p => p.CategoryId.HasValue)
                 .WithMessage("Kategori ID 0'dan büyük olmalıdır.");
 
+            RuleFor(p => p.SupplierId)
+                .GreaterThan(0)
+                .When(p => p.SupplierId.HasValue)
+                .WithMessage("Tedarikçi ID 0'dan büyük olmalıdır.");
 
             RuleFor(p => p.MinPrice)
                 .GreaterThanOrEqualTo(0)
@@ -28,6 +32,14 @@ namespace NorthwindApp.Business.Validation
             RuleFor(p => p)
                 .Must(p => !p.MinPrice.HasValue || !p.MaxPrice.HasValue || p.MinPrice <= p.MaxPrice)
                 .WithMessage("Minimum fiyat maksimum fiyattan büyük olamaz.");
+
+            RuleFor(p => p.Page)
+                .GreaterThan(0)
+                .WithMessage("Sayfa numarası 0'dan büyük olmalıdır.");
+
+            RuleFor(p => p.PageSize)
+                .InclusiveBetween(1, 100)
+                .WithMessage("Sayfa boyutu 1-100 arasında olmalıdır.");
         }
     }
 }

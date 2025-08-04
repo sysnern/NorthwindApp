@@ -2,7 +2,7 @@
 {
     public class Customer
     {
-        public string CustomerID { get; set; } = null!;
+        public string CustomerId { get; set; } = null!;
         public string CompanyName { get; set; } = null!;
         public string? ContactName { get; set; }
         public string? ContactTitle { get; set; }
@@ -13,5 +13,9 @@
         public string? Country { get; set; }
         public string? Phone { get; set; }
         public string? Fax { get; set; }
+        public bool IsDeleted { get; set; }
+
+        // Navigation properties
+        public ICollection<Order>? Orders { get; set; }
     }
 }

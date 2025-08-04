@@ -5,8 +5,8 @@ public class OrderUpdateDtoValidator : AbstractValidator<OrderUpdateDto>
 {
     public OrderUpdateDtoValidator()
     {
-        RuleFor(x => x.OrderID).GreaterThan(0);
-        RuleFor(x => x.CustomerID).NotEmpty().MaximumLength(5);
-        RuleFor(x => x.EmployeeID).GreaterThan(0);
+        RuleFor(x => x.OrderId).GreaterThan(0);
+        RuleFor(x => x.CustomerId).NotEmpty().MaximumLength(5);
+        RuleFor(x => x.EmployeeId).GreaterThan(0);
     }
 }

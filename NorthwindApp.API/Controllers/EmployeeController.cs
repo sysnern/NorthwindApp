@@ -1,53 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
+using NorthwindApp.Core.Results;
 
 namespace NorthwindApp.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
-        private readonly IEmployeeService _service;
+        private readonly IEmployeeService _employeeService;
 
-        public EmployeeController(IEmployeeService service)
+        public EmployeeController(IEmployeeService employeeService)
         {
-            _service = service;
+            _employeeService = employeeService;
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<ApiResponse<List<EmployeeDTO>>>> GetAll([FromQuery] EmployeeFilterDto? filter = null)
         {
-            var response = await _service.GetAllAsync();
-            return StatusCode(response.StatusCode, response);
+            var result = await _employeeService.GetAllAsync(filter);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult<ApiResponse<EmployeeDTO>>> GetById(int id)
         {
-            var response = await _service.GetByIdAsync(id);
-            return StatusCode(response.StatusCode, response);
+            var result = await _employeeService.GetByIdAsync(id);
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(EmployeeCreateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Add([FromBody] EmployeeCreateDto dto)
         {
-            var response = await _service.AddAsync(dto);
-            return StatusCode(response.StatusCode, response);
+            var result = await _employeeService.AddAsync(dto);
+            return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(EmployeeUpdateDto dto)
+        public async Task<ActionResult<ApiResponse<string>>> Update([FromBody] EmployeeUpdateDto dto)
         {
-            var response = await _service.UpdateAsync(dto);
-            return StatusCode(response.StatusCode, response);
+            var result = await _employeeService.UpdateAsync(dto);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult<ApiResponse<string>>> Delete(int id)
         {
-            var response = await _service.DeleteAsync(id);
-            return StatusCode(response.StatusCode, response);
+            var result = await _employeeService.DeleteAsync(id);
+            return Ok(result);
         }
     }
 }
