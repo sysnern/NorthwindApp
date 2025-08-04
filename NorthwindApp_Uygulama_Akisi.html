@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NorthwindApp Uygulama Akışı</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #34495e;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 25px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+        .tech-stack {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .flow-diagram {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .warning {
+            color: #f39c12;
+        }
+        .info {
+            color: #3498db;
+        }
+        code {
+            background: #f1f1f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .entity-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .entity-table th, .entity-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .entity-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        .entity-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .checkmark {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 NORTHWINDAPP UYGULAMA AKIŞI</h1>
+
+        <h2>📋 PROJE GENEL BAKIŞ</h2>
+        <p>
+            NorthwindApp, Northwind veritabanı üzerinde çalışan modern bir web uygulamasıdır. 
+            Backend .NET Core Web API, Frontend React.js teknolojileri kullanılarak geliştirilmiştir.
+        </p>
+
+        <h2>🏗️ MİMARİ YAPISI</h2>
+        
+        <h3>Backend Katmanları:</h3>
+        <ul>
+            <li><strong>NorthwindApp.API</strong> - Web API Controller'ları</li>
+            <li><strong>NorthwindApp.Business</strong> - İş mantığı ve servisler</li>
+            <li><strong>NorthwindApp.Data</strong> - Veri erişim katmanı (Repository Pattern)</li>
+            <li><strong>NorthwindApp.Core</strong> - DTO'lar ve ortak sınıflar</li>
+            <li><strong>Northwind.Entities</strong> - Entity modelleri</li>
+        </ul>
+
+        <h3>Frontend:</h3>
+        <ul>
+            <li><strong>NorthwindAppFrontend</strong> - React.js uygulaması</li>
+        </ul>
+
+        <h2>🔄 UYGULAMA AKIŞI</h2>
+
+        <h3>1. VERİ YÖNETİMİ AKIŞI</h3>
+
+        <h4>Listeleme İşlemi:</h4>
+        <div class="flow-diagram">
+            Frontend → API Controller → Business Service → Repository → Database<br>
+            ←                ←                ←           ←
+        </div>
+
+        <h4>Ekleme İşlemi:</h4>
+        <div class="flow-diagram">
+            Frontend Form → API Controller → Business Service → Repository → Database<br>
+            ← Validation    ← Response       ← Success/Error
+        </div>
+
+        <h4>Güncelleme İşlemi:</h4>
+        <div class="flow-diagram">
+            Frontend Form → API Controller → Business Service → Repository → Database<br>
+            ← Validation    ← Response       ← Success/Error
+        </div>
+
+        <h4>Silme İşlemi (Soft Delete):</h4>
+        <div class="flow-diagram">
+            Frontend → API Controller → Business Service → Repository → Database (IsDeleted = true)<br>
+            ←                ←                ←           ←
+        </div>
+
+        <h2>📊 ENTİTİLER VE ÖZELLİKLERİ</h2>
+
+        <table class="entity-table">
+            <thead>
+                <tr>
+                    <th>Entity</th>
+                    <th>CRUD</th>
+                    <th>Filtreleme</th>
+                    <th>Sıralama</th>
+                    <th>Sayfalama</th>
+                    <th>Soft Delete</th>
+                    <th>Cache</th>
+                    <th>Validation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>PRODUCT (Ürün)</strong></td>
+                    <td class="checkmark">✅</td>
+                    <td>Ürün adı, kategori, tedarikçi, fiyat aralığı</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td>Formik+Yup + FluentValidation</td>
+                </tr>
+                <tr>
+                    <td><strong>CATEGORY (Kategori)</strong></td>
+                    <td class="checkmark">✅</td>
+                    <td>Kategori adı, açıklama</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td>Formik+Yup + FluentValidation</td>
+                </tr>
+                <tr>
+                    <td><strong>SUPPLIER (Tedarikçi)</strong></td>
+                    <td class="checkmark">✅</td>
+                    <td>Şirket adı, iletişim kişisi, şehir, ülke</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td>Formik+Yup + FluentValidation</td>
+                </tr>
+                <tr>
+                    <td><strong>CUSTOMER (Müşteri)</strong></td>
+                    <td class="checkmark">✅</td>
+                    <td>Müşteri ID, şirket adı, iletişim kişisi, şehir, ülke</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td>Formik+Yup + FluentValidation</td>
+                </tr>
+                <tr>
+                    <td><strong>EMPLOYEE (Çalışan)</strong></td>
+                    <td class="checkmark">✅</td>
+                    <td>Ad, soyad, unvan, ülke</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td>Formik+Yup + FluentValidation</td>
+                </tr>
+                <tr>
+                    <td><strong>ORDER (Sipariş)</strong></td>
+                    <td class="checkmark">✅</td>
+                    <td>Sipariş ID, müşteri, çalışan, tarih aralığı</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td class="checkmark">✅</td>
+                    <td>Formik+Yup + FluentValidation</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🛠️ TEKNİK ÖZELLİKLER</h2>
+
+        <div class="tech-stack">
+            <h3>Backend Teknolojileri:</h3>
+            <ul>
+                <li><strong>.NET 9.0</strong> - Framework</li>
+                <li><strong>Entity Framework Core</strong> - ORM</li>
+                <li><strong>FluentValidation</strong> - Validation</li>
+                <li><strong>AutoMapper</strong> - Object Mapping</li>
+                <li><strong>In-Memory Cache</strong> - Caching</li>
+                <li><strong>Repository Pattern</strong> - Data Access</li>
+                <li><strong>Layered Architecture</strong> - Clean Architecture</li>
+            </ul>
+
+            <h3>Frontend Teknolojileri:</h3>
+            <ul>
+                <li><strong>React.js</strong> - UI Framework</li>
+                <li><strong>React Bootstrap</strong> - UI Components</li>
+                <li><strong>Formik + Yup</strong> - Form Management & Validation</li>
+                <li><strong>Axios</strong> - HTTP Client</li>
+                <li><strong>React Toastify</strong> - Notifications</li>
+                <li><strong>React Icons</strong> - Icons</li>
+            </ul>
+
+            <h3>Veritabanı:</h3>
+            <ul>
+                <li><strong>SQL Server</strong> - Database</li>
+                <li><strong>Northwind Database</strong> - Sample Data</li>
+            </ul>
+        </div>
+
+        <h2>🔧 KULLANICI ARAYÜZÜ AKIŞI</h2>
+
+        <h3>1. Ana Sayfa (Dashboard)</h3>
+        <ul>
+            <li>Tüm entity'lerin özet bilgileri</li>
+            <li>Hızlı erişim linkleri</li>
+            <li>İstatistikler</li>
+        </ul>
+
+        <h3>2. Entity Sayfaları</h3>
+        <p>Her entity için aynı akış:</p>
+        <ol>
+            <li><strong>Liste Görünümü</strong>
+                <ul>
+                    <li>Filtreleme seçenekleri</li>
+                    <li>Sıralama butonları</li>
+                    <li>Sayfalama kontrolleri</li>
+                    <li>CRUD işlem butonları</li>
+                </ul>
+            </li>
+            <li><strong>Ekleme Modal'ı</strong>
+                <ul>
+                    <li>Formik form</li>
+                    <li>Yup validation</li>
+                    <li>Başarı/hata bildirimleri</li>
+                </ul>
+            </li>
+            <li><strong>Düzenleme Modal'ı</strong>
+                <ul>
+                    <li>Mevcut veri ile dolu form</li>
+                    <li>Güncelleme işlemi</li>
+                    <li>Başarı/hata bildirimleri</li>
+                </ul>
+            </li>
+            <li><strong>Silme Onay Modal'ı</strong>
+                <ul>
+                    <li>Onay dialog'u</li>
+                    <li>Soft delete işlemi</li>
+                    <li>Başarı/hata bildirimleri</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2>🔄 VERİ AKIŞI DETAYLARI</h2>
+
+        <h3>API Response Yapısı:</h3>
+        <pre><code>{
+  "success": true,
+  "data": {
+    "items": [...],
+    "totalCount": 100,
+    "page": 1,
+    "pageSize": 10,
+    "totalPages": 10
+  },
+  "message": "İşlem başarılı"
+}</code></pre>
+
+        <h3>Cache Stratejisi:</h3>
+        <ul>
+            <li><strong>Cache Key:</strong> <code>EntityName_FilterParams_SortParams_Page_PageSize</code></li>
+            <li><strong>Cache Duration:</strong> 5 dakika</li>
+            <li><strong>Cache Invalidation:</strong> CRUD işlemlerinde otomatik</li>
+        </ul>
+
+        <h3>Validation Stratejisi:</h3>
+        <ul>
+            <li><strong>Frontend:</strong> Formik + Yup (Real-time validation)</li>
+            <li><strong>Backend:</strong> FluentValidation (Server-side validation)</li>
+            <li><strong>API Response:</strong> Validation error'ları JSON formatında</li>
+        </ul>
+
+        <h2>🚀 DEPLOYMENT VE ÇALIŞTIRMA</h2>
+
+        <h3>Backend:</h3>
+        <pre><code>cd NorthwindApp.API
+dotnet run</code></pre>
+
+        <h3>Frontend:</h3>
+        <pre><code>cd NorthwindAppFrontend
+npm start</code></pre>
+
+        <h3>Veritabanı:</h3>
+        <ul>
+            <li>SQL Server bağlantısı gerekli</li>
+            <li>Northwind database'i yüklü olmalı</li>
+            <li>Connection string: <code>appsettings.json</code> içinde</li>
+        </ul>
+
+        <h2>📈 PERFORMANS ÖZELLİKLERİ</h2>
+
+        <h3>Optimizasyonlar:</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="checkmark">✅ Caching:</span> In-Memory cache ile hızlı erişim
+            </div>
+            <div class="feature-card">
+                <span class="checkmark">✅ Pagination:</span> Büyük veri setleri için sayfalama
+            </div>
+            <div class="feature-card">
+                <span class="checkmark">✅ Filtering:</span> Dinamik filtreleme
+            </div>
+            <div class="feature-card">
+                <span class="checkmark">✅ Sorting:</span> Çoklu alan sıralama
+            </div>
+            <div class="feature-card">
+                <span class="checkmark">✅ Soft Delete:</span> Veri kaybı olmadan silme
+            </div>
+            <div class="feature-card">
+                <span class="checkmark">✅ Validation:</span> Çift katmanlı validation
+            </div>
+        </div>
+
+        <h3>Güvenlik:</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="checkmark">✅ Input Validation:</span> Tüm kullanıcı girdileri validate edilir
+            </div>
+            <div class="feature-card">
+                <span class="checkmark">✅ SQL Injection Protection:</span> Entity Framework ile korunma
+            </div>
+            <div class="feature-card">
+                <span class="checkmark">✅ CORS Configuration:</span> Cross-origin istekler için yapılandırma
+            </div>
+        </div>
+
+        <h2>🎯 SONUÇ</h2>
+        <p>
+            NorthwindApp, modern web geliştirme standartlarına uygun, 
+            ölçeklenebilir ve kullanıcı dostu bir uygulamadır. 
+            Tüm CRUD işlemleri, filtreleme, sıralama, sayfalama ve 
+            cache özellikleri ile tam fonksiyonel bir yönetim paneli sunar.
+        </p>
+
+        <div class="footer">
+            <p><strong>Geliştirici:</strong> Marek Hamsik</p>
+            <p><strong>Tarih:</strong> 2024</p>
+            <p><strong>Teknolojiler:</strong> .NET 9.0, React.js, SQL Server</p>
+        </div>
+    </div>
+</body>
+</html> 
