@@ -6,6 +6,12 @@ namespace NorthwindApp.Data.Repositories.Abstract
     {
         Task<List<T>> GetAllAsync();
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null);
+        Task<List<T>> GetAllAsync(
+            Expression<Func<T, bool>>? filter = null,
+            string? sortField = null,
+            string? sortDirection = null,
+            int page = 1,
+            int pageSize = 10);
         Task<T?> GetByIdAsync(int id);
         Task<T?> GetByIdAsync(string id);
         Task AddAsync(T entity);

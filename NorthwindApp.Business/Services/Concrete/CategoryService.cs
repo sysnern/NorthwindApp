@@ -10,7 +10,6 @@ namespace NorthwindApp.Business.Services.Concrete
 {
     public class CategoryService : GenericService<Category, CategoryDTO, CategoryCreateDto, CategoryUpdateDto, int>, ICategoryService
     {
-
         public CategoryService(
             ICategoryRepository categoryRepo,
             IMapper mapper,
@@ -19,32 +18,40 @@ namespace NorthwindApp.Business.Services.Concrete
         {
         }
 
-        protected override int GetIdFromUpdateDto(CategoryUpdateDto dto)
-        {
-            return dto.CategoryId;
-        }
-
-        // Implement ICategoryService specific methods
+        // Override to handle CategoryFilterDto specifically with pagination and sorting
         public async Task<ApiResponse<List<CategoryDTO>>> GetAllAsync(CategoryFilterDto? filter = null)
         {
             // Build filter expression
             Expression<Func<Category, bool>>? filterExpression = null;
             
-            if (filter != null)
+            if (filter != null && !IsEmptyFilter(filter))
             {
                 filterExpression = c =>
-                    (string.IsNullOrEmpty(filter.CategoryName) || c.CategoryName.Contains(filter.CategoryName)) &&
-                    (!filter.IsDeleted.HasValue || c.IsDeleted == filter.IsDeleted);
+                (string.IsNullOrEmpty(filter.CategoryName) || c.CategoryName.Contains(filter.CategoryName));
             }
 
-            return await base.GetAllAsync(filterExpression);
+            // Extract pagination and sorting parameters from filter
+            var sortField = filter?.SortField;
+            var sortDirection = filter?.SortDirection;
+            var page = filter?.Page ?? 1;
+            var pageSize = filter?.PageSize ?? 10;
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
         }
 
-        public override async Task<ApiResponse<CategoryDTO>> GetByIdAsync(int id)
+        protected override int GetIdFromUpdateDto(CategoryUpdateDto dto)
         {
-            return await base.GetByIdAsync(id);
+            return dto.CategoryId;
         }
 
+        protected override bool SupportsSoftDelete() => false;
+
+        private static bool IsEmptyFilter(CategoryFilterDto filter)
+        {
+            return string.IsNullOrEmpty(filter.CategoryName);
+        }
+
+        // Implement ICategoryService methods that return string instead of CategoryDTO
         async Task<ApiResponse<string>> ICategoryService.AddAsync(CategoryCreateDto dto)
         {
             var result = await base.AddAsync(dto);
@@ -61,16 +68,6 @@ namespace NorthwindApp.Business.Services.Concrete
             if (result.Success)
             {
                 return ApiResponse<string>.Ok(null, result.Message);
-            }
-            return ApiResponse<string>.BadRequest(result.Errors ?? new[] { result.Message }, result.Message);
-        }
-
-        public override async Task<ApiResponse<string>> DeleteAsync(int id)
-        {
-            var result = await base.DeleteAsync(id);
-            if (result.Success)
-            {
-                return ApiResponse<string>.NoContent(result.Message);
             }
             return ApiResponse<string>.BadRequest(result.Errors ?? new[] { result.Message }, result.Message);
         }

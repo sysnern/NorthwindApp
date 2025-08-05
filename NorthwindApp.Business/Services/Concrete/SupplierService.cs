@@ -11,11 +11,35 @@ namespace NorthwindApp.Business.Services.Concrete
     public class SupplierService : GenericService<Supplier, SupplierDTO, SupplierCreateDto, SupplierUpdateDto, int>, ISupplierService
     {
         public SupplierService(
-            ISupplierRepository repo,
+            ISupplierRepository supplierRepo,
             IMapper mapper,
             ICacheService cacheService)
-            : base(repo, mapper, cacheService, "supplier_list_", "Tedarikçi")
+            : base(supplierRepo, mapper, cacheService, "supplier_list_", "Tedarikçi")
         {
+        }
+
+        // Override to handle SupplierFilterDto specifically with pagination and sorting
+        public async Task<ApiResponse<List<SupplierDTO>>> GetAllAsync(SupplierFilterDto? filter = null)
+        {
+            // Build filter expression
+            Expression<Func<Supplier, bool>>? filterExpression = null;
+            
+            if (filter != null && !IsEmptyFilter(filter))
+            {
+                filterExpression = s =>
+                (string.IsNullOrEmpty(filter.CompanyName) || (s.CompanyName != null && s.CompanyName.Contains(filter.CompanyName))) &&
+                (string.IsNullOrEmpty(filter.ContactName) || (s.ContactName != null && s.ContactName.Contains(filter.ContactName))) &&
+                (string.IsNullOrEmpty(filter.City) || (s.City != null && s.City.Contains(filter.City))) &&
+                (string.IsNullOrEmpty(filter.Country) || (s.Country != null && s.Country.Contains(filter.Country)));
+            }
+
+            // Extract pagination and sorting parameters from filter
+            var sortField = filter?.SortField;
+            var sortDirection = filter?.SortDirection;
+            var page = filter?.Page ?? 1;
+            var pageSize = filter?.PageSize ?? 10;
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
         }
 
         protected override int GetIdFromUpdateDto(SupplierUpdateDto dto)
@@ -23,23 +47,14 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.SupplierId;
         }
 
-        // Override to handle SupplierFilterDto specifically
-        public async Task<ApiResponse<List<SupplierDTO>>> GetAllAsync(SupplierFilterDto? filter = null)
-        {
-            // Build filter expression
-            Expression<Func<Supplier, bool>>? filterExpression = null;
-            
-            if (filter != null)
-            {
-                filterExpression = s =>
-                    (string.IsNullOrEmpty(filter.CompanyName) || (s.CompanyName != null && s.CompanyName.Contains(filter.CompanyName))) &&
-                    (string.IsNullOrEmpty(filter.ContactName) || (s.ContactName != null && s.ContactName.Contains(filter.ContactName))) &&
-                    (string.IsNullOrEmpty(filter.City) || (s.City != null && s.City.Contains(filter.City))) &&
-                    (string.IsNullOrEmpty(filter.Country) || (s.Country != null && s.Country.Contains(filter.Country))) &&
-                    (!filter.IsDeleted.HasValue || s.IsDeleted == filter.IsDeleted);
-            }
+        protected override bool SupportsSoftDelete() => false;
 
-            return await base.GetAllAsync(filterExpression);
+        private static bool IsEmptyFilter(SupplierFilterDto filter)
+        {
+            return string.IsNullOrEmpty(filter.CompanyName) &&
+                   string.IsNullOrEmpty(filter.ContactName) &&
+                   string.IsNullOrEmpty(filter.City) &&
+                   string.IsNullOrEmpty(filter.Country);
         }
 
         // Implement ISupplierService methods that return string instead of SupplierDTO

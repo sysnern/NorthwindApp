@@ -39,10 +39,20 @@ namespace NorthwindApp.Business.Services.Concrete
 
         public virtual async Task<ApiResponse<List<TDto>>> GetAllAsync(Expression<Func<TEntity, bool>>? filter = null)
         {
+            return await GetAllAsync(filter, null, null, 1, 10);
+        }
+
+        public virtual async Task<ApiResponse<List<TDto>>> GetAllAsync(
+            Expression<Func<TEntity, bool>>? filter = null,
+            string? sortField = null,
+            string? sortDirection = null,
+            int page = 1,
+            int pageSize = 10)
+        {
             try
             {
-                // Generate cache key based on filter
-                var cacheKey = GenerateCacheKey(filter);
+                // Generate cache key based on filter and pagination
+                var cacheKey = GenerateCacheKey(filter, sortField, sortDirection, page, pageSize);
 
                 // Check cache first
                 var cached = _cacheService.Get<List<TDto>>(cacheKey);
@@ -51,8 +61,11 @@ namespace NorthwindApp.Business.Services.Concrete
                     return ApiResponse<List<TDto>>.Ok(cached, $"{_entityName} listesi cache'den getirildi.");
                 }
 
-                // Fetch from database
-                var entities = await _repository.GetAllAsync(filter);
+                // Get total count for pagination
+                var totalCount = await _repository.CountAsync(filter);
+
+                // Fetch from database with pagination and sorting
+                var entities = await _repository.GetAllAsync(filter, sortField, sortDirection, page, pageSize);
                 var dtoList = _mapper.Map<List<TDto>>(entities);
 
                 // Handle empty results
@@ -64,7 +77,14 @@ namespace NorthwindApp.Business.Services.Concrete
                 // Cache the results
                 _cacheService.Set(cacheKey, dtoList, TimeSpan.FromMinutes(5));
 
-                return ApiResponse<List<TDto>>.Ok(dtoList, $"{_entityName} listesi başarıyla getirildi.");
+                // Add pagination info to response
+                var response = ApiResponse<List<TDto>>.Ok(dtoList, $"{_entityName} listesi başarıyla getirildi.");
+                response.TotalCount = totalCount;
+                response.Page = page;
+                response.PageSize = pageSize;
+                response.TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+
+                return response;
             }
             catch (Exception ex)
             {
@@ -106,11 +126,10 @@ namespace NorthwindApp.Business.Services.Concrete
                 await _repository.AddAsync(entity);
                 await _repository.SaveChangesAsync();
 
-                // Clear cache
+                var resultDto = _mapper.Map<TDto>(entity);
                 InvalidateCache();
 
-                var createdDto = _mapper.Map<TDto>(entity);
-                return ApiResponse<TDto>.Created(createdDto, $"{_entityName} başarıyla eklendi.");
+                return ApiResponse<TDto>.Created(resultDto, $"{_entityName} başarıyla eklendi.");
             }
             catch (Exception ex)
             {
@@ -123,29 +142,28 @@ namespace NorthwindApp.Business.Services.Concrete
             try
             {
                 var id = GetIdFromUpdateDto(dto);
-                var entity = await _repository.GetByIdAsync(id);
-                
-                if (entity == null)
+                var existingEntity = await _repository.GetByIdAsync(id);
+
+                if (existingEntity == null)
                 {
-                    return ApiResponse<TDto>.NotFound($"Güncellenecek {_entityName.ToLower()} bulunamadı.");
+                    return ApiResponse<TDto>.NotFound($"{_entityName} bulunamadı.");
                 }
 
                 // Validate business rules before updating
-                var validationResult = await ValidateBusinessRulesForUpdate(dto, entity);
+                var validationResult = await ValidateBusinessRulesForUpdate(dto, existingEntity);
                 if (!validationResult.IsValid)
                 {
                     return ApiResponse<TDto>.BadRequest(validationResult.Errors, validationResult.ErrorMessage);
                 }
 
-                _mapper.Map(dto, entity);
-                _repository.Update(entity);
+                _mapper.Map(dto, existingEntity);
+                _repository.Update(existingEntity);
                 await _repository.SaveChangesAsync();
 
-                // Clear cache
+                var resultDto = _mapper.Map<TDto>(existingEntity);
                 InvalidateCache();
 
-                var updatedDto = _mapper.Map<TDto>(entity);
-                return ApiResponse<TDto>.Ok(updatedDto, $"{_entityName} başarıyla güncellendi.");
+                return ApiResponse<TDto>.Ok(resultDto, $"{_entityName} başarıyla güncellendi.");
             }
             catch (Exception ex)
             {
@@ -160,10 +178,9 @@ namespace NorthwindApp.Business.Services.Concrete
                 var entity = await _repository.GetByIdAsync(id);
                 if (entity == null)
                 {
-                    return ApiResponse<string>.NotFound($"Silinecek {_entityName.ToLower()} bulunamadı.");
+                    return ApiResponse<string>.NotFound($"{_entityName} bulunamadı.");
                 }
 
-                // Check if soft delete is supported
                 if (SupportsSoftDelete())
                 {
                     PerformSoftDelete(entity);
@@ -175,15 +192,9 @@ namespace NorthwindApp.Business.Services.Concrete
                 }
 
                 await _repository.SaveChangesAsync();
-
-                // Clear cache
                 InvalidateCache();
 
-                var message = SupportsSoftDelete() 
-                    ? $"{_entityName} pasif hale getirildi (soft delete)."
-                    : $"{_entityName} başarıyla silindi.";
-
-                return ApiResponse<string>.NoContent(message);
+                return ApiResponse<string>.Ok(null, $"{_entityName} başarıyla silindi.");
             }
             catch (Exception ex)
             {
@@ -191,45 +202,54 @@ namespace NorthwindApp.Business.Services.Concrete
             }
         }
 
-        #region Protected Helper Methods
-
         protected virtual string GenerateCacheKey(Expression<Func<TEntity, bool>>? filter)
         {
             if (filter == null)
                 return _cachePrefix;
-
-            // Simple hash of filter expression for cache key
+                
             var filterString = filter.ToString();
             var hash = filterString.GetHashCode();
             return $"{_cachePrefix}_{hash}";
         }
 
+        protected virtual string GenerateCacheKey(
+            Expression<Func<TEntity, bool>>? filter,
+            string? sortField,
+            string? sortDirection,
+            int page,
+            int pageSize)
+        {
+            var baseKey = GenerateCacheKey(filter);
+            var paginationKey = $"p{page}_s{pageSize}";
+            var sortKey = string.IsNullOrEmpty(sortField) ? "" : $"sort_{sortField}_{sortDirection}";
+            
+            return $"{baseKey}_{paginationKey}_{sortKey}";
+        }
+
         protected virtual void InvalidateCache()
         {
-            _cacheService.RemoveByPrefix(_cachePrefix);
+            _cacheService.Remove(_cachePrefix);
         }
 
         protected abstract TKey GetIdFromUpdateDto(TUpdateDto dto);
-        
+
         protected virtual bool SupportsSoftDelete() => false;
-        
+
         protected virtual void PerformSoftDelete(TEntity entity) { }
 
-        // Business rule validation methods
         protected virtual async Task<BusinessValidationResult> ValidateBusinessRulesForCreate(TCreateDto dto)
         {
+            // Override in derived classes for specific business rules
             return BusinessValidationResult.Success();
         }
 
         protected virtual async Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(TUpdateDto dto, TEntity entity)
         {
+            // Override in derived classes for specific business rules
             return BusinessValidationResult.Success();
         }
-
-        #endregion
     }
 
-    // Business validation result class
     public class BusinessValidationResult
     {
         public bool IsValid { get; set; }
@@ -246,7 +266,7 @@ namespace NorthwindApp.Business.Services.Concrete
             return new BusinessValidationResult 
             { 
                 IsValid = false, 
-                ErrorMessage = errorMessage,
+                ErrorMessage = errorMessage, 
                 Errors = errors 
             };
         }

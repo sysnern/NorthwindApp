@@ -21,7 +21,7 @@ namespace NorthwindApp.Business.Services.Concrete
             _productRepo = productRepo;
         }
 
-        // Override to handle ProductFilterDto specifically
+        // Override to handle ProductFilterDto specifically with pagination and sorting
         public async Task<ApiResponse<List<ProductDTO>>> GetAllAsync(ProductFilterDto? filter = null)
         {
             // Build filter expression
@@ -38,7 +38,13 @@ namespace NorthwindApp.Business.Services.Concrete
                 (!filter.Discontinued.HasValue || p.Discontinued == filter.Discontinued);
             }
 
-            return await base.GetAllAsync(filterExpression);
+            // Extract pagination and sorting parameters from filter
+            var sortField = filter?.SortField;
+            var sortDirection = filter?.SortDirection;
+            var page = filter?.Page ?? 1;
+            var pageSize = filter?.PageSize ?? 10;
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
         }
 
         protected override int GetIdFromUpdateDto(ProductUpdateDto dto)
@@ -68,6 +74,7 @@ namespace NorthwindApp.Business.Services.Concrete
         {
             return string.IsNullOrEmpty(filter.ProductName) &&
                    !filter.CategoryId.HasValue &&
+                   !filter.SupplierId.HasValue &&
                    !filter.MinPrice.HasValue &&
                    !filter.MaxPrice.HasValue &&
                    !filter.Discontinued.HasValue;

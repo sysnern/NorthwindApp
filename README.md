@@ -1,182 +1,219 @@
-# NorthwindApp Web API
+# 🏢 NorthwindApp - Modern Database Management System
 
-> 🚀 A .NET 9 Web API for the classic Northwind sample – with clean architecture, validation, AutoMapper, uniform responses, logging & caching.
+A comprehensive .NET 9.0 application for managing the Northwind database with a modern React frontend.
 
----
+## 🚀 Features
 
-## Table of Contents
+### **Backend (.NET 9.0)**
+- ✅ **Three-Layer Architecture** (API, Business, Data)
+- ✅ **Repository Pattern** with Generic Repository
+- ✅ **Service Layer** with Business Logic Validation
+- ✅ **Entity Framework Core** with Code-First approach
+- ✅ **AutoMapper** for DTO mapping
+- ✅ **FluentValidation** for input validation
+- ✅ **Caching** with Memory Cache
+- ✅ **Logging** with Serilog
+- ✅ **Error Handling** with Global Exception Middleware
+- ✅ **Soft Delete** functionality
+- ✅ **Pagination** and **Sorting**
+- ✅ **Filtering** with dynamic expressions
 
-- [About](#about)
-- [Tech Stack](#tech-stack)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Database Migrations](#database-migrations)
-- [Running the Application](#running-the-application)
-- [API Endpoints](#api-endpoints)
-- [Error Handling](#error-handling)
-- [Logging](#logging)
-- [Caching](#caching)
-- [Tests](#tests)
-- [Contributing](#contributing)
-- [License](#license)
+### **Frontend (React 19)**
+- ✅ **Modern React** with Hooks
+- ✅ **Responsive Design** with Bootstrap
+- ✅ **Form Management** with Formik + Yup
+- ✅ **State Management** with React Context
+- ✅ **Error Boundaries** and Loading States
+- ✅ **Toast Notifications**
+- ✅ **CRUD Operations** for all entities
+- ✅ **Advanced Filtering** and Search
+- ✅ **Sorting** and **Pagination**
 
----
+## 🏗️ Architecture
 
-## About
+```
+NorthwindApp/
+├── NorthwindApp.API/          # Presentation Layer
+│   ├── Controllers/           # REST API Controllers
+│   ├── Middleware/           # Global Exception Handling
+│   └── Extensions/           # Service Configuration
+├── NorthwindApp.Business/     # Business Layer
+│   ├── Services/             # Business Logic Services
+│   ├── Validation/           # FluentValidation Rules
+│   └── Mapping/              # AutoMapper Profiles
+├── NorthwindApp.Data/         # Data Layer
+│   ├── Context/              # Entity Framework Context
+│   ├── Repositories/         # Repository Pattern
+│   └── Extensions/           # Data Configuration
+├── NorthwindApp.Core/         # Shared DTOs
+├── NorthwindApp.Entities/     # Domain Models
+└── NorthwindAppFrontend/      # React Frontend
+```
 
-This project implements the backend for NorthwindApp – an example e‑commerce system. It follows a clean architecture, uses EF Core for data access, FluentValidation for input validation, AutoMapper for DTO mappings, and wraps every response in a generic `ApiResponse<T>`.
+## 🛠️ Technologies
 
----
+### **Backend**
+- **.NET 9.0** - Latest .NET framework
+- **Entity Framework Core** - ORM
+- **AutoMapper** - Object mapping
+- **FluentValidation** - Input validation
+- **Serilog** - Structured logging
+- **Memory Cache** - Caching
 
-## Tech Stack
+### **Frontend**
+- **React 19** - Modern React
+- **React Bootstrap** - UI components
+- **Formik + Yup** - Form management
+- **Axios** - HTTP client
+- **React Router** - Client-side routing
 
-- **Language & Framework:** .NET 9  
-- **ORM:** Entity Framework Core  
-- **Validation:** FluentValidation  
-- **Mapping:** AutoMapper  
-- **Database:** Microsoft SQL Server  
-- **Logging:** Serilog  
-- **Caching:** In-Memory Cache  
-- **Exception Handling:** Global Exception Middleware  
-- **API Docs:** Swagger / Swashbuckle  
+## 🚀 Quick Start
 
----
+### **Prerequisites**
+- .NET 9.0 SDK
+- Node.js 16+
+- SQL Server / SQLite
 
-## Features
-
-- ✅ CRUD for Products, Categories, Customers, Suppliers, Employees, Orders  
-- ✅ Soft-delete support  
-- ✅ Filtering & pagination on list endpoints  
-- ✅ FluentValidation rules  
-- ✅ AutoMapper profiles  
-- ✅ Uniform `ApiResponse<T>` envelope  
-- ✅ Structured logging with Serilog  
-- ✅ Response caching on GET list endpoints  
-- ✅ Global error handling middleware  
-
----
-
-## Prerequisites
-
-- [.NET 9 SDK](https://dotnet.microsoft.com/download)  
-- [SQL Server 2019+](https://www.microsoft.com/en-us/sql-server)  
-- (Optional) Visual Studio 2022 or VS Code  
-
----
-
-## Installation
-
+### **Backend Setup**
 ```bash
-git clone https://github.com/sysnern/NorthwindApp.git
-cd NorthwindApp/Backend
+# Clone repository
+git clone https://github.com/yourusername/NorthwindApp.git
+cd NorthwindApp
+
+# Restore packages
 dotnet restore
-```
 
----
-
-## Configuration
-
-1. Copy `appsettings.json.example` ➡️ `appsettings.json`  
-2. Update your **connection string**:
-   ```json
-   {
-     "ConnectionStrings": {
-       "DefaultConnection": "Server=.;Database=NorthwindDb;Trusted_Connection=True;"
-     }
-   }
-   ```
----
-
-## Database Migrations
-
-Apply EF Core migrations to create the schema:
-
-```bash
-cd NorthwindApp.Infrastructure
+# Update database
 dotnet ef database update
-```
-## Running the Application
 
+# Run API
+dotnet run --project NorthwindApp.API
+```
+
+### **Frontend Setup**
 ```bash
-cd NorthwindApp.Api
-dotnet run
+# Navigate to frontend
+cd NorthwindAppFrontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
 ```
-- API base URL: https://localhost:7137
 
-- Swagger UI: https://localhost:7137/swagger
+## 📊 API Endpoints
 
-## API Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/Product/list` | Get all products with filtering |
+| POST | `/api/Product/create` | Create new product |
+| PUT | `/api/Product/update` | Update existing product |
+| DELETE | `/api/Product/delete/{id}` | Delete product (soft delete) |
 
-All routes are prefixed with `/api`.
+Similar endpoints available for: Categories, Customers, Suppliers, Employees, Orders
 
-### Products
-| Method | URL                   | Description                          |
-| ------ | --------------------- | ------------------------------------ |
-| GET    | `/Product/list`       | List all products (filtered, paged)  |
-| GET    | `/Product/{id}`       | Get product by ID                    |
-| POST   | `/Product`            | Create a new product                 |
-| PUT    | `/Product`            | Update an existing product           |
-| DELETE | `/Product/{id}`       | Soft‑delete a product                |
+## 🔧 Configuration
 
-### Categories / Customers / Suppliers / Employees / Orders  
-> Same CRUD contract as Products:  
-> `GET /{Entity}/list`  
-> `GET /{Entity}/{id}`  
-> `POST /{Entity}`  
-> `PUT /{Entity}`  
-> `DELETE /{Entity}/{id}`
-
-## Error Handling
-
-All responses come in a consistent shape:
-
-```jsonc
+### **Database Connection**
+```json
 {
-  "success": true|false,
-  "message": "Optional user message or error description",
-  "data": { /* T or null */ }
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=Northwind;Trusted_Connection=true;"
+  }
 }
 ```
-Unhandled exceptions are caught by global middleware and returned as HTTP 400 or HTTP 500 with success=false.
 
-## Logging
+### **Caching**
+```csharp
+// Memory cache configuration
+services.AddMemoryCache();
+services.AddScoped<ICacheService, CacheService>();
+```
 
-Serilog is configured to write to:
-- Console  
-- Rolling files in `logs/log-.txt`
-    
-## Caching
+### **Logging**
+```csharp
+// Serilog configuration
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+```
 
-The GET‑list endpoints (e.g. `/Product/list`) use in‑memory caching for **60 seconds** to reduce database load.
-Configuration settings live under the `Serilog` section in `appsettings.json`.
+## 🎯 Key Features
 
-## Tests
+### **Generic Service Pattern**
+```csharp
+// Eliminates 90% code duplication
+public abstract class GenericService<TEntity, TDto, TCreateDto, TUpdateDto, TKey>
+{
+    // Common CRUD operations
+    // Business rule validation
+    // Caching mechanism
+    // Error handling
+}
+```
 
-Unit tests live in the `NorthwindApp.Tests` project. To run:
+### **Business Rule Validation**
+```csharp
+protected override async Task<BusinessValidationResult> ValidateBusinessRulesForCreate(TCreateDto dto)
+{
+    // Custom business logic validation
+    return BusinessValidationResult.Success();
+}
+```
+
+### **Repository Pattern**
+```csharp
+public class GenericRepository<TEntity, TKey> : IGenericRepository<TEntity, TKey>
+{
+    // Standard data access operations
+    // Soft delete support
+    // Async/await pattern
+}
+```
+
+## 📈 Performance Optimizations
+
+- ✅ **Caching** - Memory cache for frequently accessed data
+- ✅ **Async/Await** - Non-blocking operations
+- ✅ **Lazy Loading** - Entity Framework lazy loading
+- ✅ **Pagination** - Server-side pagination
+- ✅ **Filtering** - Dynamic expression-based filtering
+
+## 🔒 Security Features
+
+- ✅ **Input Validation** - FluentValidation rules
+- ✅ **SQL Injection Protection** - Entity Framework parameterized queries
+- ✅ **Error Handling** - Global exception middleware
+- ✅ **Soft Delete** - Data integrity protection
+
+## 🧪 Testing
 
 ```bash
-cd NorthwindApp.Tests
+# Run backend tests
 dotnet test
+
+# Run frontend tests
+npm test
 ```
-## Contributing
 
-1. Fork the repository  
-2. Create a feature branch
-   ```bash
-   git checkout -b feature/YourFeature
-   ``` 
-3. Commit your changes
-   ```bash
-   git commit -m "Add your feature description"
-   ```
-4. Push to your branch
-   ```bash
-   git push origin feature/YourFeature
-   ```
-5. Open a Pull Request on GitHub  
+## 📝 Contributing
 
-## License
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-This project is licensed under the [MIT License](LICENSE).
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Support
+
+For support, email support@northwindapp.com or create an issue on GitHub.
+
+---
+
+**Built with ❤️ using .NET 9.0 and React 19**

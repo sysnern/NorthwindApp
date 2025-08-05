@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Repositories.Abstract;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace NorthwindApp.Data.Repositories
 {
@@ -27,6 +28,50 @@ namespace NorthwindApp.Data.Repositories
             
             if (filter != null)
                 query = query.Where(filter);
+
+            return await query.ToListAsync();
+        }
+
+        public virtual async Task<List<TEntity>> GetAllAsync(
+            Expression<Func<TEntity, bool>>? filter = null,
+            string? sortField = null,
+            string? sortDirection = null,
+            int page = 1,
+            int pageSize = 10)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            
+            // Apply filter
+            if (filter != null)
+                query = query.Where(filter);
+
+            // Apply sorting
+            if (!string.IsNullOrEmpty(sortField))
+            {
+                var property = typeof(TEntity).GetProperty(sortField, 
+                    BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                
+                if (property != null)
+                {
+                    var parameter = Expression.Parameter(typeof(TEntity), "x");
+                    var propertyAccess = Expression.Property(parameter, property);
+                    var lambda = Expression.Lambda(propertyAccess, parameter);
+                    
+                    var methodName = sortDirection?.ToLower() == "desc" ? "OrderByDescending" : "OrderBy";
+                    var method = typeof(Queryable).GetMethods()
+                        .Where(m => m.Name == methodName && m.GetParameters().Length == 2)
+                        .First()
+                        .MakeGenericMethod(typeof(TEntity), property.PropertyType);
+                    
+                    query = (IQueryable<TEntity>)method.Invoke(null, new object[] { query, lambda })!;
+                }
+            }
+
+            // Apply pagination
+            if (page > 0 && pageSize > 0)
+            {
+                query = query.Skip((page - 1) * pageSize).Take(pageSize);
+            }
 
             return await query.ToListAsync();
         }
@@ -72,15 +117,16 @@ namespace NorthwindApp.Data.Repositories
             return await query.CountAsync();
         }
 
-        // IRepository<T> interface methods
+        // IRepository<T> interface methods - these are now handled by the generic methods above
         public async Task<List<TEntity>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<TEntity?> GetByIdAsync(int id)
+        // These methods are now handled by the generic GetByIdAsync(TKey id) method
+        // and will be called through the interface implementation
+        async Task<TEntity?> IRepository<TEntity>.GetByIdAsync(int id)
         {
-            // This is a fallback for int-based IDs
             if (typeof(TKey) == typeof(int))
             {
                 return await GetByIdAsync((TKey)(object)id);
@@ -88,9 +134,8 @@ namespace NorthwindApp.Data.Repositories
             throw new NotSupportedException($"GetByIdAsync(int) is not supported for {typeof(TKey)} key type");
         }
 
-        public async Task<TEntity?> GetByIdAsync(string id)
+        async Task<TEntity?> IRepository<TEntity>.GetByIdAsync(string id)
         {
-            // This is a fallback for string-based IDs
             if (typeof(TKey) == typeof(string))
             {
                 return await GetByIdAsync((TKey)(object)id);

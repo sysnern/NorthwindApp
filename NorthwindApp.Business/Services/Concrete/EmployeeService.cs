@@ -11,11 +11,37 @@ namespace NorthwindApp.Business.Services.Concrete
     public class EmployeeService : GenericService<Employee, EmployeeDTO, EmployeeCreateDto, EmployeeUpdateDto, int>, IEmployeeService
     {
         public EmployeeService(
-            IEmployeeRepository repo,
+            IEmployeeRepository employeeRepo,
             IMapper mapper,
             ICacheService cacheService)
-            : base(repo, mapper, cacheService, "employee_list_", "Çalışan")
+            : base(employeeRepo, mapper, cacheService, "employee_list_", "Çalışan")
         {
+        }
+
+        // Override to handle EmployeeFilterDto specifically with pagination and sorting
+        public async Task<ApiResponse<List<EmployeeDTO>>> GetAllAsync(EmployeeFilterDto? filter = null)
+        {
+            // Build filter expression
+            Expression<Func<Employee, bool>>? filterExpression = null;
+            
+            if (filter != null && !IsEmptyFilter(filter))
+            {
+                filterExpression = e =>
+                (string.IsNullOrEmpty(filter.LastName) || (e.LastName != null && e.LastName.Contains(filter.LastName))) &&
+                (string.IsNullOrEmpty(filter.FirstName) || (e.FirstName != null && e.FirstName.Contains(filter.FirstName))) &&
+                (string.IsNullOrEmpty(filter.Title) || (e.Title != null && e.Title.Contains(filter.Title))) &&
+                (string.IsNullOrEmpty(filter.City) || (e.City != null && e.City.Contains(filter.City))) &&
+                (string.IsNullOrEmpty(filter.Country) || (e.Country != null && e.Country.Contains(filter.Country))) &&
+                (!filter.ReportsTo.HasValue || e.ReportsTo == filter.ReportsTo);
+            }
+
+            // Extract pagination and sorting parameters from filter
+            var sortField = filter?.SortField;
+            var sortDirection = filter?.SortDirection;
+            var page = filter?.Page ?? 1;
+            var pageSize = filter?.PageSize ?? 10;
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
         }
 
         protected override int GetIdFromUpdateDto(EmployeeUpdateDto dto)
@@ -23,23 +49,16 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.EmployeeId;
         }
 
-        // Override to handle EmployeeFilterDto specifically
-        public async Task<ApiResponse<List<EmployeeDTO>>> GetAllAsync(EmployeeFilterDto? filter = null)
-        {
-            // Build filter expression
-            Expression<Func<Employee, bool>>? filterExpression = null;
-            
-            if (filter != null)
-            {
-                filterExpression = e =>
-                    (string.IsNullOrEmpty(filter.FirstName) || (e.FirstName != null && e.FirstName.Contains(filter.FirstName))) &&
-                    (string.IsNullOrEmpty(filter.LastName) || (e.LastName != null && e.LastName.Contains(filter.LastName))) &&
-                    (string.IsNullOrEmpty(filter.Title) || (e.Title != null && e.Title.Contains(filter.Title))) &&
-                    (string.IsNullOrEmpty(filter.Country) || (e.Country != null && e.Country.Contains(filter.Country))) &&
-                    (!filter.IsDeleted.HasValue || e.IsDeleted == filter.IsDeleted);
-            }
+        protected override bool SupportsSoftDelete() => false;
 
-            return await base.GetAllAsync(filterExpression);
+        private static bool IsEmptyFilter(EmployeeFilterDto filter)
+        {
+            return string.IsNullOrEmpty(filter.LastName) &&
+                   string.IsNullOrEmpty(filter.FirstName) &&
+                   string.IsNullOrEmpty(filter.Title) &&
+                   string.IsNullOrEmpty(filter.City) &&
+                   string.IsNullOrEmpty(filter.Country) &&
+                   !filter.ReportsTo.HasValue;
         }
 
         // Implement IEmployeeService methods that return string instead of EmployeeDTO

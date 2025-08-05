@@ -13,7 +13,7 @@ namespace NorthwindApp.Data.Extensions
         {
             // Database Context
             services.AddDbContext<NorthwindContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("NorthwindConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             // Register specific repositories
             services.AddScoped<IProductRepository, ProductRepository>();

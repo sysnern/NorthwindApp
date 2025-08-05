@@ -11,11 +11,36 @@ namespace NorthwindApp.Business.Services.Concrete
     public class CustomerService : GenericService<Customer, CustomerDTO, CustomerCreateDto, CustomerUpdateDto, string>, ICustomerService
     {
         public CustomerService(
-            ICustomerRepository repo,
+            ICustomerRepository customerRepo,
             IMapper mapper,
             ICacheService cacheService)
-            : base(repo, mapper, cacheService, "customer_list_", "Müşteri")
+            : base(customerRepo, mapper, cacheService, "customer_list_", "Müşteri")
         {
+        }
+
+        // Override to handle CustomerFilterDto specifically with pagination and sorting
+        public async Task<ApiResponse<List<CustomerDTO>>> GetAllAsync(CustomerFilterDto? filter = null)
+        {
+            // Build filter expression
+            Expression<Func<Customer, bool>>? filterExpression = null;
+            
+            if (filter != null && !IsEmptyFilter(filter))
+            {
+                filterExpression = c =>
+                (string.IsNullOrEmpty(filter.CustomerId) || (c.CustomerId != null && c.CustomerId.Contains(filter.CustomerId))) &&
+                (string.IsNullOrEmpty(filter.CompanyName) || (c.CompanyName != null && c.CompanyName.Contains(filter.CompanyName))) &&
+                (string.IsNullOrEmpty(filter.ContactName) || (c.ContactName != null && c.ContactName.Contains(filter.ContactName))) &&
+                (string.IsNullOrEmpty(filter.City) || (c.City != null && c.City.Contains(filter.City))) &&
+                (string.IsNullOrEmpty(filter.Country) || (c.Country != null && c.Country.Contains(filter.Country)));
+            }
+
+            // Extract pagination and sorting parameters from filter
+            var sortField = filter?.SortField;
+            var sortDirection = filter?.SortDirection;
+            var page = filter?.Page ?? 1;
+            var pageSize = filter?.PageSize ?? 10;
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
         }
 
         protected override string GetIdFromUpdateDto(CustomerUpdateDto dto)
@@ -23,24 +48,15 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.CustomerId;
         }
 
-        // Override to handle CustomerFilterDto specifically
-        public async Task<ApiResponse<List<CustomerDTO>>> GetAllAsync(CustomerFilterDto? filter = null)
-        {
-            // Build filter expression
-            Expression<Func<Customer, bool>>? filterExpression = null;
-            
-            if (filter != null)
-            {
-                filterExpression = c =>
-                    (string.IsNullOrEmpty(filter.CustomerId) || (c.CustomerId != null && c.CustomerId.Contains(filter.CustomerId))) &&
-                    (string.IsNullOrEmpty(filter.CompanyName) || (c.CompanyName != null && c.CompanyName.Contains(filter.CompanyName))) &&
-                    (string.IsNullOrEmpty(filter.ContactName) || (c.ContactName != null && c.ContactName.Contains(filter.ContactName))) &&
-                    (string.IsNullOrEmpty(filter.City) || (c.City != null && c.City.Contains(filter.City))) &&
-                    (string.IsNullOrEmpty(filter.Country) || (c.Country != null && c.Country.Contains(filter.Country))) &&
-                    (!filter.IsDeleted.HasValue || c.IsDeleted == filter.IsDeleted);
-            }
+        protected override bool SupportsSoftDelete() => false;
 
-            return await base.GetAllAsync(filterExpression);
+        private static bool IsEmptyFilter(CustomerFilterDto filter)
+        {
+            return string.IsNullOrEmpty(filter.CustomerId) &&
+                   string.IsNullOrEmpty(filter.CompanyName) &&
+                   string.IsNullOrEmpty(filter.ContactName) &&
+                   string.IsNullOrEmpty(filter.City) &&
+                   string.IsNullOrEmpty(filter.Country);
         }
 
         // Implement ICustomerService methods that return string instead of CustomerDTO

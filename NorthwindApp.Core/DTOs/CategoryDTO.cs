@@ -4,7 +4,7 @@
     public class CategoryDTO
     {
         public int CategoryId { get; set; }
-        public string CategoryName { get; set; } = null!;
+        public required string CategoryName { get; set; }
         public string? Description { get; set; }
         public bool IsDeleted { get; set; }
     }
@@ -12,7 +12,7 @@
     // Ekleme işlemi için kullanılacak DTO
     public class CategoryCreateDto
     {
-        public string CategoryName { get; set; } = null!;
+        public required string CategoryName { get; set; }
         public string? Description { get; set; }
     }
 
@@ -20,7 +20,7 @@
     public class CategoryUpdateDto
     {
         public int CategoryId { get; set; }
-        public string CategoryName { get; set; } = null!;
+        public required string CategoryName { get; set; }
         public string? Description { get; set; }
         public bool IsDeleted { get; set; }
     }

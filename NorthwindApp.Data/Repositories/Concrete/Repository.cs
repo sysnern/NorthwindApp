@@ -2,6 +2,7 @@
 using NorthwindApp.Data.Context;
 using NorthwindApp.Data.Repositories.Abstract;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace NorthwindApp.Data.Repositories.Concrete
 {
@@ -27,6 +28,50 @@ namespace NorthwindApp.Data.Repositories.Concrete
                 return await _dbSet.ToListAsync();
             
             return await _dbSet.Where(filter).ToListAsync();
+        }
+
+        public async Task<List<T>> GetAllAsync(
+            Expression<Func<T, bool>>? filter = null,
+            string? sortField = null,
+            string? sortDirection = null,
+            int page = 1,
+            int pageSize = 10)
+        {
+            IQueryable<T> query = _dbSet;
+            
+            // Apply filter
+            if (filter != null)
+                query = query.Where(filter);
+
+            // Apply sorting
+            if (!string.IsNullOrEmpty(sortField))
+            {
+                var property = typeof(T).GetProperty(sortField, 
+                    BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                
+                if (property != null)
+                {
+                    var parameter = Expression.Parameter(typeof(T), "x");
+                    var propertyAccess = Expression.Property(parameter, property);
+                    var lambda = Expression.Lambda(propertyAccess, parameter);
+                    
+                    var methodName = sortDirection?.ToLower() == "desc" ? "OrderByDescending" : "OrderBy";
+                    var method = typeof(Queryable).GetMethods()
+                        .Where(m => m.Name == methodName && m.GetParameters().Length == 2)
+                        .First()
+                        .MakeGenericMethod(typeof(T), property.PropertyType);
+                    
+                    query = (IQueryable<T>)method.Invoke(null, new object[] { query, lambda })!;
+                }
+            }
+
+            // Apply pagination
+            if (page > 0 && pageSize > 0)
+            {
+                query = query.Skip((page - 1) * pageSize).Take(pageSize);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<T?> GetByIdAsync(int id)
