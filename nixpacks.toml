@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["dotnet-sdk_8"]
+
+[phases.install]
+cmds = ["dotnet restore NorthwindApp.API/NorthwindApp.API.csproj"]
+
+[phases.build]
+cmds = ["dotnet publish NorthwindApp.API/NorthwindApp.API.csproj -c Release -o out"]
+
+[start]
+cmd = "dotnet out/NorthwindApp.API.dll"

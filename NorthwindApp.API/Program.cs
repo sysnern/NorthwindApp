@@ -11,6 +11,10 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Azure App Service için port ayarı
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 //logging
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration!)
@@ -33,7 +37,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "NorthwindApp API",
         Version = "v1.0.0",
-        Description = "Modern .NET 9.0 API for Northwind database management with advanced features including caching, filtering, and soft delete functionality.",
+        Description = "Modern .NET 8.0 API for Northwind database management with advanced features including caching, filtering, and soft delete functionality.",
         Contact = new OpenApiContact
         {
             Name = "NorthwindApp Team",
@@ -114,24 +118,22 @@ builder.Services.AddNorthwindApiBehavior();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment()) 
+// Swagger'ı hem Development hem Production'da çalıştır
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "NorthwindApp API v1.0.0");
-        c.RoutePrefix = "api-docs";
-        c.DocumentTitle = "NorthwindApp API Documentation";
-        c.DefaultModelsExpandDepth(2);
-        c.DefaultModelExpandDepth(2);
-        c.DisplayRequestDuration();
-        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
-        
-        // Custom CSS for better styling
-        c.InjectStylesheet("/swagger-ui/custom.css");
-        c.InjectJavascript("/swagger-ui/custom.js");
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "NorthwindApp API v1.0.0");
+    c.RoutePrefix = "api-docs";
+    c.DocumentTitle = "NorthwindApp API Documentation";
+    c.DefaultModelsExpandDepth(2);
+    c.DefaultModelExpandDepth(2);
+    c.DisplayRequestDuration();
+    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+    
+    // Custom CSS for better styling
+    c.InjectStylesheet("/swagger-ui/custom.css");
+    c.InjectJavascript("/swagger-ui/custom.js");
+});
 
 app.UseHttpsRedirection();
 
@@ -175,4 +177,8 @@ app.UseRouting();
 app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
+
+// Root endpoint for testing
+app.MapGet("/", () => "NorthwindApp API is running!");
+
 app.Run();

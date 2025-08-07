@@ -5,3 +5,7 @@ obj/
 *.suo
 *.sln.docstates
 .env
+.vercel
+NorthwindAppFrontend/
+publish/
+publish.zip

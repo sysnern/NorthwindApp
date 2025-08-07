@@ -11,7 +11,7 @@ namespace NorthwindApp.Data.Extensions
     {
         public static IServiceCollection AddNorthwindData(this IServiceCollection services, IConfiguration configuration)
         {
-            // Database Context
+            // Database Context - Azure SQL Database
             services.AddDbContext<NorthwindContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 

@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NorthwindApp.API</name>
+    </assembly>
+    <members>
+        <member name="T:NorthwindApp.API.Controllers.CategoryController">
+            <summary>
+            Kategori yönetimi için API endpoint'leri
+            </summary>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.CategoryController.GetAll(NorthwindApp.Core.DTOs.CategoryFilterDto)">
+            <summary>
+            Tüm kategorileri getirir (filtreleme ve sayfalama ile)
+            </summary>
+            <param name="filter">Kategori filtreleme parametreleri</param>
+            <returns>Filtrelenmiş kategori listesi</returns>
+            <response code="200">Kategoriler başarıyla getirildi</response>
+            <response code="400">Geçersiz filtre parametreleri</response>
+            <response code="404">Kategori bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.CategoryController.GetById(System.Int32)">
+            <summary>
+            ID'ye göre kategori getirir
+            </summary>
+            <param name="id">Kategori ID'si</param>
+            <returns>Belirtilen ID'ye sahip kategori</returns>
+            <response code="200">Kategori başarıyla getirildi</response>
+            <response code="404">Kategori bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.CategoryController.Add(NorthwindApp.Core.DTOs.CategoryCreateDto)">
+            <summary>
+            Yeni kategori oluşturur
+            </summary>
+            <param name="dto">Oluşturulacak kategori bilgileri</param>
+            <returns>Oluşturulan kategori bilgisi</returns>
+            <response code="200">Kategori başarıyla oluşturuldu</response>
+            <response code="400">Geçersiz kategori bilgileri</response>
+            <response code="409">Kategori zaten mevcut</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.CategoryController.Update(NorthwindApp.Core.DTOs.CategoryUpdateDto)">
+            <summary>
+            Mevcut kategoriyi günceller
+            </summary>
+            <param name="dto">Güncellenecek kategori bilgileri</param>
+            <returns>Güncelleme sonucu</returns>
+            <response code="200">Kategori başarıyla güncellendi</response>
+            <response code="400">Geçersiz kategori bilgileri</response>
+            <response code="404">Güncellenecek kategori bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.CategoryController.Delete(System.Int32)">
+            <summary>
+            Kategoriyi siler (soft delete)
+            </summary>
+            <param name="id">Silinecek kategori ID'si</param>
+            <returns>Silme sonucu</returns>
+            <response code="200">Kategori başarıyla silindi</response>
+            <response code="404">Silinecek kategori bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.CategoryController.ClearCache">
+            <summary>
+            Kategori cache'ini temizler
+            </summary>
+            <returns>Cache temizleme sonucu</returns>
+            <response code="200">Cache başarıyla temizlendi</response>
+        </member>
+        <member name="T:NorthwindApp.API.Controllers.ProductController">
+            <summary>
+            Ürün yönetimi için API endpoint'leri
+            </summary>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.ProductController.GetAll(NorthwindApp.Core.DTOs.ProductFilterDto)">
+            <summary>
+            Tüm ürünleri getirir (filtreleme ve sayfalama ile)
+            </summary>
+            <param name="filter">Ürün filtreleme parametreleri</param>
+            <returns>Filtrelenmiş ürün listesi</returns>
+            <response code="200">Ürünler başarıyla getirildi</response>
+            <response code="400">Geçersiz filtre parametreleri</response>
+            <response code="404">Ürün bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.ProductController.GetById(System.Int32)">
+            <summary>
+            ID'ye göre ürün getirir
+            </summary>
+            <param name="id">Ürün ID'si</param>
+            <returns>Belirtilen ID'ye sahip ürün</returns>
+            <response code="200">Ürün başarıyla getirildi</response>
+            <response code="404">Ürün bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.ProductController.Add(NorthwindApp.Core.DTOs.ProductCreateDto)">
+            <summary>
+            Yeni ürün oluşturur
+            </summary>
+            <param name="dto">Oluşturulacak ürün bilgileri</param>
+            <returns>Oluşturulan ürün bilgisi</returns>
+            <response code="200">Ürün başarıyla oluşturuldu</response>
+            <response code="400">Geçersiz ürün bilgileri</response>
+            <response code="409">Ürün zaten mevcut</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.ProductController.Update(NorthwindApp.Core.DTOs.ProductUpdateDto)">
+            <summary>
+            Mevcut ürünü günceller
+            </summary>
+            <param name="dto">Güncellenecek ürün bilgileri</param>
+            <returns>Güncelleme sonucu</returns>
+            <response code="200">Ürün başarıyla güncellendi</response>
+            <response code="400">Geçersiz ürün bilgileri</response>
+            <response code="404">Güncellenecek ürün bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.ProductController.Delete(System.Int32)">
+            <summary>
+            Ürünü siler (soft delete)
+            </summary>
+            <param name="id">Silinecek ürün ID'si</param>
+            <returns>Silme sonucu</returns>
+            <response code="200">Ürün başarıyla silindi</response>
+            <response code="404">Silinecek ürün bulunamadı</response>
+        </member>
+        <member name="M:NorthwindApp.API.Controllers.ProductController.ClearCache">
+            <summary>
+            Ürün cache'ini temizler
+            </summary>
+            <returns>Cache temizleme sonucu</returns>
+            <response code="200">Cache başarıyla temizlendi</response>
+        </member>
+        <member name="T:NorthwindApp.API.Extensions.SwaggerDefaultValues">
+            <summary>
+            Represents the Swagger/Swashbuckle operation filter for enhanced API documentation
+            </summary>
+        </member>
+        <member name="M:NorthwindApp.API.Extensions.SwaggerDefaultValues.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies the filter to the specified operation using the given context.
+            </summary>
+            <param name="operation">The operation to apply the filter to.</param>
+            <param name="context">The current operation filter context.</param>
+        </member>
+    </members>
+</doc>
