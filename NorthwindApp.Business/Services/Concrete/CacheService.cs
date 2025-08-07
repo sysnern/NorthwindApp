@@ -28,8 +28,11 @@ namespace NorthwindApp.Business.Services.Concrete
         {
             var options = new MemoryCacheEntryOptions();
             
-            var expiration = absoluteExpiration ?? DefaultExpiration;
-            options.SetAbsoluteExpiration(expiration);
+            // Only set expiration if provided, otherwise cache indefinitely
+            if (absoluteExpiration.HasValue)
+            {
+                options.SetAbsoluteExpiration(absoluteExpiration.Value);
+            }
             
             // Add callback to remove key from tracking when expired
             options.RegisterPostEvictionCallback((key, value, reason, state) =>

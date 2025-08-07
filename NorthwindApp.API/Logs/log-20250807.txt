@@ -1,0 +1,534 @@
+[2025-08-07 00:07:17 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__295518301
+[2025-08-07 00:07:17 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__1108966031
+[2025-08-07 00:07:17 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-776052057
+[2025-08-07 00:07:18 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:07:18 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:07:18 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:07:18 INF] HTTP GET /api/Category/list responded 200 in 1065.1566 ms
+[2025-08-07 00:07:18 INF] HTTP GET /api/Supplier/list responded 200 in 1065.1631 ms
+[2025-08-07 00:07:18 INF] HTTP GET /api/Product/list responded 200 in 1065.1430 ms
+[2025-08-07 00:07:24 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1177963051
+[2025-08-07 00:07:24 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:07:24 INF] HTTP GET /api/Product/list responded 200 in 108.2809 ms
+[2025-08-07 00:07:27 INF] OrderService.GetAllAsync called with filter: OrderId=null, CustomerId=null, EmployeeId=null, IsDeleted=null
+[2025-08-07 00:07:27 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__2073390629
+[2025-08-07 00:07:27 INF] Filter expression created. IsDeleted filter: null
+[2025-08-07 00:07:27 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-795609345
+[2025-08-07 00:07:27 INF] Generated cache key: order_list__-612831917
+[2025-08-07 00:07:27 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__-612831917
+[2025-08-07 00:07:27 INF] Müşteri list retrieved successfully. Count: 10, Page: 1, TotalPages: 10
+[2025-08-07 00:07:27 INF] Sipariş list retrieved successfully. Count: 10, Page: 1, TotalPages: 83
+[2025-08-07 00:07:27 INF] Çalışan list retrieved successfully. Count: 9, Page: 1, TotalPages: 1
+[2025-08-07 00:07:27 INF] HTTP GET /api/Customer/list responded 200 in 64.3095 ms
+[2025-08-07 00:07:27 INF] HTTP GET /api/Employee/list responded 200 in 88.4879 ms
+[2025-08-07 00:07:27 INF] HTTP GET /api/Order/list responded 200 in 89.3341 ms
+[2025-08-07 00:07:29 INF] OrderService.GetAllAsync called with filter: OrderId=null, CustomerId=null, EmployeeId=null, IsDeleted=true
+[2025-08-07 00:07:29 INF] Filter expression created. IsDeleted filter: true
+[2025-08-07 00:07:29 INF] Generated cache key: order_list__-377837916
+[2025-08-07 00:07:29 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__-377837916
+[2025-08-07 00:07:29 INF] Sipariş list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 00:07:29 INF] HTTP GET /api/Order/list responded 200 in 41.9753 ms
+[2025-08-07 00:07:30 INF] OrderService.GetAllAsync called with filter: OrderId=null, CustomerId=null, EmployeeId=null, IsDeleted=false
+[2025-08-07 00:07:30 INF] Filter expression created. IsDeleted filter: false
+[2025-08-07 00:07:30 INF] Generated cache key: order_list__510339402
+[2025-08-07 00:07:30 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__510339402
+[2025-08-07 00:07:30 INF] Sipariş list retrieved successfully. Count: 10, Page: 1, TotalPages: 83
+[2025-08-07 00:07:30 INF] HTTP GET /api/Order/list responded 200 in 20.4845 ms
+[2025-08-07 00:07:34 INF] OrderService.GetAllAsync called with filter: OrderId=1, CustomerId=null, EmployeeId=null, IsDeleted=null
+[2025-08-07 00:07:34 INF] Filter expression created. IsDeleted filter: null
+[2025-08-07 00:07:34 INF] Generated cache key: order_list__-862109503
+[2025-08-07 00:07:34 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__-862109503
+[2025-08-07 00:07:34 WRN] No Sipariş found with current filters
+[2025-08-07 00:07:34 INF] HTTP GET /api/Order/list responded 200 in 25.2759 ms
+[2025-08-07 00:07:34 INF] OrderService.GetAllAsync called with filter: OrderId=10, CustomerId=null, EmployeeId=null, IsDeleted=null
+[2025-08-07 00:07:34 INF] Filter expression created. IsDeleted filter: null
+[2025-08-07 00:07:34 INF] Generated cache key: order_list__-334913861
+[2025-08-07 00:07:34 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__-334913861
+[2025-08-07 00:07:34 WRN] No Sipariş found with current filters
+[2025-08-07 00:07:34 INF] HTTP GET /api/Order/list responded 200 in 13.2733 ms
+[2025-08-07 00:07:35 INF] OrderService.GetAllAsync called with filter: OrderId=102, CustomerId=null, EmployeeId=null, IsDeleted=null
+[2025-08-07 00:07:35 INF] Filter expression created. IsDeleted filter: null
+[2025-08-07 00:07:35 INF] Generated cache key: order_list__848520241
+[2025-08-07 00:07:35 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__848520241
+[2025-08-07 00:07:35 WRN] No Sipariş found with current filters
+[2025-08-07 00:07:35 INF] HTTP GET /api/Order/list responded 200 in 12.9747 ms
+[2025-08-07 00:07:35 INF] OrderService.GetAllAsync called with filter: OrderId=1025, CustomerId=null, EmployeeId=null, IsDeleted=null
+[2025-08-07 00:07:35 INF] Filter expression created. IsDeleted filter: null
+[2025-08-07 00:07:35 INF] Generated cache key: order_list__581312729
+[2025-08-07 00:07:35 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__581312729
+[2025-08-07 00:07:35 WRN] No Sipariş found with current filters
+[2025-08-07 00:07:35 INF] HTTP GET /api/Order/list responded 200 in 13.5309 ms
+[2025-08-07 00:07:35 INF] OrderService.GetAllAsync called with filter: OrderId=10251, CustomerId=null, EmployeeId=null, IsDeleted=null
+[2025-08-07 00:07:35 INF] Filter expression created. IsDeleted filter: null
+[2025-08-07 00:07:35 INF] Generated cache key: order_list__934195089
+[2025-08-07 00:07:35 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__934195089
+[2025-08-07 00:07:35 INF] Sipariş list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:07:35 INF] HTTP GET /api/Order/list responded 200 in 12.2918 ms
+[2025-08-07 00:07:41 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__1887427631
+[2025-08-07 00:07:41 INF] Çalışan list retrieved successfully. Count: 9, Page: 1, TotalPages: 1
+[2025-08-07 00:07:41 INF] HTTP GET /api/Employee/list responded 200 in 14.5650 ms
+[2025-08-07 00:07:44 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-875042260
+[2025-08-07 00:07:44 INF] Çalışan list retrieved successfully. Count: 8, Page: 1, TotalPages: 1
+[2025-08-07 00:07:44 INF] HTTP GET /api/Employee/list responded 200 in 22.9242 ms
+[2025-08-07 00:12:32 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__34926901
+[2025-08-07 00:12:32 INF] Ürün list retrieved successfully. Count: 10, Page: 2, TotalPages: 9
+[2025-08-07 00:12:33 INF] HTTP GET /api/Product/list responded 200 in 1360.7183 ms
+[2025-08-07 00:12:34 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__995057396
+[2025-08-07 00:12:34 INF] Ürün list retrieved successfully. Count: 10, Page: 3, TotalPages: 9
+[2025-08-07 00:12:34 INF] HTTP GET /api/Product/list responded 200 in 80.6149 ms
+[2025-08-07 00:12:35 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1409150368
+[2025-08-07 00:12:35 INF] Ürün list retrieved successfully. Count: 10, Page: 4, TotalPages: 9
+[2025-08-07 00:12:35 INF] HTTP GET /api/Product/list responded 200 in 29.8703 ms
+[2025-08-07 00:12:36 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-2134093980
+[2025-08-07 00:12:36 INF] Ürün list retrieved successfully. Count: 10, Page: 5, TotalPages: 9
+[2025-08-07 00:12:36 INF] HTTP GET /api/Product/list responded 200 in 11.7752 ms
+[2025-08-07 00:12:36 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__403717055
+[2025-08-07 00:12:36 INF] Ürün list retrieved successfully. Count: 10, Page: 6, TotalPages: 9
+[2025-08-07 00:12:36 INF] HTTP GET /api/Product/list responded 200 in 14.1155 ms
+[2025-08-07 00:12:36 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-855354921
+[2025-08-07 00:12:36 INF] Ürün list retrieved successfully. Count: 10, Page: 7, TotalPages: 9
+[2025-08-07 00:12:36 INF] HTTP GET /api/Product/list responded 200 in 11.6935 ms
+[2025-08-07 00:12:37 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-2045150436
+[2025-08-07 00:12:37 INF] Ürün list retrieved successfully. Count: 10, Page: 8, TotalPages: 9
+[2025-08-07 00:12:37 INF] HTTP GET /api/Product/list responded 200 in 13.0862 ms
+[2025-08-07 00:12:37 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1715021381
+[2025-08-07 00:12:37 INF] Ürün list retrieved successfully. Count: 3, Page: 9, TotalPages: 9
+[2025-08-07 00:12:37 INF] HTTP GET /api/Product/list responded 200 in 11.0437 ms
+[2025-08-07 00:16:47 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-700545477
+[2025-08-07 00:16:47 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__1770223634
+[2025-08-07 00:16:47 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:16:47 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1979928043
+[2025-08-07 00:16:48 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:16:48 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:16:48 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:16:48 INF] HTTP GET /api/Category/list responded 200 in 1019.2803 ms
+[2025-08-07 00:16:48 INF] HTTP GET /api/Supplier/list responded 200 in 1022.2101 ms
+[2025-08-07 00:16:48 INF] HTTP GET /api/Product/list responded 200 in 1019.3170 ms
+[2025-08-07 00:16:53 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=false
+[2025-08-07 00:16:53 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1321497724
+[2025-08-07 00:16:53 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:16:53 INF] HTTP GET /api/Product/list responded 200 in 95.9877 ms
+[2025-08-07 00:16:56 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__769702235
+[2025-08-07 00:16:56 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:16:56 INF] HTTP GET /api/Category/list responded 200 in 10.5292 ms
+[2025-08-07 00:16:58 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-247569549
+[2025-08-07 00:16:58 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 1
+[2025-08-07 00:16:58 INF] HTTP GET /api/Category/list responded 200 in 19.9543 ms
+[2025-08-07 00:17:02 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__1926395457
+[2025-08-07 00:17:02 INF] Müşteri list retrieved successfully. Count: 10, Page: 1, TotalPages: 10
+[2025-08-07 00:17:02 INF] HTTP GET /api/Customer/list responded 200 in 52.1804 ms
+[2025-08-07 00:17:04 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-260438635
+[2025-08-07 00:17:04 INF] Müşteri list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:17:04 INF] HTTP GET /api/Customer/list responded 200 in 16.4184 ms
+[2025-08-07 00:17:05 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-1623954999
+[2025-08-07 00:17:05 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:17:05 INF] HTTP GET /api/Supplier/list responded 200 in 10.7961 ms
+[2025-08-07 00:17:08 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__1553035201
+[2025-08-07 00:17:08 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:17:08 INF] HTTP GET /api/Supplier/list responded 200 in 17.8970 ms
+[2025-08-07 00:17:09 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-390080253
+[2025-08-07 00:17:09 INF] Çalışan list retrieved successfully. Count: 9, Page: 1, TotalPages: 1
+[2025-08-07 00:17:09 INF] HTTP GET /api/Employee/list responded 200 in 69.9195 ms
+[2025-08-07 00:17:11 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-1648514581
+[2025-08-07 00:17:11 INF] Çalışan list retrieved successfully. Count: 8, Page: 1, TotalPages: 1
+[2025-08-07 00:17:11 INF] HTTP GET /api/Employee/list responded 200 in 16.6618 ms
+[2025-08-07 00:18:50 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__1711635447
+[2025-08-07 00:18:50 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-554486399
+[2025-08-07 00:18:50 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:18:50 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1561924523
+[2025-08-07 00:18:50 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:18:50 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:18:50 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:18:50 INF] HTTP GET /api/Category/list responded 200 in 1117.1617 ms
+[2025-08-07 00:18:50 INF] HTTP GET /api/Product/list responded 200 in 1117.1636 ms
+[2025-08-07 00:18:50 INF] HTTP GET /api/Supplier/list responded 200 in 1117.1569 ms
+[2025-08-07 00:18:53 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=true
+[2025-08-07 00:18:53 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1717166403
+[2025-08-07 00:18:53 INF] Ürün list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:18:53 INF] HTTP GET /api/Product/list responded 200 in 102.6662 ms
+[2025-08-07 00:18:58 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-669808370
+[2025-08-07 00:18:58 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:18:58 INF] HTTP GET /api/Category/list responded 200 in 19.8997 ms
+[2025-08-07 00:19:00 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-1755054461
+[2025-08-07 00:19:00 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 1
+[2025-08-07 00:19:00 INF] HTTP GET /api/Category/list responded 200 in 29.8848 ms
+[2025-08-07 00:21:25 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-2003587077
+[2025-08-07 00:21:25 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-517733475
+[2025-08-07 00:21:25 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:21:25 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-168818066
+[2025-08-07 00:21:25 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:21:25 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:21:25 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:21:25 INF] HTTP GET /api/Supplier/list responded 200 in 965.9898 ms
+[2025-08-07 00:21:25 INF] HTTP GET /api/Category/list responded 200 in 965.9651 ms
+[2025-08-07 00:21:25 INF] HTTP GET /api/Product/list responded 200 in 965.9753 ms
+[2025-08-07 00:21:28 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=true
+[2025-08-07 00:21:28 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__2014319398
+[2025-08-07 00:21:28 INF] Ürün list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:21:28 INF] HTTP GET /api/Product/list responded 200 in 89.9466 ms
+[2025-08-07 00:21:31 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=false
+[2025-08-07 00:21:31 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__425610276
+[2025-08-07 00:21:31 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:21:31 INF] HTTP GET /api/Product/list responded 200 in 15.0933 ms
+[2025-08-07 00:21:32 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__574445743
+[2025-08-07 00:21:32 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:21:32 INF] HTTP GET /api/Category/list responded 200 in 11.4456 ms
+[2025-08-07 00:21:35 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-1714488358
+[2025-08-07 00:21:35 INF] Kategori list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:21:35 INF] HTTP GET /api/Category/list responded 200 in 20.6616 ms
+[2025-08-07 00:21:37 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-1927420387
+[2025-08-07 00:21:37 INF] Müşteri list retrieved successfully. Count: 10, Page: 1, TotalPages: 10
+[2025-08-07 00:21:37 INF] HTTP GET /api/Customer/list responded 200 in 68.9628 ms
+[2025-08-07 00:21:38 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-388112492
+[2025-08-07 00:21:38 INF] Müşteri list retrieved successfully. Count: 3, Page: 1, TotalPages: 1
+[2025-08-07 00:21:38 INF] HTTP GET /api/Customer/list responded 200 in 20.4761 ms
+[2025-08-07 00:21:39 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-1260055627
+[2025-08-07 00:21:39 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:21:39 INF] HTTP GET /api/Supplier/list responded 200 in 9.8337 ms
+[2025-08-07 00:21:41 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__1098392616
+[2025-08-07 00:21:41 INF] Tedarikçi list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 00:21:41 INF] HTTP GET /api/Supplier/list responded 200 in 16.2001 ms
+[2025-08-07 00:21:43 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__1143126468
+[2025-08-07 00:21:43 INF] Çalışan list retrieved successfully. Count: 9, Page: 1, TotalPages: 1
+[2025-08-07 00:21:43 INF] HTTP GET /api/Employee/list responded 200 in 68.9603 ms
+[2025-08-07 00:21:45 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__1530833284
+[2025-08-07 00:21:45 INF] Çalışan list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:21:45 INF] HTTP GET /api/Employee/list responded 200 in 14.7586 ms
+[2025-08-07 00:21:48 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-2069664272
+[2025-08-07 00:21:49 WRN] No Çalışan found with current filters
+[2025-08-07 00:21:49 INF] HTTP GET /api/Employee/list responded 200 in 57.6408 ms
+[2025-08-07 00:21:53 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__1287282079
+[2025-08-07 00:21:53 INF] Çalışan list retrieved successfully. Count: 8, Page: 1, TotalPages: 1
+[2025-08-07 00:21:53 INF] HTTP GET /api/Employee/list responded 200 in 8.8652 ms
+[2025-08-07 00:21:55 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-1394741033
+[2025-08-07 00:21:55 INF] Çalışan list retrieved successfully. Count: 6, Page: 1, TotalPages: 1
+[2025-08-07 00:21:55 INF] HTTP GET /api/Employee/list responded 200 in 8.1699 ms
+[2025-08-07 00:21:59 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-348077140
+[2025-08-07 00:21:59 INF] Çalışan list retrieved successfully. Count: 3, Page: 1, TotalPages: 1
+[2025-08-07 00:21:59 INF] HTTP GET /api/Employee/list responded 200 in 8.9584 ms
+[2025-08-07 00:22:00 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__887628938
+[2025-08-07 00:22:00 INF] Çalışan list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:22:00 INF] HTTP GET /api/Employee/list responded 200 in 8.5154 ms
+[2025-08-07 00:22:03 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-2027755816
+[2025-08-07 00:22:03 WRN] No Çalışan found with current filters
+[2025-08-07 00:22:03 INF] HTTP GET /api/Employee/list responded 200 in 7.4122 ms
+[2025-08-07 00:22:14 INF] ProductService.GetAllAsync called with filter: ProductName=Kalem, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:14 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-115053086
+[2025-08-07 00:22:14 INF] Ürün list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:22:14 INF] HTTP GET /api/Product/list responded 200 in 28.4925 ms
+[2025-08-07 00:22:18 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=1, IsDeleted=null
+[2025-08-07 00:22:18 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1404677794
+[2025-08-07 00:22:18 WRN] No Ürün found with current filters
+[2025-08-07 00:22:18 INF] HTTP GET /api/Product/list responded 200 in 23.8429 ms
+[2025-08-07 00:22:18 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=10, IsDeleted=null
+[2025-08-07 00:22:18 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1584434855
+[2025-08-07 00:22:18 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:22:18 INF] HTTP GET /api/Product/list responded 200 in 13.8389 ms
+[2025-08-07 00:22:23 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=3, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:23 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1546810746
+[2025-08-07 00:22:23 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:22:23 INF] HTTP GET /api/Product/list responded 200 in 17.1817 ms
+[2025-08-07 00:22:23 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=30, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:23 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__750444369
+[2025-08-07 00:22:23 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:22:23 INF] HTTP GET /api/Product/list responded 200 in 11.3495 ms
+[2025-08-07 00:22:30 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=9, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:30 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1757644665
+[2025-08-07 00:22:30 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 8
+[2025-08-07 00:22:30 INF] HTTP GET /api/Product/list responded 200 in 11.0401 ms
+[2025-08-07 00:22:31 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=97, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:31 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__626318031
+[2025-08-07 00:22:31 INF] Ürün list retrieved successfully. Count: 4, Page: 1, TotalPages: 1
+[2025-08-07 00:22:31 INF] HTTP GET /api/Product/list responded 200 in 9.6261 ms
+[2025-08-07 00:22:34 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=98, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:34 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-204694995
+[2025-08-07 00:22:34 INF] Ürün list retrieved successfully. Count: 3, Page: 1, TotalPages: 1
+[2025-08-07 00:22:34 INF] HTTP GET /api/Product/list responded 200 in 14.6996 ms
+[2025-08-07 00:22:43 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=15, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:43 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1637072930
+[2025-08-07 00:22:43 INF] Ürün list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:22:43 INF] HTTP GET /api/Product/list responded 200 in 33.3124 ms
+[2025-08-07 00:22:47 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=13, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:47 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__29189477
+[2025-08-07 00:22:47 WRN] No Ürün found with current filters
+[2025-08-07 00:22:47 INF] HTTP GET /api/Product/list responded 200 in 9.0801 ms
+[2025-08-07 00:22:49 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=7, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:22:49 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1764028899
+[2025-08-07 00:22:49 INF] Ürün list retrieved successfully. Count: 5, Page: 1, TotalPages: 1
+[2025-08-07 00:22:49 INF] HTTP GET /api/Product/list responded 200 in 12.0235 ms
+[2025-08-07 00:23:03 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:03 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1264905147
+[2025-08-07 00:23:03 INF] Ürün list retrieved successfully. Count: 10, Page: 2, TotalPages: 9
+[2025-08-07 00:23:03 INF] HTTP GET /api/Product/list responded 200 in 17.2729 ms
+[2025-08-07 00:23:03 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:03 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-553514701
+[2025-08-07 00:23:03 INF] Ürün list retrieved successfully. Count: 10, Page: 3, TotalPages: 9
+[2025-08-07 00:23:03 INF] HTTP GET /api/Product/list responded 200 in 12.2302 ms
+[2025-08-07 00:23:04 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:04 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__830119996
+[2025-08-07 00:23:04 INF] Ürün list retrieved successfully. Count: 10, Page: 4, TotalPages: 9
+[2025-08-07 00:23:04 INF] HTTP GET /api/Product/list responded 200 in 12.2317 ms
+[2025-08-07 00:23:04 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:04 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1788434231
+[2025-08-07 00:23:04 INF] Ürün list retrieved successfully. Count: 10, Page: 5, TotalPages: 9
+[2025-08-07 00:23:04 INF] HTTP GET /api/Product/list responded 200 in 11.3444 ms
+[2025-08-07 00:23:04 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:04 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1873949953
+[2025-08-07 00:23:04 INF] Ürün list retrieved successfully. Count: 10, Page: 6, TotalPages: 9
+[2025-08-07 00:23:04 INF] HTTP GET /api/Product/list responded 200 in 9.6981 ms
+[2025-08-07 00:23:04 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:04 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__854233369
+[2025-08-07 00:23:04 INF] Ürün list retrieved successfully. Count: 10, Page: 7, TotalPages: 9
+[2025-08-07 00:23:04 INF] HTTP GET /api/Product/list responded 200 in 11.7825 ms
+[2025-08-07 00:23:05 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:05 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-532186301
+[2025-08-07 00:23:05 INF] Ürün list retrieved successfully. Count: 10, Page: 8, TotalPages: 9
+[2025-08-07 00:23:05 INF] HTTP GET /api/Product/list responded 200 in 11.1114 ms
+[2025-08-07 00:23:06 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:06 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__383171914
+[2025-08-07 00:23:06 INF] Ürün list retrieved successfully. Count: 4, Page: 9, TotalPages: 9
+[2025-08-07 00:23:06 INF] HTTP GET /api/Product/list responded 200 in 9.9404 ms
+[2025-08-07 00:23:12 INF] HTTP OPTIONS /api/Product/83 responded 204 in 0.3125 ms
+[2025-08-07 00:23:12 INF] Deleting Ürün with ID: 83
+[2025-08-07 00:23:12 INF] Performing soft delete for Ürün with ID: 83
+[2025-08-07 00:23:12 INF] Cache invalidated for Ürün. Prefix: product_list_
+[2025-08-07 00:23:12 INF] Ürün with ID 83 deleted successfully
+[2025-08-07 00:23:12 INF] HTTP DELETE /api/Product/83 responded 200 in 124.6050 ms
+[2025-08-07 00:23:12 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:12 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__383171914
+[2025-08-07 00:23:12 INF] Ürün list retrieved successfully. Count: 4, Page: 9, TotalPages: 9
+[2025-08-07 00:23:12 INF] HTTP GET /api/Product/list responded 200 in 13.2546 ms
+[2025-08-07 00:23:14 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=true
+[2025-08-07 00:23:14 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__2014319398
+[2025-08-07 00:23:14 INF] Ürün list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 00:23:14 INF] HTTP GET /api/Product/list responded 200 in 38.2216 ms
+[2025-08-07 00:23:19 INF] Cache hit for Kategori list. Key: category_list__574445743
+[2025-08-07 00:23:19 INF] HTTP GET /api/Category/list responded 200 in 2.9428 ms
+[2025-08-07 00:23:22 INF] Cache hit for Müşteri list. Key: customer_list__-1927420387
+[2025-08-07 00:23:22 INF] HTTP GET /api/Customer/list responded 200 in 3.8350 ms
+[2025-08-07 00:23:24 INF] Cache hit for Tedarikçi list. Key: supplier_list__-1260055627
+[2025-08-07 00:23:24 INF] HTTP GET /api/Supplier/list responded 200 in 2.6216 ms
+[2025-08-07 00:23:34 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__207364499
+[2025-08-07 00:23:34 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 1
+[2025-08-07 00:23:34 INF] HTTP GET /api/Supplier/list responded 200 in 41.3893 ms
+[2025-08-07 00:23:34 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-983751985
+[2025-08-07 00:23:34 INF] Tedarikçi list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 00:23:34 INF] HTTP GET /api/Supplier/list responded 200 in 8.7616 ms
+[2025-08-07 00:23:35 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-1414927777
+[2025-08-07 00:23:35 INF] Tedarikçi list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:23:35 INF] HTTP GET /api/Supplier/list responded 200 in 6.6557 ms
+[2025-08-07 00:23:36 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__1718964548
+[2025-08-07 00:23:36 INF] Tedarikçi list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:23:36 INF] HTTP GET /api/Supplier/list responded 200 in 7.6659 ms
+[2025-08-07 00:23:44 INF] Cache hit for Kategori list. Key: category_list__-2003587077
+[2025-08-07 00:23:44 INF] Cache hit for Tedarikçi list. Key: supplier_list__-517733475
+[2025-08-07 00:23:44 INF] HTTP GET /api/Category/list responded 200 in 3.5827 ms
+[2025-08-07 00:23:44 INF] HTTP GET /api/Supplier/list responded 200 in 4.4663 ms
+[2025-08-07 00:23:44 INF] ProductService.GetAllAsync called with filter: ProductName=null, CategoryId=null, SupplierId=null, MinPrice=null, MaxPrice=null, IsDeleted=null
+[2025-08-07 00:23:44 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-168818066
+[2025-08-07 00:23:44 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:23:44 INF] HTTP GET /api/Product/list responded 200 in 15.1647 ms
+[2025-08-07 00:31:52 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__1463097906
+[2025-08-07 00:31:52 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-2141771752
+[2025-08-07 00:31:52 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-244359786
+[2025-08-07 00:31:52 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 00:31:52 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:31:52 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 00:31:52 INF] HTTP GET /api/Supplier/list responded 200 in 1004.3791 ms
+[2025-08-07 00:31:52 INF] HTTP GET /api/Category/list responded 200 in 1004.4265 ms
+[2025-08-07 00:31:52 INF] HTTP GET /api/Product/list responded 200 in 1004.4244 ms
+[2025-08-07 00:31:57 INF] Cache hit for Tedarikçi list. Key: supplier_list__1463097906
+[2025-08-07 00:31:57 INF] Cache hit for Kategori list. Key: category_list__-2141771752
+[2025-08-07 00:31:57 INF] Cache hit for Ürün list. Key: product_list__-244359786
+[2025-08-07 00:31:57 INF] HTTP GET /api/Supplier/list responded 200 in 72.7011 ms
+[2025-08-07 00:31:57 INF] HTTP GET /api/Category/list responded 200 in 73.1704 ms
+[2025-08-07 00:31:57 INF] HTTP GET /api/Product/list responded 200 in 74.2320 ms
+[2025-08-07 00:33:00 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__1420626290
+[2025-08-07 00:33:00 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 00:33:00 INF] HTTP GET /api/Category/list responded 200 in 23.4204 ms
+[2025-08-07 00:33:03 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-1119110158
+[2025-08-07 00:33:03 INF] Kategori list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:33:03 INF] HTTP GET /api/Category/list responded 200 in 24.4178 ms
+[2025-08-07 00:33:04 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-729890464
+[2025-08-07 00:33:04 INF] Müşteri list retrieved successfully. Count: 10, Page: 1, TotalPages: 10
+[2025-08-07 00:33:04 INF] HTTP GET /api/Customer/list responded 200 in 87.0799 ms
+[2025-08-07 00:33:05 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__188437410
+[2025-08-07 00:33:05 INF] Müşteri list retrieved successfully. Count: 3, Page: 1, TotalPages: 1
+[2025-08-07 00:33:05 INF] HTTP GET /api/Customer/list responded 200 in 33.9581 ms
+[2025-08-07 00:33:08 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__1345064389
+[2025-08-07 00:33:08 INF] Müşteri list retrieved successfully. Count: 3, Page: 1, TotalPages: 1
+[2025-08-07 00:33:08 INF] HTTP GET /api/Customer/list responded 200 in 60.2927 ms
+[2025-08-07 00:33:09 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-415539519
+[2025-08-07 00:33:09 INF] Müşteri list retrieved successfully. Count: 3, Page: 1, TotalPages: 1
+[2025-08-07 00:33:09 INF] HTTP GET /api/Customer/list responded 200 in 20.0242 ms
+[2025-08-07 00:33:10 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-852756683
+[2025-08-07 00:33:10 INF] Müşteri list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:33:10 INF] HTTP GET /api/Customer/list responded 200 in 10.1126 ms
+[2025-08-07 00:33:16 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-2001471236
+[2025-08-07 00:33:16 INF] Müşteri list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:33:16 INF] HTTP GET /api/Customer/list responded 200 in 10.5515 ms
+[2025-08-07 00:33:17 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__97421447
+[2025-08-07 00:33:17 WRN] No Müşteri found with current filters
+[2025-08-07 00:33:17 INF] HTTP GET /api/Customer/list responded 200 in 19.3583 ms
+[2025-08-07 00:33:18 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-1116642529
+[2025-08-07 00:33:18 WRN] No Müşteri found with current filters
+[2025-08-07 00:33:18 INF] HTTP GET /api/Customer/list responded 200 in 6.9111 ms
+[2025-08-07 00:33:18 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__1381388760
+[2025-08-07 00:33:18 WRN] No Müşteri found with current filters
+[2025-08-07 00:33:18 INF] HTTP GET /api/Customer/list responded 200 in 7.9029 ms
+[2025-08-07 00:33:18 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__1161087058
+[2025-08-07 00:33:18 WRN] No Müşteri found with current filters
+[2025-08-07 00:33:18 INF] HTTP GET /api/Customer/list responded 200 in 8.3768 ms
+[2025-08-07 00:33:21 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__1263263992
+[2025-08-07 00:33:21 INF] Müşteri list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:33:21 INF] HTTP GET /api/Customer/list responded 200 in 8.6875 ms
+[2025-08-07 00:33:21 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-483722403
+[2025-08-07 00:33:21 INF] Müşteri list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:33:21 INF] HTTP GET /api/Customer/list responded 200 in 7.4517 ms
+[2025-08-07 00:33:21 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-687753557
+[2025-08-07 00:33:21 INF] Müşteri list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 00:33:21 INF] HTTP GET /api/Customer/list responded 200 in 9.3321 ms
+[2025-08-07 00:33:30 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-2143212039
+[2025-08-07 00:33:30 INF] Müşteri list retrieved successfully. Count: 10, Page: 2, TotalPages: 10
+[2025-08-07 00:33:30 INF] HTTP GET /api/Customer/list responded 200 in 28.1318 ms
+[2025-08-07 00:33:31 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-232862290
+[2025-08-07 00:33:31 INF] Müşteri list retrieved successfully. Count: 10, Page: 3, TotalPages: 10
+[2025-08-07 00:33:31 INF] HTTP GET /api/Customer/list responded 200 in 8.4393 ms
+[2025-08-07 08:49:12 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-228458794
+[2025-08-07 08:49:12 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 08:49:12 INF] HTTP GET /api/Category/list responded 200 in 1061.6223 ms
+[2025-08-07 08:49:24 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__333362344
+[2025-08-07 08:49:24 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-07 08:49:24 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-07 08:49:24 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 08:49:24 INF] HTTP GET /api/Category/list responded 200 in 59.7936 ms
+[2025-08-07 08:49:42 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-181329352
+[2025-08-07 08:49:42 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 08:49:42 INF] HTTP GET /api/Category/list responded 200 in 26.0699 ms
+[2025-08-07 08:49:49 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__1990844486
+[2025-08-07 08:49:49 INF] Kategori list retrieved successfully. Count: 1, Page: 2, TotalPages: 2
+[2025-08-07 08:49:49 INF] HTTP GET /api/Category/list responded 200 in 17.2083 ms
+[2025-08-07 08:50:21 INF] Cache miss for Ürün with ID: 32. Fetching from database
+[2025-08-07 08:50:21 INF] Ürün with ID 32 retrieved successfully
+[2025-08-07 08:50:21 INF] HTTP GET /api/Product/32 responded 200 in 75.6339 ms
+[2025-08-07 08:50:25 INF] Cache hit for Ürün with ID: 32
+[2025-08-07 08:50:25 INF] HTTP GET /api/Product/32 responded 200 in 4.8723 ms
+[2025-08-07 08:51:31 INF] Cache hit for Kategori list. Key: category_list__-181329352
+[2025-08-07 08:51:31 INF] HTTP GET /api/Category/list responded 200 in 4.8004 ms
+[2025-08-07 08:51:31 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__648861658
+[2025-08-07 08:51:31 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-592699479
+[2025-08-07 08:51:31 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 08:51:31 INF] HTTP GET /api/Supplier/list responded 200 in 47.0454 ms
+[2025-08-07 08:51:31 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 08:51:31 INF] HTTP GET /api/Product/list responded 200 in 58.7298 ms
+[2025-08-07 08:51:33 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1244809520
+[2025-08-07 08:51:33 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 08:51:33 INF] HTTP GET /api/Product/list responded 200 in 31.0663 ms
+[2025-08-07 08:51:35 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-475414196
+[2025-08-07 08:51:35 WRN] No Ürün found with current filters
+[2025-08-07 08:51:35 INF] HTTP GET /api/Product/list responded 200 in 17.9874 ms
+[2025-08-07 08:51:36 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1975640523
+[2025-08-07 08:51:36 INF] Ürün list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 08:51:36 INF] HTTP GET /api/Product/list responded 200 in 15.4090 ms
+[2025-08-07 08:51:38 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__476743211
+[2025-08-07 08:51:38 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 08:51:38 INF] HTTP GET /api/Product/list responded 200 in 6.9700 ms
+[2025-08-07 08:51:49 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-163662274
+[2025-08-07 08:51:49 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 08:51:49 INF] HTTP GET /api/Category/list responded 200 in 13.7811 ms
+[2025-08-07 08:51:58 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-1287445448
+[2025-08-07 08:51:58 INF] Kategori list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 08:51:58 INF] HTTP GET /api/Category/list responded 200 in 19.8796 ms
+[2025-08-07 08:52:02 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-1213345360
+[2025-08-07 08:52:02 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 08:52:02 INF] HTTP GET /api/Supplier/list responded 200 in 11.8243 ms
+[2025-08-07 08:52:03 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-2038445155
+[2025-08-07 08:52:03 INF] Tedarikçi list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 08:52:03 INF] HTTP GET /api/Supplier/list responded 200 in 17.3142 ms
+[2025-08-07 08:52:04 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__-269752851
+[2025-08-07 08:52:04 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 08:52:04 INF] HTTP GET /api/Supplier/list responded 200 in 7.7855 ms
+[2025-08-07 08:52:06 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__-1896108867
+[2025-08-07 08:52:06 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__961089399
+[2025-08-07 08:52:06 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__-1210257416
+[2025-08-07 08:52:06 INF] Müşteri list retrieved successfully. Count: 10, Page: 1, TotalPages: 10
+[2025-08-07 08:52:06 INF] Sipariş list retrieved successfully. Count: 10, Page: 1, TotalPages: 83
+[2025-08-07 08:52:06 INF] Çalışan list retrieved successfully. Count: 9, Page: 1, TotalPages: 1
+[2025-08-07 08:52:06 INF] HTTP GET /api/Customer/list responded 200 in 55.4513 ms
+[2025-08-07 08:52:06 INF] HTTP GET /api/Employee/list responded 200 in 57.7216 ms
+[2025-08-07 08:52:06 INF] HTTP GET /api/Order/list responded 200 in 58.1525 ms
+[2025-08-07 08:52:07 INF] Cache miss for Sipariş list. Fetching from database. Key: order_list__-1784821823
+[2025-08-07 08:52:07 INF] Sipariş list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 08:52:07 INF] HTTP GET /api/Order/list responded 200 in 16.8126 ms
+[2025-08-07 08:56:06 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__2109546285
+[2025-08-07 08:56:06 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__1342506327
+[2025-08-07 08:56:06 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1376012677
+[2025-08-07 08:56:06 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 08:56:06 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 9
+[2025-08-07 08:56:06 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 08:56:06 INF] HTTP GET /api/Supplier/list responded 200 in 986.9169 ms
+[2025-08-07 08:56:06 INF] HTTP GET /api/Product/list responded 200 in 986.8868 ms
+[2025-08-07 08:56:06 INF] HTTP GET /api/Category/list responded 200 in 986.9267 ms
+[2025-08-07 08:56:08 INF] Cache miss for Kategori list. Fetching from database. Key: category_list__-1998096436
+[2025-08-07 08:56:08 INF] Kategori list retrieved successfully. Count: 10, Page: 1, TotalPages: 2
+[2025-08-07 08:56:08 INF] HTTP GET /api/Category/list responded 200 in 59.4569 ms
+[2025-08-07 08:56:09 INF] Cache miss for Müşteri list. Fetching from database. Key: customer_list__808397703
+[2025-08-07 08:56:09 INF] Müşteri list retrieved successfully. Count: 10, Page: 1, TotalPages: 10
+[2025-08-07 08:56:09 INF] HTTP GET /api/Customer/list responded 200 in 67.5318 ms
+[2025-08-07 08:56:09 INF] Cache miss for Tedarikçi list. Fetching from database. Key: supplier_list__1071800508
+[2025-08-07 08:56:09 INF] Tedarikçi list retrieved successfully. Count: 10, Page: 1, TotalPages: 3
+[2025-08-07 08:56:09 INF] HTTP GET /api/Supplier/list responded 200 in 14.9228 ms
+[2025-08-07 08:56:10 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__-393211527
+[2025-08-07 08:56:10 INF] Çalışan list retrieved successfully. Count: 9, Page: 1, TotalPages: 1
+[2025-08-07 08:56:10 INF] HTTP GET /api/Employee/list responded 200 in 70.4788 ms
+[2025-08-07 08:56:12 INF] Cache miss for Çalışan list. Fetching from database. Key: employee_list__269556219
+[2025-08-07 08:56:12 INF] Çalışan list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 08:56:12 INF] HTTP GET /api/Employee/list responded 200 in 43.0871 ms
+[2025-08-07 09:01:17 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1469095665
+[2025-08-07 09:01:17 INF] Ürün list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 09:01:18 INF] HTTP GET /api/Product/list responded 200 in 998.8410 ms
+[2025-08-07 09:01:25 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__1735222628
+[2025-08-07 09:01:25 INF] Ürün list retrieved successfully. Count: 10, Page: 1, TotalPages: 5
+[2025-08-07 09:01:25 INF] HTTP GET /api/Product/list responded 200 in 55.3110 ms
+[2025-08-07 09:01:26 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1568211955
+[2025-08-07 09:01:26 INF] Ürün list retrieved successfully. Count: 1, Page: 1, TotalPages: 1
+[2025-08-07 09:01:26 INF] HTTP GET /api/Product/list responded 200 in 20.7586 ms
+[2025-08-07 09:01:29 INF] Cache miss for Ürün list. Fetching from database. Key: product_list__-1663801246
+[2025-08-07 09:01:29 INF] Ürün list retrieved successfully. Count: 2, Page: 1, TotalPages: 1
+[2025-08-07 09:01:29 INF] HTTP GET /api/Product/list responded 200 in 22.2583 ms
+[2025-08-07 09:33:51 INF] HTTP GET /api/Supplier/list responded 200 in 933.6019 ms | Cache: DB | Records: 10 | Page: P1/T3
+[2025-08-07 09:33:51 INF] HTTP GET /api/Product/list?sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 933.5877 ms | Cache: DB | Records: 10 | Page: P1/T9
+[2025-08-07 09:33:51 INF] HTTP GET /api/Category/list responded 200 in 933.6115 ms | Cache: DB | Records: 10 | Page: P1/T2
+[2025-08-07 09:33:55 INF] HTTP GET /api/Product/list?isDeleted=true&sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 68.3154 ms | Cache: DB | Records: 2 | Page: P1/T1
+[2025-08-07 09:33:58 INF] HTTP GET /api/Product/list?minPrice=1&sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 20.3763 ms | Cache: DB | Records: 10 | Page: P1/T9
+[2025-08-07 09:33:58 INF] HTTP GET /api/Product/list?minPrice=10&sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 5.8045 ms | Cache: DB | Records: 10 | Page: P1/T8
+[2025-08-07 09:34:02 INF] HTTP GET /api/Product/list?minPrice=12&sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 4.6561 ms | Cache: DB | Records: 10 | Page: P1/T7
+[2025-08-07 09:34:02 INF] HTTP GET /api/Product/list?minPrice=120&sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 3.4395 ms | Cache: DB | Records: 3 | Page: P1/T1
+[2025-08-07 09:34:05 INF] HTTP GET /api/Product/list?minPrice=125&sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 3.4216 ms | Cache: DB | Records: 2 | Page: P1/T1
+[2025-08-07 09:34:08 INF] HTTP GET /api/Product/list?productName=Kalem&sortField=productId&sortDirection=asc&page=1&pageSize=10 responded 200 in 25.4321 ms | Cache: DB | Records: 1 | Page: P1/T1
+[2025-08-07 09:34:11 INF] HTTP GET /api/Category/list?sortField=categoryId&sortDirection=asc&page=1&pageSize=10 responded 200 in 4.7178 ms | Cache: DB | Records: 10 | Page: P1/T2
+[2025-08-07 09:34:12 INF] HTTP GET /api/Customer/list?sortField=CustomerId&sortDirection=asc&page=1&pageSize=10 responded 200 in 65.8124 ms | Cache: DB | Records: 10 | Page: P1/T10
+[2025-08-07 09:34:46 INF] HTTP GET /api/Product/list?sortField=productId&sortDirection=asc&page=2&pageSize=10 responded 200 in 12.1037 ms | Cache: DB | Records: 10 | Page: P2/T9
+[2025-08-07 09:41:47 INF] [{Timestamp:HH:mm:ss}] GET /api/Supplier/list → 200 (912.6014ms) | 🏷️ Tedarikçi | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 10 | 📑 Page: P1/T3
+[2025-08-07 09:41:47 INF] [{Timestamp:HH:mm:ss}] GET /api/Product/list?sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (912.6099ms) | 🏷️ Ürün | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 10 | 📑 Page: P1/T9
+[2025-08-07 09:41:47 INF] [{Timestamp:HH:mm:ss}] GET /api/Category/list → 200 (912.5984ms) | 🏷️ Kategori | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 10 | 📑 Page: P1/T2
+[2025-08-07 09:41:50 INF] [{Timestamp:HH:mm:ss}] GET /api/Product/list?sortField=productId&sortDirection=asc&page=2&pageSize=10 → 200 (55.9962ms) | 🏷️ Ürün | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 10 | 📑 Page: P2/T9
+[2025-08-07 09:41:53 INF] [{Timestamp:HH:mm:ss}] GET /api/Product/list?isDeleted=true&sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (32.9498ms) | 🏷️ Ürün | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 2 | 📑 Page: P1/T1
+[2025-08-07 09:41:54 INF] [{Timestamp:HH:mm:ss}] GET /api/Product/list?isDeleted=false&sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (4.4451ms) | 🏷️ Ürün | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 10 | 📑 Page: P1/T9
+[2025-08-07 09:41:57 INF] [{Timestamp:HH:mm:ss}] GET /api/Category/list?sortField=categoryId&sortDirection=asc&page=1&pageSize=10 → 200 (5.4688ms) | 🏷️ Kategori | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 10 | 📑 Page: P1/T2
+[2025-08-07 09:41:58 INF] [{Timestamp:HH:mm:ss}] GET /api/Category/list?isDeleted=true&sortField=categoryId&sortDirection=asc&page=1&pageSize=10 → 200 (12.8832ms) | 🏷️ Kategori | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 1 | 📑 Page: P1/T1
+[2025-08-07 09:41:59 INF] [{Timestamp:HH:mm:ss}] GET /api/Category/list?isDeleted=false&sortField=categoryId&sortDirection=asc&page=1&pageSize=10 → 200 (3.7818ms) | 🏷️ Kategori | 📊 Cache: 💾 DB (Cache'e kaydedildi) | 📄 Records: 10 | 📑 Page: P1/T1
+[2025-08-07 09:42:49 INF] [{Timestamp:HH:mm:ss}] GET /api/Category/list → 200 (1.2457ms) | 🏷️ Kategori | 📊 Cache: ✅ HIT (Cache'den) | 📄 Records: 10 | 📑 Page: P1/T2
+[2025-08-07 09:42:49 INF] [{Timestamp:HH:mm:ss}] GET /api/Supplier/list → 200 (1.1798ms) | 🏷️ Tedarikçi | 📊 Cache: ✅ HIT (Cache'den) | 📄 Records: 10 | 📑 Page: P1/T3
+[2025-08-07 09:42:49 INF] [{Timestamp:HH:mm:ss}] GET /api/Product/list?sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (1.1350ms) | 🏷️ Ürün | 📊 Cache: ✅ HIT (Cache'den) | 📄 Records: 10 | 📑 Page: P1/T9
+[2025-08-07 09:44:24 INF] [{Timestamp:HH:mm:ss}] GET /api/Product/list?isDeleted=true&sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (1201.8582ms) | Ürün | Cache: DB (saved to cache) | Records: 2 | Page: P1/T1
+[2025-08-07 09:44:29 INF] [{Timestamp:HH:mm:ss}] GET /api/Category/list?sortField=categoryId&sortDirection=asc&page=1&pageSize=10 → 200 (99.2588ms) | Kategori | Cache: DB (saved to cache) | Records: 10 | Page: P1/T2
+[2025-08-07 09:47:46 INF] GET /api/Category/list → 200 (1122.0113ms) | Kategori | Cache: DB (saved to cache) | Records: 10 | Page: P1/T2
+[2025-08-07 09:47:46 INF] GET /api/Supplier/list → 200 (1122.0273ms) | Tedarikçi | Cache: DB (saved to cache) | Records: 10 | Page: P1/T3
+[2025-08-07 09:47:46 INF] GET /api/Product/list?sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (1122.0114ms) | Ürün | Cache: DB (saved to cache) | Records: 10 | Page: P1/T9
+[2025-08-07 10:08:34 INF] GET /api/Category/list → 200 (1813.4599ms) | Kategori | Cache: DB (saved to cache) | Records: 10 | Page: P1/T2
+[2025-08-07 10:08:34 INF] GET /api/Product/list?sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (1813.4526ms) | Ürün | Cache: DB (saved to cache) | Records: 10 | Page: P1/T9
+[2025-08-07 10:08:34 INF] GET /api/Supplier/list → 200 (1813.4405ms) | Tedarikçi | Cache: DB (saved to cache) | Records: 10 | Page: P1/T3
+[2025-08-07 10:08:36 INF] GET /api/Supplier/list → 200 (51.7973ms) | Tedarikçi | Cache: HIT (from cache) | Records: 10 | Page: P1/T3
+[2025-08-07 10:08:36 INF] GET /api/Category/list → 200 (51.7890ms) | Kategori | Cache: HIT (from cache) | Records: 10 | Page: P1/T2
+[2025-08-07 10:08:36 INF] GET /api/Product/list?sortField=productId&sortDirection=asc&page=1&pageSize=10 → 200 (52.2769ms) | Ürün | Cache: HIT (from cache) | Records: 10 | Page: P1/T9

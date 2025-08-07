@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Http;
 
 namespace NorthwindApp.Business.Services.Concrete
 {
@@ -13,8 +15,10 @@ namespace NorthwindApp.Business.Services.Concrete
         public OrderService(
             IOrderRepository orderRepo,
             IMapper mapper,
-            ICacheService cacheService)
-            : base(orderRepo, mapper, cacheService, "order_list_", "Sipariş")
+            ICacheService cacheService,
+            ILogger<OrderService> logger,
+            IHttpContextAccessor httpContextAccessor)
+            : base(orderRepo, mapper, cacheService, logger, httpContextAccessor, "order_list_", "Sipariş")
         {
         }
 
@@ -24,26 +28,52 @@ namespace NorthwindApp.Business.Services.Concrete
             // Build filter expression
             Expression<Func<Order, bool>>? filterExpression = null;
             
-            if (filter != null && !IsEmptyFilter(filter))
+            if (filter != null)
             {
                 filterExpression = o =>
-                (string.IsNullOrEmpty(filter.CustomerId) || (o.CustomerId != null && o.CustomerId.Contains(filter.CustomerId))) &&
+                (!filter.OrderId.HasValue || o.OrderId == filter.OrderId) &&
+                (string.IsNullOrEmpty(filter.CustomerId) || (o.CustomerId != null && o.CustomerId.ToLower().Contains(filter.CustomerId.ToLower()))) &&
                 (!filter.EmployeeId.HasValue || o.EmployeeId == filter.EmployeeId) &&
                 (!filter.OrderDateFrom.HasValue || o.OrderDate >= filter.OrderDateFrom) &&
                 (!filter.OrderDateTo.HasValue || o.OrderDate <= filter.OrderDateTo) &&
-                (!filter.ShippedDateFrom.HasValue || o.ShippedDate >= filter.ShippedDateFrom) &&
-                (!filter.ShippedDateTo.HasValue || o.ShippedDate <= filter.ShippedDateTo) &&
-                (string.IsNullOrEmpty(filter.ShipCity) || (o.ShipCity != null && o.ShipCity.Contains(filter.ShipCity))) &&
-                (string.IsNullOrEmpty(filter.ShipCountry) || (o.ShipCountry != null && o.ShipCountry.Contains(filter.ShipCountry)));
+                (!filter.IsDeleted.HasValue || o.IsDeleted == filter.IsDeleted);
             }
 
             // Extract pagination and sorting parameters from filter
-            var sortField = filter?.SortField;
-            var sortDirection = filter?.SortDirection;
+            var sortField = filter?.SortField ?? "OrderId";
+            var sortDirection = filter?.SortDirection ?? "asc";
             var page = filter?.Page ?? 1;
             var pageSize = filter?.PageSize ?? 10;
 
-            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
+            // Generate cache key with filter parameters
+            var cacheKey = GenerateCacheKeyWithFilter(filter);
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize, cacheKey);
+        }
+
+        private string GenerateCacheKeyWithFilter(OrderFilterDto? filter)
+        {
+            if (filter == null)
+                return _cachePrefix;
+
+            // Create a unique cache key based on filter parameters
+            var filterParams = new List<string>
+            {
+                $"oid:{filter.OrderId ?? 0}",
+                $"cid:{filter.CustomerId ?? ""}",
+                $"eid:{filter.EmployeeId ?? 0}",
+                $"odf:{filter.OrderDateFrom?.ToString("yyyyMMdd") ?? ""}",
+                $"odt:{filter.OrderDateTo?.ToString("yyyyMMdd") ?? ""}",
+                $"del:{filter.IsDeleted?.ToString() ?? ""}",
+                $"sort:{filter.SortField ?? ""}",
+                $"dir:{filter.SortDirection ?? ""}",
+                $"page:{filter.Page}",
+                $"size:{filter.PageSize}"
+            };
+
+            var filterString = string.Join("_", filterParams);
+            var hash = filterString.GetHashCode();
+            return $"{_cachePrefix}_{hash}";
         }
 
         protected override int GetIdFromUpdateDto(OrderUpdateDto dto)
@@ -51,19 +81,14 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.OrderId;
         }
 
-        protected override bool SupportsSoftDelete() => false;
+        protected override bool SupportsSoftDelete() => true;
 
-        private static bool IsEmptyFilter(OrderFilterDto filter)
+        protected override void PerformSoftDelete(Order entity)
         {
-            return string.IsNullOrEmpty(filter.CustomerId) &&
-                   !filter.EmployeeId.HasValue &&
-                   !filter.OrderDateFrom.HasValue &&
-                   !filter.OrderDateTo.HasValue &&
-                   !filter.ShippedDateFrom.HasValue &&
-                   !filter.ShippedDateTo.HasValue &&
-                   string.IsNullOrEmpty(filter.ShipCity) &&
-                   string.IsNullOrEmpty(filter.ShipCountry);
+            entity.IsDeleted = true;
         }
+
+
 
         // Implement IOrderService methods that return string instead of OrderDTO
         async Task<ApiResponse<string>> IOrderService.AddAsync(OrderCreateDto dto)
@@ -97,24 +122,24 @@ namespace NorthwindApp.Business.Services.Concrete
         }
 
         // Business rule validation
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForCreate(OrderCreateDto dto)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForCreate(OrderCreateDto dto)
         {
             // Example business rule: Order must have a customer
             if (string.IsNullOrEmpty(dto.CustomerId))
             {
-                return BusinessValidationResult.Failure("Sipariş müşterisi boş olamaz.");
+                return Task.FromResult(BusinessValidationResult.Failure("Sipariş müşterisi boş olamaz."));
             }
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
 
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(OrderUpdateDto dto, Order entity)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(OrderUpdateDto dto, Order entity)
         {
             // Example business rule: Cannot update deleted orders
             if (entity.IsDeleted)
             {
-                return BusinessValidationResult.Failure("Silinmiş sipariş güncellenemez.");
+                return Task.FromResult(BusinessValidationResult.Failure("Silinmiş sipariş güncellenemez."));
             }
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
@@ -10,10 +11,14 @@ namespace NorthwindApp.API.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
+        private readonly ILogger<OrderController> _logger;
+        private readonly ICacheService _cacheService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, ILogger<OrderController> logger, ICacheService cacheService)
         {
             _orderService = orderService;
+            _logger = logger;
+            _cacheService = cacheService;
         }
 
         [HttpGet("list")]
@@ -49,6 +54,14 @@ namespace NorthwindApp.API.Controllers
         {
             var result = await _orderService.DeleteAsync(id);
             return Ok(result);
+        }
+
+        [HttpPost("clear-cache")]
+        public ActionResult<ApiResponse<string>> ClearCache()
+        {
+            // Clear all cache for orders
+            _cacheService.RemoveByPrefix("order_list_");
+            return Ok(ApiResponse<string>.Ok(null, "Cache temizlendi."));
         }
     }
 }

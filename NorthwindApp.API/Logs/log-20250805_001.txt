@@ -1,0 +1,1929 @@
+[2025-08-05 11:34:59 ERR] Hosting failed to start
+System.IO.IOException: Failed to bind to address https://127.0.0.1:7137: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ ---> System.Net.Sockets.SocketException (10048): Only one usage of each socket address (protocol/network address/port) is normally permitted.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[2025-08-05 11:35:32 WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'OrderDetail'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+[2025-08-05 11:35:33 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 11:35:33 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 11:35:33 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 11:35:33 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 11:35:33 DBG] Created DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 11:35:33 DBG] Created DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 11:35:33 DBG] Initialized DbCommand for 'ExecuteReader' (13ms).
+[2025-08-05 11:35:33 DBG] Initialized DbCommand for 'ExecuteReader' (11ms).
+[2025-08-05 11:35:33 DBG] Initialized DbCommand for 'ExecuteReader' (14ms).
+[2025-08-05 11:35:33 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 11:35:33 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 11:35:33 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 11:35:33 INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 11:35:33 INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 11:35:33 INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 11:35:33 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 11:35:33 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 11:35:33 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 11:35:33 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 12ms reading results.
+[2025-08-05 11:35:33 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 15ms reading results.
+[2025-08-05 11:35:33 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 13ms reading results.
+[2025-08-05 11:35:33 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 11:35:33 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 11:35:33 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 11:35:33 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 11:35:33 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 11:35:33 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 11:35:33 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 11:35:33 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 11:35:33 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 11:35:33 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 11:35:33 DBG] Initialized DbCommand for 'ExecuteReader' (12ms).
+[2025-08-05 11:35:33 DBG] Initialized DbCommand for 'ExecuteReader' (12ms).
+[2025-08-05 11:35:33 DBG] Initialized DbCommand for 'ExecuteReader' (13ms).
+[2025-08-05 11:35:33 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 11:35:33 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 11:35:33 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 11:35:33 INF] Executed DbCommand (16ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 11:35:33 INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 11:35:33 INF] Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 11:35:33 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 11:35:33 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 29ms reading results.
+[2025-08-05 11:35:33 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 11:35:33 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 11:35:33 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 37ms reading results.
+[2025-08-05 11:35:33 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 39ms reading results.
+[2025-08-05 11:35:33 INF] HTTP GET /api/Product/list responded 200 in 1018.4373 ms
+[2025-08-05 11:35:33 INF] HTTP GET /api/Supplier/list responded 200 in 1018.4360 ms
+[2025-08-05 11:35:33 INF] HTTP GET /api/Category/list responded 200 in 1018.4466 ms
+[2025-08-05 21:18:52 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:52 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:52 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:52 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:52 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:18:52 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:52 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:52 DBG] Initialized DbCommand for 'ExecuteReader' (7ms).
+[2025-08-05 21:18:52 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 21:18:52 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 21:18:52 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:18:52 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:52 INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 21:18:52 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:18:52 INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:52 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:52 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:52 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:52 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 5ms reading results.
+[2025-08-05 21:18:52 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 7ms reading results.
+[2025-08-05 21:18:52 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 4ms reading results.
+[2025-08-05 21:18:52 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:52 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:52 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:52 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:52 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 21:18:52 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:52 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:52 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 21:18:52 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:52 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:52 DBG] Initialized DbCommand for 'ExecuteReader' (8ms).
+[2025-08-05 21:18:52 INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:52 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:52 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:52 INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:52 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 4ms reading results.
+[2025-08-05 21:18:52 INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:52 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:52 INF] HTTP GET /api/Category/list responded 200 in 121.9749 ms
+[2025-08-05 21:18:52 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:52 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 6ms reading results.
+[2025-08-05 21:18:52 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 4ms reading results.
+[2025-08-05 21:18:52 INF] HTTP GET /api/Supplier/list responded 200 in 130.6149 ms
+[2025-08-05 21:18:52 INF] HTTP GET /api/Product/list responded 200 in 137.5195 ms
+[2025-08-05 21:18:54 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:54 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:54 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:54 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:54 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:54 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:54 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:54 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:54 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:54 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:54 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 21:18:54 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 21:18:54 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:54 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:54 INF] HTTP GET /api/Product/list responded 200 in 32.9857 ms
+[2025-08-05 21:18:54 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:54 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:54 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:54 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:54 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:54 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:54 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:54 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:54 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:55 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:18:55 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:55 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:55 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:55 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:18:55 INF] HTTP GET /api/Product/list responded 200 in 41.6648 ms
+[2025-08-05 21:18:55 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:55 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:55 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:55 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:55 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:55 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:55 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:55 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:55 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:55 DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:55 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:55 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:55 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:55 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:55 INF] HTTP GET /api/Product/list responded 200 in 29.3391 ms
+[2025-08-05 21:18:55 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:55 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:55 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:55 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:55 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:18:55 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:55 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:55 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:55 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:55 DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:55 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:55 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:18:55 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:55 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:55 INF] HTTP GET /api/Product/list responded 200 in 31.0210 ms
+[2025-08-05 21:18:58 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:58 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:58 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:58 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:18:58 INF] Executed DbCommand (5ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:18:58 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:58 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:58 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:58 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:58 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:58 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:18:58 INF] Executed DbCommand (4ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:18:58 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:58 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:58 INF] HTTP GET /api/Product/list responded 200 in 65.1939 ms
+[2025-08-05 21:18:58 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:58 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:58 DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:18:58 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:18:58 INF] Executed DbCommand (3ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:18:58 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:58 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:58 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:58 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:58 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:58 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:18:58 INF] Executed DbCommand (3ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:18:58 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:58 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:18:58 INF] HTTP GET /api/Product/list responded 200 in 31.5935 ms
+[2025-08-05 21:18:58 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:58 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:58 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:58 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:18:58 INF] Executed DbCommand (3ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:18:58 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:58 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:18:58 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:18:58 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:18:58 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:18:58 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:18:58 INF] Executed DbCommand (3ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:18:58 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:18:58 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:18:58 INF] HTTP GET /api/Product/list responded 200 in 32.9918 ms
+[2025-08-05 21:19:00 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:00 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:00 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:00 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:19:00 INF] Executed DbCommand (5ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:19:00 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:00 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:00 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:00 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:00 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:00 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:19:00 INF] Executed DbCommand (3ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:19:00 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:00 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:00 INF] HTTP GET /api/Product/list responded 200 in 39.1651 ms
+[2025-08-05 21:19:04 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:04 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:04 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:04 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:19:04 INF] Executed DbCommand (4ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+[2025-08-05 21:19:04 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:04 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:04 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:04 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:04 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:04 DBG] Executing DbCommand [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:04 INF] Executed DbCommand (5ms) [Parameters=[@__filter_MaxPrice_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[UnitPrice] <= @__filter_MaxPrice_0
+ORDER BY [p].[ProductId]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:04 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:04 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:04 INF] HTTP GET /api/Product/list responded 200 in 41.2499 ms
+[2025-08-05 21:19:07 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:07 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:07 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:19:07 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:07 INF] Executed DbCommand (17ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:07 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:07 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:07 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:07 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:07 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:07 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:07 INF] Executed DbCommand (4ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:07 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:07 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:07 INF] HTTP GET /api/Product/list responded 200 in 56.9510 ms
+[2025-08-05 21:19:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:11 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:11 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:19:11 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:11 INF] Executed DbCommand (4ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:11 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:11 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:11 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:11 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:11 INF] HTTP GET /api/Product/list responded 200 in 35.3250 ms
+[2025-08-05 21:19:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:11 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:11 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 21:19:11 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:11 INF] Executed DbCommand (5ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:11 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:11 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:19:11 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:11 INF] Executed DbCommand (4ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:11 INF] HTTP GET /api/Product/list responded 200 in 42.9572 ms
+[2025-08-05 21:19:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:11 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:11 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:11 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:11 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:11 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:11 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:11 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:11 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32), @__p_3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_3 ROWS ONLY
+[2025-08-05 21:19:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:11 INF] HTTP GET /api/Product/list responded 200 in 32.8337 ms
+[2025-08-05 21:19:16 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:16 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:16 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:19:16 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:16 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+[2025-08-05 21:19:16 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:16 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:16 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:16 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:16 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:16 DBG] Executing DbCommand [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:19:16 INF] Executed DbCommand (5ms) [Parameters=[@__filter_CategoryId_0='?' (DbType = Int32), @__filter_MaxPrice_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+WHERE [p].[CategoryId] = @__filter_CategoryId_0 AND [p].[UnitPrice] <= @__filter_MaxPrice_1
+ORDER BY [p].[ProductId]
+OFFSET @__p_2 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 21:19:16 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:16 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:16 INF] HTTP GET /api/Product/list responded 200 in 37.8900 ms
+[2025-08-05 21:19:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:18 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:18 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:18 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:18 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:18 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:18 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:18 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:18 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:18 INF] HTTP GET /api/Category/list responded 200 in 41.3094 ms
+[2025-08-05 21:19:19 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:19 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:19 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 21:19:19 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:19 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:19 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:19 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:19 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:19 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:19 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:19:19 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 21:19:19 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 21:19:19 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:19 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:19 INF] HTTP GET /api/Category/list responded 200 in 44.1229 ms
+[2025-08-05 21:19:20 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:20 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:20 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:20 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:20 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:21 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:21 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:21 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:21 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:21 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:21 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:21 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:21 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:21 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:21 INF] HTTP GET /api/Category/list responded 200 in 34.6252 ms
+[2025-08-05 21:19:23 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:23 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:23 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:19:23 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:23 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:23 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:23 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:23 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:23 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:23 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:23 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:23 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:23 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:23 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:23 INF] HTTP GET /api/Category/list responded 200 in 36.4037 ms
+[2025-08-05 21:19:24 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:24 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:24 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:24 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:24 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:24 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:24 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:24 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:24 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:24 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:24 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:24 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:24 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:24 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:24 INF] HTTP GET /api/Category/list responded 200 in 32.5005 ms
+[2025-08-05 21:19:26 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:26 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:26 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:26 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:26 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:26 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:26 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:26 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:26 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:26 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:26 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:26 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:26 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:26 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:26 INF] HTTP GET /api/Category/list responded 200 in 29.6315 ms
+[2025-08-05 21:19:30 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:30 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:30 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:19:30 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:30 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:30 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:30 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:30 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:30 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:30 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:30 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:30 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:30 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:30 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:30 INF] HTTP GET /api/Category/list responded 200 in 36.0213 ms
+[2025-08-05 21:19:32 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:32 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 21:19:32 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:32 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:32 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:19:32 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:32 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:19:32 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:19:32 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:19:32 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:19:32 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:32 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:19:32 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:19:32 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 21:19:32 INF] HTTP GET /api/Category/list responded 200 in 33.3520 ms
+[2025-08-05 21:20:14 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:14 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:20:14 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:20:14 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:20:14 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:20:14 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:14 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:20:14 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:14 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 21:20:14 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 21:20:14 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:14 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:14 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:14 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 21:20:14 INF] HTTP GET /api/Category/list responded 200 in 43.4790 ms
+[2025-08-05 21:20:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:18 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 21:20:18 DBG] Created DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 21:20:18 DBG] Created DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 21:20:18 DBG] Initialized DbCommand for 'ExecuteReader' (12ms).
+[2025-08-05 21:20:18 DBG] Initialized DbCommand for 'ExecuteReader' (13ms).
+[2025-08-05 21:20:18 DBG] Initialized DbCommand for 'ExecuteReader' (13ms).
+[2025-08-05 21:20:18 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:20:18 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:20:18 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 21:20:18 INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 21:20:18 INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 21:20:18 INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 21:20:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 6ms reading results.
+[2025-08-05 21:20:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 6ms reading results.
+[2025-08-05 21:20:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 5ms reading results.
+[2025-08-05 21:20:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 21:20:18 DBG] Created DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 21:20:18 DBG] Created DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 21:20:18 DBG] Created DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 21:20:18 DBG] Initialized DbCommand for 'ExecuteReader' (13ms).
+[2025-08-05 21:20:18 DBG] Initialized DbCommand for 'ExecuteReader' (13ms).
+[2025-08-05 21:20:18 DBG] Initialized DbCommand for 'ExecuteReader' (13ms).
+[2025-08-05 21:20:18 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:18 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:18 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:18 INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:18 INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:18 INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 21:20:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 21:20:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 6ms reading results.
+[2025-08-05 21:20:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 6ms reading results.
+[2025-08-05 21:20:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 5ms reading results.
+[2025-08-05 21:20:18 INF] HTTP GET /api/Supplier/list responded 200 in 104.5142 ms
+[2025-08-05 21:20:18 INF] HTTP GET /api/Product/list responded 200 in 107.5551 ms
+[2025-08-05 21:20:18 INF] HTTP GET /api/Category/list responded 200 in 106.1757 ms
+[2025-08-05 22:08:37 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:08:37 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:08:37 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:08:37 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:08:37 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 22:08:37 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:08:37 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:08:37 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 22:08:37 DBG] Created DbCommand for 'ExecuteReader' (8ms).
+[2025-08-05 22:08:37 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:08:37 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:08:37 DBG] Initialized DbCommand for 'ExecuteReader' (11ms).
+[2025-08-05 22:08:37 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:08:37 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 22:08:37 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:08:37 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 3ms reading results.
+[2025-08-05 22:08:37 INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 22:08:37 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:08:37 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:08:37 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:08:37 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:08:37 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 22:08:37 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:08:37 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 5ms reading results.
+[2025-08-05 22:08:37 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:08:37 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:08:37 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:08:37 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:08:37 INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:08:37 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:08:37 DBG] Created DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 22:08:37 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:08:37 DBG] Initialized DbCommand for 'ExecuteReader' (9ms).
+[2025-08-05 22:08:37 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 22:08:37 INF] HTTP GET /api/Category/list responded 200 in 61.6531 ms
+[2025-08-05 22:08:37 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:08:37 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:08:37 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:08:37 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:08:37 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:08:37 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:08:37 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:08:37 INF] HTTP GET /api/Product/list responded 200 in 77.8243 ms
+[2025-08-05 22:08:37 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 5ms reading results.
+[2025-08-05 22:08:37 INF] HTTP GET /api/Supplier/list responded 200 in 82.8530 ms
+[2025-08-05 22:34:05 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:05 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:05 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:05 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:05 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:05 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:05 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 22:34:05 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:05 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 22:34:05 DBG] Initialized DbCommand for 'ExecuteReader' (8ms).
+[2025-08-05 22:34:05 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:05 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:34:05 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+[2025-08-05 22:34:05 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:05 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:34:05 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:05 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:05 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:05 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:05 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:05 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:05 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 5ms reading results.
+[2025-08-05 22:34:05 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 7ms reading results.
+[2025-08-05 22:34:05 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 22:34:05 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:05 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:05 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:05 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:05 DBG] Created DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 22:34:05 INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:05 DBG] Initialized DbCommand for 'ExecuteReader' (8ms).
+[2025-08-05 22:34:05 DBG] Initialized DbCommand for 'ExecuteReader' (8ms).
+[2025-08-05 22:34:05 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:05 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:05 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:05 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 3ms reading results.
+[2025-08-05 22:34:05 INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:05 INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[ProductId], [p].[CategoryId], [p].[Discontinued], [p].[IsDeleted], [p].[ProductName], [p].[QuantityPerUnit], [p].[ReorderLevel], [p].[SupplierId], [p].[UnitPrice], [p].[UnitsInStock], [p].[UnitsOnOrder]
+FROM [Products] AS [p]
+ORDER BY [p].[ProductId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:05 INF] HTTP GET /api/Supplier/list responded 200 in 64.5858 ms
+[2025-08-05 22:34:05 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:05 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:05 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 4ms reading results.
+[2025-08-05 22:34:05 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 3ms reading results.
+[2025-08-05 22:34:05 INF] HTTP GET /api/Product/list responded 200 in 76.1178 ms
+[2025-08-05 22:34:05 INF] HTTP GET /api/Category/list responded 200 in 76.9074 ms
+[2025-08-05 22:34:08 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:08 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:08 DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:08 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:08 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:08 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:08 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:08 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:08 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:08 DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:08 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:08 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:08 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:08 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:08 INF] HTTP GET /api/Category/list responded 200 in 26.1469 ms
+[2025-08-05 22:34:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:11 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:11 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:11 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:34:11 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:34:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:11 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:11 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:11 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:11 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:11 INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:11 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:11 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 21ms reading results.
+[2025-08-05 22:34:11 INF] HTTP GET /api/Customer/list responded 200 in 87.6352 ms
+[2025-08-05 22:34:13 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:13 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:13 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:13 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:34:13 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:34:13 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:13 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:13 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:13 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:13 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:13 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY [s].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:13 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY [s].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:13 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:13 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:13 INF] HTTP GET /api/Supplier/list responded 200 in 43.8991 ms
+[2025-08-05 22:34:14 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:14 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:14 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:14 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:34:14 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:34:14 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:14 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:14 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:14 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:14 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 22:34:14 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:14 INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:14 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:14 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 22ms reading results.
+[2025-08-05 22:34:14 INF] HTTP GET /api/Employee/list responded 200 in 90.6808 ms
+[2025-08-05 22:34:16 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:16 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:16 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:16 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:34:16 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:34:16 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:16 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:16 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:16 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:16 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:16 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:16 INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:16 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:16 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:16 INF] HTTP GET /api/Employee/list responded 200 in 47.9375 ms
+[2025-08-05 22:34:17 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:17 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:17 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:17 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:34:17 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:34:17 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:17 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:17 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:17 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:17 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:17 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:17 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:17 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:17 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 3ms reading results.
+[2025-08-05 22:34:17 INF] HTTP GET /api/Employee/list responded 200 in 39.1067 ms
+[2025-08-05 22:34:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:18 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:18 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:18 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:34:18 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:34:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:18 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:18 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:18 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY [s].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:18 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY [s].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:18 INF] HTTP GET /api/Supplier/list responded 200 in 30.6062 ms
+[2025-08-05 22:34:23 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:23 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:23 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:23 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:34:23 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:34:23 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:23 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:23 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:23 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:23 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:23 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:23 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:23 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:23 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:23 INF] HTTP GET /api/Customer/list responded 200 in 30.3836 ms
+[2025-08-05 22:34:26 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:26 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:26 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:26 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:34:26 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:34:26 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:26 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:26 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:26 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:26 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:26 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:26 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:26 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:26 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:26 INF] HTTP GET /api/Customer/list responded 200 in 32.8088 ms
+[2025-08-05 22:34:30 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:30 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:30 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:30 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:30 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:30 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:30 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:30 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:30 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:30 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:30 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:30 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:30 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:30 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:30 INF] HTTP GET /api/Category/list responded 200 in 35.7124 ms
+[2025-08-05 22:34:32 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:32 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:32 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:32 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:32 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:32 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:32 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:32 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:32 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:32 DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:32 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:32 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:32 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:32 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:32 INF] HTTP GET /api/Category/list responded 200 in 33.5091 ms
+[2025-08-05 22:34:36 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:36 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:36 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:36 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:36 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:36 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:36 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:36 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:36 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:36 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:36 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 22:34:36 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+[2025-08-05 22:34:36 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:36 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:36 INF] HTTP GET /api/Category/list responded 200 in 38.4631 ms
+[2025-08-05 22:34:39 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:39 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:39 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:39 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:39 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:39 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:39 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:39 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:39 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:39 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:39 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:39 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:39 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:39 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:39 INF] HTTP GET /api/Category/list responded 200 in 29.5956 ms
+[2025-08-05 22:34:42 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:42 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:42 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:42 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:42 INF] Executed DbCommand (4ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:42 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:42 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:42 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:42 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:42 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:42 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:42 INF] Executed DbCommand (5ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:42 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:42 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:42 INF] HTTP GET /api/Category/list responded 200 in 47.4594 ms
+[2025-08-05 22:34:48 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:48 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:48 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:48 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:48 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:48 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:48 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:48 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:48 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:48 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:48 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:48 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:48 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:48 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:48 INF] HTTP GET /api/Category/list responded 200 in 36.5509 ms
+[2025-08-05 22:34:49 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:49 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:49 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:49 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:49 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:49 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:49 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:49 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:49 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:49 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:49 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:49 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:49 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:49 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:49 INF] HTTP GET /api/Category/list responded 200 in 34.6996 ms
+[2025-08-05 22:34:49 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:49 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:49 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:49 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:49 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:49 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:49 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:49 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:49 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:49 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:49 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:49 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:49 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:49 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:49 INF] HTTP GET /api/Category/list responded 200 in 36.4940 ms
+[2025-08-05 22:34:50 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:50 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:50 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:50 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:50 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:50 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:50 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:50 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:50 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:50 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:50 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:50 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:50 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:50 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:50 INF] HTTP GET /api/Category/list responded 200 in 35.2635 ms
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:51 INF] Executed DbCommand (4ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:51 INF] Executed DbCommand (3ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:51 INF] HTTP GET /api/Category/list responded 200 in 37.7345 ms
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:51 INF] Executed DbCommand (4ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 INF] Executed DbCommand (4ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (9ms).
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 4ms reading results.
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:51 INF] HTTP GET /api/Category/list responded 200 in 41.2344 ms
+[2025-08-05 22:34:51 INF] Executed DbCommand (6ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (7ms).
+[2025-08-05 22:34:51 INF] Executed DbCommand (6ms) [Parameters=[@__filter_CategoryName_0_contains='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryName] LIKE @__filter_CategoryName_0_contains ESCAPE N'\'
+ORDER BY [c].[CategoryName]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 4ms reading results.
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 INF] HTTP GET /api/Category/list responded 200 in 62.9507 ms
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 4ms reading results.
+[2025-08-05 22:34:51 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:51 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:34:51 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:51 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:51 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:51 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:51 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:51 INF] HTTP GET /api/Category/list responded 200 in 53.6399 ms
+[2025-08-05 22:34:54 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:54 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:34:54 DBG] Initialized DbCommand for 'ExecuteReader' (5ms).
+[2025-08-05 22:34:54 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:54 INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Categories] AS [c]
+[2025-08-05 22:34:54 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:54 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:54 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:34:54 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:34:54 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:34:54 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:54 INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+ORDER BY [c].[CategoryName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:34:54 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:34:54 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:34:54 INF] HTTP GET /api/Category/list responded 200 in 38.7185 ms
+[2025-08-05 22:35:16 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:16 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:35:16 DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:35:16 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-08-05 22:35:16 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[Description], [c].[IsDeleted]
+FROM [Categories] AS [c]
+WHERE [c].[CategoryId] = @__p_0
+[2025-08-05 22:35:16 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:16 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:35:16 INF] HTTP GET /api/Category/1 responded 200 in 35.6609 ms
+[2025-08-05 22:35:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:18 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:35:18 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:18 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:35:18 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:35:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:35:18 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:18 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:35:18 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:18 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:18 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY [c].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:18 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:18 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:35:18 INF] HTTP GET /api/Customer/list responded 200 in 35.9513 ms
+[2025-08-05 22:35:20 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:20 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:35:20 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:20 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:35:20 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Suppliers] AS [s]
+[2025-08-05 22:35:20 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:20 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 1ms reading results.
+[2025-08-05 22:35:20 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:20 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:35:20 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:20 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY [s].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:20 INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[SupplierId], [s].[Address], [s].[City], [s].[CompanyName], [s].[ContactName], [s].[ContactTitle], [s].[Country], [s].[Fax], [s].[HomePage], [s].[IsDeleted], [s].[Phone], [s].[PostalCode], [s].[Region]
+FROM [Suppliers] AS [s]
+ORDER BY [s].[CompanyName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:20 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:20 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:35:20 INF] HTTP GET /api/Supplier/list responded 200 in 36.1906 ms
+[2025-08-05 22:35:24 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:24 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:35:24 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:24 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:35:24 INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:35:24 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:24 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:35:24 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:24 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:35:24 DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:24 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:24 INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY [e].[FirstName]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:24 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:24 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 2ms reading results.
+[2025-08-05 22:35:24 INF] HTTP GET /api/Employee/list responded 200 in 38.0628 ms
+[2025-08-05 22:35:27 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:27 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:27 DBG] Created DbCommand for 'ExecuteReader' (2ms).
+[2025-08-05 22:35:27 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:27 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 22:35:27 DBG] Initialized DbCommand for 'ExecuteReader' (7ms).
+[2025-08-05 22:35:27 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:27 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:35:27 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:35:27 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:35:27 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Customers] AS [c]
+[2025-08-05 22:35:27 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Employees] AS [e]
+[2025-08-05 22:35:27 DBG] Initialized DbCommand for 'ExecuteReader' (11ms).
+[2025-08-05 22:35:27 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:27 DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Orders] AS [o]
+[2025-08-05 22:35:27 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:27 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 7ms reading results.
+[2025-08-05 22:35:27 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 9ms reading results.
+[2025-08-05 22:35:27 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Orders] AS [o]
+[2025-08-05 22:35:27 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 22:35:27 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:27 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 22:35:27 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 22:35:27 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 5ms reading results.
+[2025-08-05 22:35:27 WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+[2025-08-05 22:35:27 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:27 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:27 DBG] Created DbCommand for 'ExecuteReader' (1ms).
+[2025-08-05 22:35:27 DBG] Creating DbCommand for 'ExecuteReader'.
+[2025-08-05 22:35:27 DBG] Created DbCommand for 'ExecuteReader' (3ms).
+[2025-08-05 22:35:27 DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+[2025-08-05 22:35:27 DBG] Created DbCommand for 'ExecuteReader' (4ms).
+[2025-08-05 22:35:27 DBG] Initialized DbCommand for 'ExecuteReader' (8ms).
+[2025-08-05 22:35:27 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:27 DBG] Initialized DbCommand for 'ExecuteReader' (10ms).
+[2025-08-05 22:35:27 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:27 INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CustomerId], [c].[Address], [c].[City], [c].[CompanyName], [c].[ContactName], [c].[ContactTitle], [c].[Country], [c].[Fax], [c].[IsDeleted], [c].[Phone], [c].[PostalCode], [c].[Region]
+FROM [Customers] AS [c]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:27 DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[OrderId], [o].[CustomerId], [o].[EmployeeId], [o].[Freight], [o].[IsDeleted], [o].[OrderDate], [o].[RequiredDate], [o].[ShipAddress], [o].[ShipCity], [o].[ShipCountry], [o].[ShipName], [o].[ShipPostalCode], [o].[ShipRegion], [o].[ShipVia], [o].[ShippedDate]
+FROM [Orders] AS [o]
+ORDER BY [o].[OrderId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:27 INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[Address], [e].[BirthDate], [e].[City], [e].[Country], [e].[Extension], [e].[FirstName], [e].[HireDate], [e].[HomePhone], [e].[IsDeleted], [e].[LastName], [e].[Notes], [e].[PhotoPath], [e].[PostalCode], [e].[Region], [e].[ReportsTo], [e].[Title], [e].[TitleOfCourtesy]
+FROM [Employees] AS [e]
+ORDER BY (SELECT 1)
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:27 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:27 INF] Executed DbCommand (10ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [o].[OrderId], [o].[CustomerId], [o].[EmployeeId], [o].[Freight], [o].[IsDeleted], [o].[OrderDate], [o].[RequiredDate], [o].[ShipAddress], [o].[ShipCity], [o].[ShipCountry], [o].[ShipName], [o].[ShipPostalCode], [o].[ShipRegion], [o].[ShipVia], [o].[ShippedDate]
+FROM [Orders] AS [o]
+ORDER BY [o].[OrderId]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+[2025-08-05 22:35:27 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:27 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 8ms reading results.
+[2025-08-05 22:35:27 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 8ms reading results.
+[2025-08-05 22:35:27 INF] HTTP GET /api/Customer/list responded 200 in 93.2206 ms
+[2025-08-05 22:35:27 INF] HTTP GET /api/Employee/list responded 200 in 96.4148 ms
+[2025-08-05 22:35:27 DBG] Closing data reader to 'Northwind' on server 'localhost\SQLEXPRESS'.
+[2025-08-05 22:35:27 DBG] A data reader for 'Northwind' on server 'localhost\SQLEXPRESS' is being disposed after spending 20ms reading results.
+[2025-08-05 22:35:27 INF] HTTP GET /api/Order/list responded 200 in 119.0162 ms

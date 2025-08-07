@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
+using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 
 namespace NorthwindApp.Business.Services.Concrete
@@ -13,8 +15,10 @@ namespace NorthwindApp.Business.Services.Concrete
         public EmployeeService(
             IEmployeeRepository employeeRepo,
             IMapper mapper,
-            ICacheService cacheService)
-            : base(employeeRepo, mapper, cacheService, "employee_list_", "Çalışan")
+            ICacheService cacheService,
+            ILogger<EmployeeService> logger,
+            IHttpContextAccessor httpContextAccessor)
+            : base(employeeRepo, mapper, cacheService, logger, httpContextAccessor, "employee_list_", "Çalışan")
         {
         }
 
@@ -24,24 +28,52 @@ namespace NorthwindApp.Business.Services.Concrete
             // Build filter expression
             Expression<Func<Employee, bool>>? filterExpression = null;
             
-            if (filter != null && !IsEmptyFilter(filter))
+            if (filter != null)
             {
                 filterExpression = e =>
-                (string.IsNullOrEmpty(filter.LastName) || (e.LastName != null && e.LastName.Contains(filter.LastName))) &&
-                (string.IsNullOrEmpty(filter.FirstName) || (e.FirstName != null && e.FirstName.Contains(filter.FirstName))) &&
-                (string.IsNullOrEmpty(filter.Title) || (e.Title != null && e.Title.Contains(filter.Title))) &&
-                (string.IsNullOrEmpty(filter.City) || (e.City != null && e.City.Contains(filter.City))) &&
-                (string.IsNullOrEmpty(filter.Country) || (e.Country != null && e.Country.Contains(filter.Country))) &&
-                (!filter.ReportsTo.HasValue || e.ReportsTo == filter.ReportsTo);
+                (string.IsNullOrEmpty(filter.LastName) || (e.LastName != null && e.LastName.ToLower().Contains(filter.LastName.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.FirstName) || (e.FirstName != null && e.FirstName.ToLower().Contains(filter.FirstName.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.Title) || (e.Title != null && e.Title.ToLower().Contains(filter.Title.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.City) || (e.City != null && e.City.ToLower().Contains(filter.City.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.Country) || (e.Country != null && e.Country.ToLower().Contains(filter.Country.ToLower()))) &&
+                (!filter.IsDeleted.HasValue || e.IsDeleted == filter.IsDeleted);
             }
 
             // Extract pagination and sorting parameters from filter
-            var sortField = filter?.SortField;
-            var sortDirection = filter?.SortDirection;
+            var sortField = filter?.SortField ?? "EmployeeId";
+            var sortDirection = filter?.SortDirection ?? "asc";
             var page = filter?.Page ?? 1;
             var pageSize = filter?.PageSize ?? 10;
 
-            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
+            // Generate cache key with filter parameters
+            var cacheKey = GenerateCacheKeyWithFilter(filter);
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize, cacheKey);
+        }
+
+        private string GenerateCacheKeyWithFilter(EmployeeFilterDto? filter)
+        {
+            if (filter == null)
+                return _cachePrefix;
+
+            // Create a unique cache key based on filter parameters
+            var filterParams = new List<string>
+            {
+                $"ln:{filter.LastName ?? ""}",
+                $"fn:{filter.FirstName ?? ""}",
+                $"title:{filter.Title ?? ""}",
+                $"city:{filter.City ?? ""}",
+                $"country:{filter.Country ?? ""}",
+                $"del:{filter.IsDeleted?.ToString() ?? ""}",
+                $"sort:{filter.SortField ?? ""}",
+                $"dir:{filter.SortDirection ?? ""}",
+                $"page:{filter.Page}",
+                $"size:{filter.PageSize}"
+            };
+
+            var filterString = string.Join("_", filterParams);
+            var hash = filterString.GetHashCode();
+            return $"{_cachePrefix}_{hash}";
         }
 
         protected override int GetIdFromUpdateDto(EmployeeUpdateDto dto)
@@ -49,17 +81,14 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.EmployeeId;
         }
 
-        protected override bool SupportsSoftDelete() => false;
+        protected override bool SupportsSoftDelete() => true;
 
-        private static bool IsEmptyFilter(EmployeeFilterDto filter)
+        protected override void PerformSoftDelete(Employee entity)
         {
-            return string.IsNullOrEmpty(filter.LastName) &&
-                   string.IsNullOrEmpty(filter.FirstName) &&
-                   string.IsNullOrEmpty(filter.Title) &&
-                   string.IsNullOrEmpty(filter.City) &&
-                   string.IsNullOrEmpty(filter.Country) &&
-                   !filter.ReportsTo.HasValue;
+            entity.IsDeleted = true;
         }
+
+
 
         // Implement IEmployeeService methods that return string instead of EmployeeDTO
         async Task<ApiResponse<string>> IEmployeeService.AddAsync(EmployeeCreateDto dto)
@@ -93,24 +122,24 @@ namespace NorthwindApp.Business.Services.Concrete
         }
 
         // Business rule validation
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForCreate(EmployeeCreateDto dto)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForCreate(EmployeeCreateDto dto)
         {
             // Example business rule: Employee must have a valid title
             if (string.IsNullOrEmpty(dto.Title))
             {
-                return BusinessValidationResult.Failure("Çalışan pozisyonu boş olamaz.");
+                return Task.FromResult(BusinessValidationResult.Failure("Çalışan pozisyonu boş olamaz."));
             }
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
 
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(EmployeeUpdateDto dto, Employee entity)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(EmployeeUpdateDto dto, Employee entity)
         {
             // Example business rule: Cannot update deleted employees
             if (entity.IsDeleted)
             {
-                return BusinessValidationResult.Failure("Silinmiş çalışan güncellenemez.");
+                return Task.FromResult(BusinessValidationResult.Failure("Silinmiş çalışan güncellenemez."));
             }
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
     }
 }

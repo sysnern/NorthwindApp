@@ -24,6 +24,11 @@ namespace NorthwindApp.Data.Context
             modelBuilder.Entity<OrderDetail>()
                 .HasKey(od => new { od.OrderId, od.ProductId });
 
+            // OrderDetail UnitPrice için precision ayarı
+            modelBuilder.Entity<OrderDetail>()
+                .Property(od => od.UnitPrice)
+                .HasPrecision(18, 2); // 18 digit, 2 decimal places
+
             base.OnModelCreating(modelBuilder);
         }
     }

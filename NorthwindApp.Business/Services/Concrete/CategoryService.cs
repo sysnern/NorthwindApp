@@ -1,9 +1,11 @@
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
+using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 
 namespace NorthwindApp.Business.Services.Concrete
@@ -13,8 +15,10 @@ namespace NorthwindApp.Business.Services.Concrete
         public CategoryService(
             ICategoryRepository categoryRepo,
             IMapper mapper,
-            ICacheService cacheService)
-            : base(categoryRepo, mapper, cacheService, "category_list_", "Kategori")
+            ICacheService cacheService,
+            ILogger<CategoryService> logger,
+            IHttpContextAccessor httpContextAccessor)
+            : base(categoryRepo, mapper, cacheService, logger, httpContextAccessor, "category_list_", "Kategori")
         {
         }
 
@@ -24,10 +28,11 @@ namespace NorthwindApp.Business.Services.Concrete
             // Build filter expression
             Expression<Func<Category, bool>>? filterExpression = null;
             
-            if (filter != null && !IsEmptyFilter(filter))
+            if (filter != null)
             {
                 filterExpression = c =>
-                (string.IsNullOrEmpty(filter.CategoryName) || c.CategoryName.Contains(filter.CategoryName));
+                (string.IsNullOrEmpty(filter.CategoryName) || c.CategoryName.ToLower().Contains(filter.CategoryName.ToLower())) &&
+                (!filter.IsDeleted.HasValue || c.IsDeleted == filter.IsDeleted);
             }
 
             // Extract pagination and sorting parameters from filter
@@ -36,7 +41,31 @@ namespace NorthwindApp.Business.Services.Concrete
             var page = filter?.Page ?? 1;
             var pageSize = filter?.PageSize ?? 10;
 
-            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
+            // Generate cache key with filter parameters
+            var cacheKey = GenerateCacheKeyWithFilter(filter);
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize, cacheKey);
+        }
+
+        private string GenerateCacheKeyWithFilter(CategoryFilterDto? filter)
+        {
+            if (filter == null)
+                return _cachePrefix;
+
+            // Create a unique cache key based on filter parameters
+            var filterParams = new List<string>
+            {
+                $"cn:{filter.CategoryName ?? ""}",
+                $"del:{filter.IsDeleted?.ToString() ?? ""}",
+                $"sort:{filter.SortField ?? ""}",
+                $"dir:{filter.SortDirection ?? ""}",
+                $"page:{filter.Page}",
+                $"size:{filter.PageSize}"
+            };
+
+            var filterString = string.Join("_", filterParams);
+            var hash = filterString.GetHashCode();
+            return $"{_cachePrefix}_{hash}";
         }
 
         protected override int GetIdFromUpdateDto(CategoryUpdateDto dto)
@@ -44,12 +73,14 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.CategoryId;
         }
 
-        protected override bool SupportsSoftDelete() => false;
+        protected override bool SupportsSoftDelete() => true;
 
-        private static bool IsEmptyFilter(CategoryFilterDto filter)
+        protected override void PerformSoftDelete(Category entity)
         {
-            return string.IsNullOrEmpty(filter.CategoryName);
+            entity.IsDeleted = true;
         }
+
+
 
         // Implement ICategoryService methods that return string instead of CategoryDTO
         async Task<ApiResponse<string>> ICategoryService.AddAsync(CategoryCreateDto dto)

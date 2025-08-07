@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
+using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 
 namespace NorthwindApp.Business.Services.Concrete
@@ -13,8 +15,10 @@ namespace NorthwindApp.Business.Services.Concrete
         public SupplierService(
             ISupplierRepository supplierRepo,
             IMapper mapper,
-            ICacheService cacheService)
-            : base(supplierRepo, mapper, cacheService, "supplier_list_", "Tedarikçi")
+            ICacheService cacheService,
+            ILogger<SupplierService> logger,
+            IHttpContextAccessor httpContextAccessor)
+            : base(supplierRepo, mapper, cacheService, logger, httpContextAccessor, "supplier_list_", "Tedarikçi")
         {
         }
 
@@ -24,22 +28,50 @@ namespace NorthwindApp.Business.Services.Concrete
             // Build filter expression
             Expression<Func<Supplier, bool>>? filterExpression = null;
             
-            if (filter != null && !IsEmptyFilter(filter))
+            if (filter != null)
             {
                 filterExpression = s =>
-                (string.IsNullOrEmpty(filter.CompanyName) || (s.CompanyName != null && s.CompanyName.Contains(filter.CompanyName))) &&
-                (string.IsNullOrEmpty(filter.ContactName) || (s.ContactName != null && s.ContactName.Contains(filter.ContactName))) &&
-                (string.IsNullOrEmpty(filter.City) || (s.City != null && s.City.Contains(filter.City))) &&
-                (string.IsNullOrEmpty(filter.Country) || (s.Country != null && s.Country.Contains(filter.Country)));
+                (string.IsNullOrEmpty(filter.CompanyName) || (s.CompanyName != null && s.CompanyName.ToLower().Contains(filter.CompanyName.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.ContactName) || (s.ContactName != null && s.ContactName.ToLower().Contains(filter.ContactName.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.City) || (s.City != null && s.City.ToLower().Contains(filter.City.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.Country) || (s.Country != null && s.Country.ToLower().Contains(filter.Country.ToLower()))) &&
+                (!filter.IsDeleted.HasValue || s.IsDeleted == filter.IsDeleted);
             }
 
             // Extract pagination and sorting parameters from filter
-            var sortField = filter?.SortField;
-            var sortDirection = filter?.SortDirection;
+            var sortField = filter?.SortField ?? "SupplierId";
+            var sortDirection = filter?.SortDirection ?? "asc";
             var page = filter?.Page ?? 1;
             var pageSize = filter?.PageSize ?? 10;
 
-            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
+            // Generate cache key with filter parameters
+            var cacheKey = GenerateCacheKeyWithFilter(filter);
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize, cacheKey);
+        }
+
+        private string GenerateCacheKeyWithFilter(SupplierFilterDto? filter)
+        {
+            if (filter == null)
+                return _cachePrefix;
+
+            // Create a unique cache key based on filter parameters
+            var filterParams = new List<string>
+            {
+                $"cn:{filter.CompanyName ?? ""}",
+                $"ctn:{filter.ContactName ?? ""}",
+                $"city:{filter.City ?? ""}",
+                $"country:{filter.Country ?? ""}",
+                $"del:{filter.IsDeleted?.ToString() ?? ""}",
+                $"sort:{filter.SortField ?? ""}",
+                $"dir:{filter.SortDirection ?? ""}",
+                $"page:{filter.Page}",
+                $"size:{filter.PageSize}"
+            };
+
+            var filterString = string.Join("_", filterParams);
+            var hash = filterString.GetHashCode();
+            return $"{_cachePrefix}_{hash}";
         }
 
         protected override int GetIdFromUpdateDto(SupplierUpdateDto dto)
@@ -47,15 +79,14 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.SupplierId;
         }
 
-        protected override bool SupportsSoftDelete() => false;
+        protected override bool SupportsSoftDelete() => true;
 
-        private static bool IsEmptyFilter(SupplierFilterDto filter)
+        protected override void PerformSoftDelete(Supplier entity)
         {
-            return string.IsNullOrEmpty(filter.CompanyName) &&
-                   string.IsNullOrEmpty(filter.ContactName) &&
-                   string.IsNullOrEmpty(filter.City) &&
-                   string.IsNullOrEmpty(filter.Country);
+            entity.IsDeleted = true;
         }
+
+
 
         // Implement ISupplierService methods that return string instead of SupplierDTO
         async Task<ApiResponse<string>> ISupplierService.AddAsync(SupplierCreateDto dto)
@@ -89,24 +120,24 @@ namespace NorthwindApp.Business.Services.Concrete
         }
 
         // Business rule validation
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForCreate(SupplierCreateDto dto)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForCreate(SupplierCreateDto dto)
         {
             // Example business rule: Supplier must have a company name
             if (string.IsNullOrEmpty(dto.CompanyName))
             {
-                return BusinessValidationResult.Failure("Tedarikçi şirket adı boş olamaz.");
+                return Task.FromResult(BusinessValidationResult.Failure("Tedarikçi şirket adı boş olamaz."));
             }
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
 
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(SupplierUpdateDto dto, Supplier entity)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(SupplierUpdateDto dto, Supplier entity)
         {
             // Example business rule: Cannot update deleted suppliers
             if (entity.IsDeleted)
             {
-                return BusinessValidationResult.Failure("Silinmiş tedarikçi güncellenemez.");
+                return Task.FromResult(BusinessValidationResult.Failure("Silinmiş tedarikçi güncellenemez."));
             }
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
     }
 }

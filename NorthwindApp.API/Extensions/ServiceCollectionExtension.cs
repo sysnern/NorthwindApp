@@ -38,6 +38,7 @@ namespace NorthwindApp.API.Extensions
         public static IServiceCollection AddNorthwindCaching(this IServiceCollection services)
         {
             services.AddMemoryCache();
+            services.AddHttpContextAccessor(); // Add HttpContextAccessor for logging context
             return services;
         }
 

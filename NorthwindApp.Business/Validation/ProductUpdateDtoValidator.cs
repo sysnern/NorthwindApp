@@ -19,6 +19,9 @@ namespace NorthwindApp.Business.Validation
 
             RuleFor(p => p.CategoryId)
                 .GreaterThan(0).WithMessage("Kategori ID sıfırdan büyük olmalı.");
+
+            RuleFor(p => p.SupplierId)
+                .GreaterThan(0).WithMessage("Tedarikçi ID sıfırdan büyük olmalı.");
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using NorthwindApp.Business.Services.Abstract;
 using NorthwindApp.Core.DTOs;
 using NorthwindApp.Core.Results;
 using NorthwindApp.Data.Repositories.Abstract;
 using NorthwindApp.Entities.Models;
+using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 
 namespace NorthwindApp.Business.Services.Concrete
@@ -13,8 +15,10 @@ namespace NorthwindApp.Business.Services.Concrete
         public CustomerService(
             ICustomerRepository customerRepo,
             IMapper mapper,
-            ICacheService cacheService)
-            : base(customerRepo, mapper, cacheService, "customer_list_", "Müşteri")
+            ICacheService cacheService,
+            ILogger<CustomerService> logger,
+            IHttpContextAccessor httpContextAccessor)
+            : base(customerRepo, mapper, cacheService, logger, httpContextAccessor, "customer_list_", "Müşteri")
         {
         }
 
@@ -24,23 +28,52 @@ namespace NorthwindApp.Business.Services.Concrete
             // Build filter expression
             Expression<Func<Customer, bool>>? filterExpression = null;
             
-            if (filter != null && !IsEmptyFilter(filter))
+            if (filter != null)
             {
                 filterExpression = c =>
-                (string.IsNullOrEmpty(filter.CustomerId) || (c.CustomerId != null && c.CustomerId.Contains(filter.CustomerId))) &&
-                (string.IsNullOrEmpty(filter.CompanyName) || (c.CompanyName != null && c.CompanyName.Contains(filter.CompanyName))) &&
-                (string.IsNullOrEmpty(filter.ContactName) || (c.ContactName != null && c.ContactName.Contains(filter.ContactName))) &&
-                (string.IsNullOrEmpty(filter.City) || (c.City != null && c.City.Contains(filter.City))) &&
-                (string.IsNullOrEmpty(filter.Country) || (c.Country != null && c.Country.Contains(filter.Country)));
+                (string.IsNullOrEmpty(filter.CustomerId) || (c.CustomerId != null && c.CustomerId.ToLower().Contains(filter.CustomerId.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.CompanyName) || (c.CompanyName != null && c.CompanyName.ToLower().Contains(filter.CompanyName.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.ContactName) || (c.ContactName != null && c.ContactName.ToLower().Contains(filter.ContactName.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.City) || (c.City != null && c.City.ToLower().Contains(filter.City.ToLower()))) &&
+                (string.IsNullOrEmpty(filter.Country) || (c.Country != null && c.Country.ToLower().Contains(filter.Country.ToLower()))) &&
+                (!filter.IsDeleted.HasValue || c.IsDeleted == filter.IsDeleted);
             }
 
             // Extract pagination and sorting parameters from filter
-            var sortField = filter?.SortField;
-            var sortDirection = filter?.SortDirection;
+            var sortField = filter?.SortField ?? "CustomerId";
+            var sortDirection = filter?.SortDirection ?? "asc";
             var page = filter?.Page ?? 1;
             var pageSize = filter?.PageSize ?? 10;
 
-            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize);
+            // Generate cache key with filter parameters
+            var cacheKey = GenerateCacheKeyWithFilter(filter);
+
+            return await base.GetAllAsync(filterExpression, sortField, sortDirection, page, pageSize, cacheKey);
+        }
+
+        private string GenerateCacheKeyWithFilter(CustomerFilterDto? filter)
+        {
+            if (filter == null)
+                return _cachePrefix;
+
+            // Create a unique cache key based on filter parameters
+            var filterParams = new List<string>
+            {
+                $"cid:{filter.CustomerId ?? ""}",
+                $"cn:{filter.CompanyName ?? ""}",
+                $"ctn:{filter.ContactName ?? ""}",
+                $"city:{filter.City ?? ""}",
+                $"country:{filter.Country ?? ""}",
+                $"del:{filter.IsDeleted?.ToString() ?? ""}",
+                $"sort:{filter.SortField ?? ""}",
+                $"dir:{filter.SortDirection ?? ""}",
+                $"page:{filter.Page}",
+                $"size:{filter.PageSize}"
+            };
+
+            var filterString = string.Join("_", filterParams);
+            var hash = filterString.GetHashCode();
+            return $"{_cachePrefix}_{hash}";
         }
 
         protected override string GetIdFromUpdateDto(CustomerUpdateDto dto)
@@ -48,16 +81,14 @@ namespace NorthwindApp.Business.Services.Concrete
             return dto.CustomerId;
         }
 
-        protected override bool SupportsSoftDelete() => false;
+        protected override bool SupportsSoftDelete() => true;
 
-        private static bool IsEmptyFilter(CustomerFilterDto filter)
+        protected override void PerformSoftDelete(Customer entity)
         {
-            return string.IsNullOrEmpty(filter.CustomerId) &&
-                   string.IsNullOrEmpty(filter.CompanyName) &&
-                   string.IsNullOrEmpty(filter.ContactName) &&
-                   string.IsNullOrEmpty(filter.City) &&
-                   string.IsNullOrEmpty(filter.Country);
+            entity.IsDeleted = true;
         }
+
+
 
         // Implement ICustomerService methods that return string instead of CustomerDTO
         async Task<ApiResponse<string>> ICustomerService.AddAsync(CustomerCreateDto dto)
@@ -91,21 +122,21 @@ namespace NorthwindApp.Business.Services.Concrete
         }
 
         // Business rule validation
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForCreate(CustomerCreateDto dto)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForCreate(CustomerCreateDto dto)
         {
             // Example business rule: Customer ID must be unique
             // This would typically check against the database
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
 
-        protected override async Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(CustomerUpdateDto dto, Customer entity)
+        protected override Task<BusinessValidationResult> ValidateBusinessRulesForUpdate(CustomerUpdateDto dto, Customer entity)
         {
             // Example business rule: Cannot update deleted customers
             if (entity.IsDeleted)
             {
-                return BusinessValidationResult.Failure("Silinmiş müşteri güncellenemez.");
+                return Task.FromResult(BusinessValidationResult.Failure("Silinmiş müşteri güncellenemez."));
             }
-            return BusinessValidationResult.Success();
+            return Task.FromResult(BusinessValidationResult.Success());
         }
     }
 }

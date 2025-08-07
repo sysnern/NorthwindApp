@@ -65,6 +65,37 @@ namespace NorthwindApp.Data.Repositories
                     
                     query = (IQueryable<TEntity>)method.Invoke(null, new object[] { query, lambda })!;
                 }
+                else
+                {
+                    // Log or handle case where property is not found
+                    // For now, we'll just skip sorting if property is not found
+                }
+            }
+            else
+            {
+                // Default sorting to avoid EF warning about Skip/Take without OrderBy
+                // Try to find an ID property for default sorting
+                var idProperty = typeof(TEntity).GetProperty("Id") ?? 
+                                typeof(TEntity).GetProperty("ProductId") ?? 
+                                typeof(TEntity).GetProperty("CategoryId") ?? 
+                                typeof(TEntity).GetProperty("SupplierId") ?? 
+                                typeof(TEntity).GetProperty("EmployeeId") ?? 
+                                typeof(TEntity).GetProperty("OrderId") ?? 
+                                typeof(TEntity).GetProperty("CustomerId");
+                
+                if (idProperty != null)
+                {
+                    var parameter = Expression.Parameter(typeof(TEntity), "x");
+                    var propertyAccess = Expression.Property(parameter, idProperty);
+                    var lambda = Expression.Lambda(propertyAccess, parameter);
+                    
+                    var method = typeof(Queryable).GetMethods()
+                        .Where(m => m.Name == "OrderBy" && m.GetParameters().Length == 2)
+                        .First()
+                        .MakeGenericMethod(typeof(TEntity), idProperty.PropertyType);
+                    
+                    query = (IQueryable<TEntity>)method.Invoke(null, new object[] { query, lambda })!;
+                }
             }
 
             // Apply pagination
